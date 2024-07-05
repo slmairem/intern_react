@@ -57,23 +57,19 @@ const Register = () => {
                     <h2>Register</h2>
                     <form id="registerForm" action="/register" method="POST" onSubmit={validateForm}>
                         <div className="input-box">
-                            <span className="icon"><ion-icon name="mail-outline"></ion-icon></span>
                             <input type="email" className="form-control" id="email" name="email" required />
                             <label htmlFor="email">Email</label>
                         </div>
                         <div className="input-box">
-                            <span className="icon"><ion-icon name="person-outline"></ion-icon></span>
                             <input type="text" className="form-control" id="username" name="username" required maxLength="10" />
                             <label htmlFor="username">Username</label>
                         </div>
-                        <div className="input-box">
-                            <span className="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                        <div className="input-box">  
                             <input type={showPassword ? "text" : "password"} className="form-control" id="password" name="password" required />
                             <label htmlFor="password">Password</label>
                             <button type="button" className="btn btn-secondary" onClick={togglePassword}>Show Password</button>
                         </div>
                         <div className="input-box">
-                            <span className="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
                             <input type="password" className="form-control" id="conpassword" name="conpassword" required />
                             <label htmlFor="conpassword">Confirm Password</label>
                         </div>
