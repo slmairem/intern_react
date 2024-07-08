@@ -7,6 +7,12 @@ function Animation(){
   const navigateToRegister = () => {
     navigate('/animation');
   };
+
+  return (
+    <div>
+        denemeww
+    </div>
+  );
 }
 
 

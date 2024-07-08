@@ -18,7 +18,7 @@ function Navbar() {
         <img src='https://cdn.pixabay.com/photo/2016/10/02/00/53/a-1708752_1280.png'></img></Link>
       </div>
       <div className="middleSide">
-        <Link to="/animations">Animations</Link>
+        <Link to="/animation">Animations</Link>
         <Link to="/lists">Lists</Link>
         <Link to="/forum">Forum</Link>
         <Link to="/news">News</Link>

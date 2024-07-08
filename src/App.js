@@ -8,6 +8,8 @@ import UserProfile from './pages/profile';
 import Details from './pages/detail';
 import Lists from './pages/lists';
 import Forum from './pages/forum';
+import News from './pages/news';
+import Animation from './pages/animation';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
             <Route path="/detail" element={<Details />} />
             <Route path="/lists" element={<Lists />} />
             <Route path="/forum" element={<Forum />} />
+            <Route path="/animation" element={<Animation />} />
+            <Route path="/news" element={<News />} />
           </Routes>
       </Router>  
     </div>

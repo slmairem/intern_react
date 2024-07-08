@@ -7,6 +7,13 @@ function Forum(){
   const navigateToRegister = () => {
     navigate('/forum');
   };
+
+  
+  return (
+    <div>
+        deneme
+    </div>
+  );
 }
 
 
