@@ -1,13 +1,12 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 function SearchResults(){
-    const navigate = useNavigate();
-
-  const navigateToRegister = () => {
-    navigate('/search');
-  };
+  
+  return (
+    <div>
+        deneme
+    </div>
+  );
 }
-
 
 export default SearchResults;

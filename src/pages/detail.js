@@ -1,13 +1,12 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 function Details(){
-    const navigate = useNavigate();
-
-  const navigateToRegister = () => {
-    navigate('/detail');
-  };
+  
+  return (
+    <div>
+        deneme
+    </div>
+  );
 }
-
 
 export default Details;

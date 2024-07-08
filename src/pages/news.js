@@ -1,12 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
-function UserProfile(){
-    const navigate = useNavigate();
 
-  const navigateToRegister = () => {
-    navigate('/new');
-  };
+function News(){
 
   return (
     <div>
@@ -16,4 +11,4 @@ function UserProfile(){
 }
 
 
-export default UserProfile;
+export default News;
