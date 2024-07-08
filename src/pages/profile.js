@@ -19,7 +19,7 @@ function Profile() {
       </div>
       <div className='bottom'>
         <div className='leftWing'>
-          <div className='panels'>
+          <div className=''>
             Pronouns:
             Last Online:
             Joined:

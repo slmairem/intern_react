@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/navbar.css';
 import { FaSearch } from 'react-icons/fa';
-// import Logo from '../assets/logo.png';
 
 function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -12,27 +10,29 @@ function Navbar() {
   };
 
   return (
-    <div className="navbar">
+    <div className="flex justify-between items-center p-4 bg-gray-900 text-white">
       <div className="leftSide">
         <Link to="/">
-        <img src='https://cdn.pixabay.com/photo/2016/10/02/00/53/a-1708752_1280.png'></img></Link>
+          <img src='https://cdn.pixabay.com/photo/2016/10/02/00/53/a-1708752_1280.png' className="h-10" alt="Logo"/>
+        </Link>
       </div>
-      <div className="middleSide">
-        <Link to="/animation">Animations</Link>
-        <Link to="/lists">Lists</Link>
-        <Link to="/forum">Forum</Link>
-        <Link to="/news">News</Link>
+      <div className="middleSide flex space-x-4">
+        <Link to="/profile" className="text-white no-underline">Profile</Link>
+        <Link to="/animation" className="text-white no-underline">Animations</Link>
+        <Link to="/lists" className="text-white no-underline">Lists</Link>
+        <Link to="/forum" className="text-white no-underline">Forum</Link>
+        <Link to="/news" className="text-white no-underline">News</Link>
       </div>
-      <div className="rightSide">
-        <FaSearch className="searchIcon" onClick={toggleSearch} />
-        <Link to="/login">Login</Link>
-        <Link to="/register">Register</Link>
+      <div className="rightSide flex space-x-4">
+        <FaSearch className="cursor-pointer" onClick={toggleSearch} />
+        <Link to="/login" className="text-white no-underline">Login</Link>
+        <Link to="/register" className="text-white no-underline">Register</Link>
       </div>
 
       {searchOpen && (
-        <div className="searchPopup" onClick={toggleSearch}>
-          <div className="searchContent" onClick={(e) => e.stopPropagation()}>
-            <input type="text" placeholder="Search..." />
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center" onClick={toggleSearch}>
+          <div className="bg-white p-5 rounded" onClick={(e) => e.stopPropagation()}>
+            <input type="text" placeholder="Search..." className="w-72 p-2 border border-gray-300 rounded"/>
           </div>
         </div>
       )}
