@@ -4,28 +4,28 @@ import { Link } from 'react-router-dom';
 function Profile() {
   return (
     <div className='profile'>
-      <div className='pb-24'>
+      <div className='pb-15'>
         <div className='relative pt-40 '>
-          <img src="https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg&ga=GA1.1.2113030492.1720396800&semt=sph" alt="backImg" className="w-full absolute top-0 left-0 z-0 h-60" />
+          <div><img src="https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg&ga=GA1.1.2113030492.1720396800&semt=sph" alt="backImg" className="w-full absolute top-0 left-0 z-0 h-60" /></div>
         </div>
         
         <div class="relative flex items-start">
           <div class="bg-gray-200 w-32 h-32 relative overflow-hidden ml-10 mt-5">
-            <img src="https://t3.ftcdn.net/jpg/04/12/82/16/360_F_412821610_95RpjzPXCE2LiWGVShIUCGJSktkJQh6P.jpg" alt="profilePic" class="object-cover w-32 h-32"></img>
+            <div><img src="https://t3.ftcdn.net/jpg/04/12/82/16/360_F_412821610_95RpjzPXCE2LiWGVShIUCGJSktkJQh6P.jpg" alt="profilePic" class="object-cover w-32 h-32"></img></div>
           </div>
           <div class="ml-4 mt-10 ">
-            <h3 class="text-black mt-18 text-xl font-bold mt-2">Username</h3>
+            <div><h3 class="text-black mt-18 text-xl font-bold mt-2">Username</h3></div>
           </div>
           <div class="ml-4 mt-10">
-            <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-2">Follow</button>
+            <div><button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-2">Follow</button></div>
           </div>
         </div>             
         
         <div className='static w-full flex justify-center bg-pink-300 h-10  font-bold'>
-            <button type="button" className="navBut mx-2">Profile</button>
-            <button type="button" className="navBut mx-2">Lists</button>
-            <button type="button" className="navBut mx-2">Stats</button>
-            <button type="button" className="navBut mx-2">Journal</button>
+            <div><button type="button" className="navBut mx-2">Profile</button></div>
+            <div><button type="button" className="navBut mx-2">Lists</button></div>
+            <div><button type="button" className="navBut mx-2">Stats</button></div>
+            <div><button type="button" className="navBut mx-2">Journal</button></div>
         </div>
       </div>
 
@@ -49,28 +49,85 @@ function Profile() {
 
         <div className='w-3/4 p-4'>
           <div className='bg-pink-300 p-4 rounded mb-4'>
-            <div>Series</div>
+            <div className='mb-2 font-semibold' >Series</div>
             <div className='flex mb-4'>
               
-              <div className='w-1/2'>
-                <div>Watching</div>
-                <div>Completed</div>
-                <div>On-hold</div>
-                <div>Dropped</div>
-                <div>Plan to Watch</div>
+              <div className='w-1/4'>
+                <div className='mb-2'>Watching</div>
+                <div className='mb-2'>Completed</div>
+                <div className='mb-2'>On-hold</div>
+                <div className='mb-2'>Dropped</div>
+                <div className='mb-2'>Plan to Watch</div>
               </div>
-              <div className='w-1/2'>
-                <div>Total Entries</div>
-                <div>Rewatched</div>
-                <div>Episodes</div>
+              <div className='w-1/4'>
+                <div className='mb-2'>Total Entries</div>
+                <div className='mb-2'>Rewatched</div>
+                <div className='mb-2'>Episodes</div>
               </div>
           
-              <div className='grid grid-cols-1 gap-4'>
-                <div className='flex items-center bg-gray-700 p-2 rounded'>
-                  image, name, status, score, update_date
+              <div className='grid grid-cols-1 gap-4 w-2/4'>
+                <div className="flex items-center bg-gray-700 p-2 rounded">
+                  <div className="flex-shrink-0 mr-4">
+                    <img src='' className="w-16 h-16 rounded-full" />
+                  </div>
+                  <div className="flex flex-col flex-grow">
+                    <div className="flex justify-between">
+                      <h2 className="text-white text-lg font-semibold">Series Name</h2>
+                      <span className="text-gray-400 text-sm">Update Date</span>
+                    </div>
+                    <div className="flex items-center mt-2">
+                      <div className="flex-grow h-2 bg-gray-600 rounded-full overflow-hidden">
+                        <div className={`h-full bg-blue-500 rounded-full`} style={{ width: `%` }}></div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between mt-2 text-gray-400 text-sm">
+                      <span>100 % watched</span>
+                      <span>Score:</span>
+                    </div>
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
 
+          <div className='bg-pink-300 p-4 rounded mb-4'>
+            <div className='mb-2 font-semibold'>Movies</div>
+            <div className='flex mb-4'>
+              
+              <div className='w-1/4'>
+                <div className='mb-2'>Completed</div>
+                <div className='mb-2'>Dropped</div>
+                <div className='mb-2'>Plan to Watch</div>
+              </div>
+              <div className='w-1/4'>
+                <div className='mb-2'>Total Entries</div>
+                <div className='mb-2'>Rewatched</div>
+                <div className='mb-2'>Episodes</div>
+              </div>
+          
+              <div className='grid grid-cols-1 gap-4 w-2/4'>
+                <div className="flex items-center bg-gray-700 p-2 rounded">
+                  <div className="flex-shrink-0 mr-4">
+                    <img src='' className="w-16 h-16 rounded-full" />
+                  </div>
+
+                  <div className="flex flex-col flex-grow">
+                    <div className="flex justify-between">
+                      <h2 className="text-white text-lg font-semibold">Series Name</h2>
+                      <span className="text-gray-400 text-sm">Update Date</span>
+                    </div>
+                    <div className="flex items-center mt-2">
+                      <div className="flex-grow h-2 bg-gray-600 rounded-full overflow-hidden">
+                        <div className={`h-full bg-blue-500 rounded-full`} style={{ width: `%` }}></div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between mt-2 text-gray-400 text-sm">
+                      <span>100 % watched</span>
+                      <span>Score:</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -78,7 +135,6 @@ function Profile() {
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white mt-5">Comments</h2>
           </div>
-          
             <form className="mb-6">
               <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                 <label htmlFor="comment" className="sr-only">Your comment</label>
@@ -97,9 +153,8 @@ function Profile() {
                 Post comment
               </button>
             </form>
-
-          </div>
         </div>
+      </div>
 
       </div>
     </div>
