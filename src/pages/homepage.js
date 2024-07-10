@@ -35,19 +35,19 @@ function Homepage() {
         <div className="w-4/5 my-2">
           <div className="flex justify-between font-semibold mb-2">
             <a>Movies</a>
-            <a className="text-right">Database Num</a>
+            <a className="text-right text-black	no-underline">Database Num</a>
           </div>
           <div className="mt-2">
-            Movies List
+            Movies List || yan ana 10 tane resim olacak, resimlerin altında da isimleri yazacak
           </div>
         </div>
         <div className="w-4/5 my-2">
           <div className="flex justify-between font-semibold mb-2">
             <a>Series</a>
-            <a className="text-right">Database Num</a>
+            <a className="text-right text-black	no-underline">Database Num</a>
           </div>
           <div className="mt-2">
-            Series List (slider)
+            Series List || yan ana 10 tane resim olacak, resimlerin altında da isimleri yazacak
           </div>
         </div>
       </div>
@@ -104,13 +104,18 @@ function Homepage() {
           </div>
           <div className="mb-5">
             <h3 className="text-xl font-semibold">Forum Topics</h3>
-            {/* Forum topics content */}
+            <div className="bg-gray-100 p-4 rounded mb-2">Pinned forum topics</div>
+            <div className="bg-gray-100 p-4 rounded mb-2">Pinned forum topics</div>
+            <div className="bg-gray-100 p-4 rounded mb-2">Pinned forum topics</div>
           </div>
         </div>
         <div className="w-1/4 ml-5">
           <div className="mb-5">
             <h3 className="text-xl font-semibold">Popular Lists</h3>
-            {/* Popular lists content */}
+            <div className="bg-gray-100 p-4 rounded mb-2">Lists</div>
+            <div className="bg-gray-100 p-4 rounded mb-2">Lists</div>
+            <div className="bg-gray-100 p-4 rounded mb-2">Lists</div>
+            <div className="bg-gray-100 p-4 rounded mb-2">Lists</div>
           </div>
         </div>
       </div>
