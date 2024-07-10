@@ -24,11 +24,15 @@ function SearchResults(){
         </div>
         <div className="left w-1/4 pr-4 pt-12">
           <div className="pl-5">
-            <a>Tıkladığında gerekli başlık sayfası açılacak, default All</a>
-            <div className='mb-4'><button>Forum topics for filtering</button></div>
-            <div className='mb-4'><button>Forum topics for filtering</button></div>
-            <div className='mb-4'><button>Forum topics for filtering</button></div>
-            <div className='mb-4'><button>Forum topics for filtering</button></div>
+            {/* Default All, tıkladığında orası gözükecek.
+            Liste içi filtreleme ve grid özelliklerini sonradan ekleyebilirsin */}
+            <div className='mb-2'><button>All</button></div>
+            <div className='mb-2'><button>Animations</button></div>
+            <div className='mb-2'><button>Series</button></div>
+            <div className='mb-2'><button>Voice Actors</button></div>
+            <div className='mb-2'><button>Lists</button></div>
+            <div className='mb-2'><button>News</button></div>
+            <div className='mb-2'><button>Users</button></div>
           </div>
         </div>
       </div>
