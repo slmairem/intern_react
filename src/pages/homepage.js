@@ -102,15 +102,15 @@ function Homepage() {
               </div>
             </div>
           </div>
-          <div className="mb-5">
+          <div className="mb-5 ">
             <h3 className="text-xl font-semibold">Forum Topics</h3>
             <div className="bg-gray-100 p-4 rounded mb-2">Pinned forum topics</div>
             <div className="bg-gray-100 p-4 rounded mb-2">Pinned forum topics</div>
             <div className="bg-gray-100 p-4 rounded mb-2">Pinned forum topics</div>
           </div>
         </div>
-        <div className="w-1/4 ml-5">
-          <div className="mb-5">
+        <div className="w-1/4 ml-5 border-l ">
+          <div className="mb-5 ml-5">
             <h3 className="text-xl font-semibold">Popular Lists</h3>
             <div className="bg-gray-100 p-4 rounded mb-2">Lists</div>
             <div className="bg-gray-100 p-4 rounded mb-2">Lists</div>
