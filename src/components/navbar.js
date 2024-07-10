@@ -17,10 +17,12 @@ function Navbar() {
         </Link>
       </div>
       <div className="middleSide flex space-x-4">
+        <Link to="/detail" className="text-white no-underline">Detail</Link>
+        <Link to="/search" className="text-white no-underline">Search</Link>
         <Link to="/profile" className="text-white no-underline">Profile</Link>
-        <Link to="/animation" className="text-white no-underline">Animations</Link>
-        <Link to="/lists" className="text-white no-underline">Lists</Link>
-        <Link to="/forum" className="text-white no-underline">Forum</Link>
+        <Link to="/animation" className="text-white no-underline pr-4 border-r border-gray-400">Animations</Link>
+        <Link to="/lists" className="text-white no-underline pr-4 border-r border-gray-400">Lists</Link>
+        <Link to="/forum" className="text-white no-underline pr-4 border-r border-gray-400 ">Forum</Link>
         <Link to="/news" className="text-white no-underline">News</Link>
       </div>
       <div className="rightSide flex space-x-4">

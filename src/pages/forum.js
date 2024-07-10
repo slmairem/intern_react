@@ -26,10 +26,10 @@ function Forum() {
         {/* Left Section: Topics Filter */}
         <div className="bottom-left w-1/4 pr-4">
           <div className="topics">
-            <div className='mb-4'>Forum topics for filtering</div>
-            <div className='mb-4'>Forum topics for filtering</div>
-            <div className='mb-4'>Forum topics for filtering</div>
-            <div className='mb-4'>Forum topics for filtering</div>
+            <div className='mb-4'><button>Forum topics for filtering</button></div>
+            <div className='mb-4'><button>Forum topics for filtering</button></div>
+            <div className='mb-4'><button>Forum topics for filtering</button></div>
+            <div className='mb-4'><button>Forum topics for filtering</button></div>
           </div>
         </div>
         {/* Right Section: Forum Topics and Pagination */}
