@@ -12,8 +12,12 @@ const Register = () => {
     password: '',
     confirmPassword: '',
   });
+  
   const [formError, setFormError] = useState({});
+  const [selectedDay, setSelectedDay] = useState('');
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
+  {/* Year */}
   useEffect(() => {
     const currentYear = new Date().getFullYear();
     const yearOptions = [];
@@ -35,33 +39,50 @@ const Register = () => {
     }
   }, [selectedMonth, selectedYear]);
 
+  {/* Validation */}
   const handleMonthChange = (e) => {
     const monthNames = {
       'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
       'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
     };
     setSelectedMonth(monthNames[e.target.value]);
+    setFormError((prev) => ({ ...prev, date: '' }));
   };
 
   const handleYearChange = (e) => {
     setSelectedYear(e.target.value);
+    setFormError((prev) => ({ ...prev, date: '' }));
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormInput({ ...formInput, [name]: value });
+    setFormInput((prev) => ({ ...prev, [name]: value }));
+    setFormError((prev) => ({ ...prev, [name]: '' }));
   };
+
+  const handleDayChange = (e) => {
+    setSelectedDay(e.target.value);
+    setFormError((prev) => ({ ...prev, date: '' }));
+  };
+  
+  const handleTermsChange = (e) => {
+    setTermsAccepted(e.target.checked);
+    setFormError((prev) => ({ ...prev, terms: '' }));
+  };
+  
 
   const validateForm = (event) => {
     event.preventDefault();
-
+  
     let inputError = {
       email: "",
       username: "",
       password: "",
       confirmPassword: "",
+      date: "",
+      terms: "",
     }
-
+  
     if (!formInput.email) {
       inputError.email = "Enter a valid email address";
     }
@@ -74,16 +95,24 @@ const Register = () => {
     if (formInput.password !== formInput.confirmPassword) {
       inputError.confirmPassword = "Passwords do not match";
     }
-
+    if (!selectedMonth || !selectedDay || !selectedYear) {
+      inputError.date = "Select a valid date";
+    }
+    if (!termsAccepted) {
+      inputError.terms = "You must accept the terms and conditions";
+    }
+  
     setFormError(inputError);
-
+  
+    // If no errors, submit the form
     if (Object.values(inputError).every(error => error === "")) {
       document.getElementById("registerForm").submit();
     }
   };
+  
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-max p-4">
       <div className="w-full max-w-sm p-8 space-y-6 bg-white shadow-lg rounded-lg">
         <h2 className='text-2xl font-semibold text-center'>Register</h2>
         <form id="registerForm" action="/register" method="POST" onSubmit={validateForm}>
@@ -143,7 +172,7 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="dob" className='block text-sm font-medium leading-5 text-gray-700'>Birthday</label>
             <div className="flex space-x-2 mt-1">
-              <select id="dob-month" name="dob-month" className="form-select mt-1 pl-2 w-1/3 rounded-md border-gray-300 shadow-sm" required onChange={handleMonthChange}>
+              <select id="dob-month" name="dob-month" className="form-select mt-1 pl-2 w-1/3 rounded-md border-gray-300 shadow-sm"  onChange={handleMonthChange}>
                 <option value="" disabled selected>Month</option>
                 <option value="Jan">Jan</option>
                 <option value="Feb">Feb</option>
@@ -158,35 +187,35 @@ const Register = () => {
                 <option value="Nov">Nov</option>
                 <option value="Dec">Dec</option>
               </select>
-              <select id="dob-day" name="dob-day" className="form-select mt-1 pl-2 w-1/3 rounded-md border-gray-300 shadow-sm" required>
+              <select id="dob-day" name="dob-day" className="form-select mt-1 pl-2 w-1/3 rounded-md border-gray-300 shadow-sm"  onChange={handleDayChange}>
                 <option value="" disabled selected>Day</option>
                 {days.map(day => (
                   <option key={day} value={day}>{day}</option>
                 ))}
               </select>
-              <select id="dob-year" name="dob-year" className="form-select mt-1 pl-2 w-1/3 rounded-md border-gray-300 shadow-sm" required onChange={handleYearChange}>
+              <select id="dob-year" name="dob-year" className="form-select mt-1 pl-2 w-1/3 rounded-md border-gray-300 shadow-sm"  onChange={handleYearChange}>
                 <option value="" disabled selected>Year</option>
                 {years.map(year => (
                   <option key={year} value={year}>{year}</option>
                 ))}
               </select>
             </div>
-          </div>
+            {formError.date && <p className="text-red-600 text-sm">{formError.date}</p>}
+        </div>
 
           {/* Buttons */}
           <div className="mb-4">
             <div className="flex items-center">
-              <input type="checkbox" 
-                className="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" 
-                id="terms" 
-                required />
+              <input type="checkbox" className="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" id="terms"  onChange={handleTermsChange} />
               <label className="ml-2 block text-sm leading-5 text-gray-700" htmlFor="terms">I agree to the terms and conditions.</label>
             </div>
+            {formError.terms && <p className="text-red-600 text-sm">{formError.terms}</p>}
           </div>
           <button type="submit" className="w-full py-2 px-4 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 focus:outline-none">
             Register
           </button>
         </form>
+
         <div className="text-center">
           <p className="text-sm">
             Already have an account?{' '}
