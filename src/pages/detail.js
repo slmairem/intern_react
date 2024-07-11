@@ -29,7 +29,7 @@ function Details() {
 
         <div className="ml-6 z-10 w-full">
           <h3 className="text-black text-2xl font-bold mt-2">Name</h3>
-          <p className="text-gray-700 mt-2 overflow-hidden max-w-max pr-4">
+          <p className="text-gray-700 mt-2 overflow-hidden max-w-max pr-4 flex">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </p>
         </div>
@@ -72,26 +72,65 @@ function Details() {
             </div>
           </div>
         </div>
+        <div className="flex flex-col h-full w-full">
+          <div className='h-full w-full'>
+            <div className='ml-5'>
+              <h4>Characters</h4>
+            </div>
+            <br />
+            <div className="mb-4 grid grid-cols-2 grid-rows-3 gap-4 ml-4">
+              <div className="bg-gray-100 p-4 rounded">Characters</div>
+              <div className="bg-gray-100 p-4 rounded">Characters</div>
+              <div className="bg-gray-100 p-4 rounded">Characters</div>
+              <div className="bg-gray-100 p-4 rounded">Characters</div>
+              <div className="bg-gray-100 p-4 rounded">Characters</div>
+              <div className="bg-gray-100 p-4 rounded">Characters</div>
+            </div>
+            <div className="ml-4 text-right mb-2">
+              <a href="#" className="text-blue-500 no-underline cursor-pointer">View More...</a>
+            </div>
+            <div className='border-b ml-4'></div>
+          </div>
 
-        <div className='h-full w-full'>
-          <div className='ml-5'>
-            <h4>Characters</h4>
+          <div className='h-full w-full pt-3'>
+            <div className='ml-5'>
+              <h4>Staff</h4>
+            </div>
+            <br />
+            <div className="ml-5 mb-4 grid grid-cols-3 gap-4">
+              <div className="bg-gray-100 p-4 rounded">Staff</div>
+              <div className="bg-gray-100 p-4 rounded">Staff</div>
+              <div className="bg-gray-100 p-4 rounded">Staff</div>
+              <div className="bg-gray-100 p-4 rounded">Staff</div>
+              <div className="bg-gray-100 p-4 rounded">Staff</div>
+              <div className="bg-gray-100 p-4 rounded">Staff</div>
+            </div>
+            <div className="ml-4 text-right mb-2">
+              <a href="#" className="text-blue-500 no-underline cursor-pointer">View More...</a>
+            </div>
+            <div className='border-b ml-4'></div>
           </div>
-          <br />
-          <div className="mb-4 grid grid-cols-2 grid-rows-3 gap-4 ml-4">
-            <div className="bg-gray-100 p-4 rounded">Characters</div>
-            <div className="bg-gray-100 p-4 rounded">Characters</div>
-            <div className="bg-gray-100 p-4 rounded">Characters</div>
-            <div className="bg-gray-100 p-4 rounded">Characters</div>
-            <div className="bg-gray-100 p-4 rounded">Characters</div>
-            <div className="bg-gray-100 p-4 rounded">Characters</div>
+
+          <div className='h-full w-full pt-3'>
+            <div className='ml-5'>
+              <h4>Reviews</h4>
+            </div>
+            <br /> 
+
+            <div className="ml-5 flex p-4 rounded-lg border">
+              <img className="w-16 h-16 border-1 " src="https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg" alt=""/>
+              <div className="ml-4">
+                <div className="text-l font-bold">Username</div>
+                <div className="mt-2 text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+              </div>              
+            </div>
+
+            <div className="ml-4 text-right mb-2">
+              <a href="#" className="text-blue-500 no-underline cursor-pointer">View More...</a>
+            </div>
+            <div className='border-b ml-4'></div>
           </div>
-          <div className="ml-4 text-right mb-2">
-            <a href="#" className="text-blue-500 no-underline cursor-pointer">View More...</a>
-          </div>
-          <div className='border-b ml-4'></div>
         </div>
-        
       </div>
         
 
