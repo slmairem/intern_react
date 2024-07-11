@@ -32,7 +32,8 @@ function Navbar() {
       </div>
 
       {searchOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center" onClick={toggleSearch}>
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-20" 
+        onClick={toggleSearch}>
           <div className="bg-white p-5 rounded" onClick={(e) => e.stopPropagation()}>
             <input type="text" placeholder="Search..." className="w-72 p-2 border text-black border-gray-300 rounded"/>
           </div>

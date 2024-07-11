@@ -27,7 +27,7 @@ function SearchResults(){
             {/* Default All, tıkladığında orası gözükecek.
             Liste içi filtreleme ve grid özelliklerini sonradan ekleyebilirsin */}
             <div className='mb-2'><button>All</button></div>
-            <div className='mb-2'><button>Animations</button></div>
+            <div className='mb-2'><button>Movies</button></div>
             <div className='mb-2'><button>Series</button></div>
             <div className='mb-2'><button>Characters</button></div>
             <div className='mb-2'><button>Voice Actors</button></div>
