@@ -33,7 +33,6 @@ function Profile() {
           </div>
         </div>         
       </div>
-      
 
       <div className='flex'>
         {/* Bottom Left */}

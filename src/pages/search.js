@@ -29,6 +29,7 @@ function SearchResults(){
             <div className='mb-2'><button>All</button></div>
             <div className='mb-2'><button>Animations</button></div>
             <div className='mb-2'><button>Series</button></div>
+            <div className='mb-2'><button>Characters</button></div>
             <div className='mb-2'><button>Voice Actors</button></div>
             <div className='mb-2'><button>Lists</button></div>
             <div className='mb-2'><button>News</button></div>
