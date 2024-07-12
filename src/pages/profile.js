@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 function Profile() {
   const profileRef = useRef(null);
@@ -6,6 +6,7 @@ function Profile() {
   const [profileImage, setProfileImage] = useState("");
   const [backgroundImage, setBackgroundImage] = useState("");
 
+  {/* ProfilePic and Background */}
   const profileImgClick = () => {
     profileRef.current.click();
   }
@@ -27,6 +28,34 @@ function Profile() {
       setBackgroundImage(URL.createObjectURL(file));
     }
   }
+
+  {/* DetailSection */}
+  const [text, setText] = useState(
+    'Welcome to the my profile!'
+  );
+  const [editMode, setEditMode] = useState(false);
+  const textareaRef = useRef(null);
+
+  const handleEdit = () => {
+    setEditMode(true);
+  };
+
+  const handleSave = () => {
+    setEditMode(false);
+  };
+
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
+
+  useEffect(() => {
+    if (editMode && textareaRef.current) {
+      const textarea = textareaRef.current;
+      textarea.style.height = 'auto';
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    }
+  }, [editMode, text]);
+
 
   return (
     <div className='profile '>
@@ -84,12 +113,33 @@ function Profile() {
             <div class="mb-2">Last Online:</div>
             <div class="mb-2">Joined:</div>
           </div>
+
           <div className='p-4 rounded mb-4 bg-pink-300'>
-            <div class="flex justify-between items-center">
-              <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-            <button class="bg-pink-500 text-xs px-2 py-1 rounded">Edit</button>
+          <div className="flex justify-between items-start">
+            <div className="flex-grow max-h-64 overflow-auto">
+              {editMode ? (
+                <textarea
+                  ref={textareaRef}
+                  value={text}
+                  onChange={handleChange}
+                  rows="1"
+                  className="w-full resize-none overflow-hidden"
+                  style={{ overflowX: 'hidden' }}
+                />
+              ) : (
+                <p className='max-h-64 break-words'>{text}</p>
+              )}
             </div>
+            <button
+              className="bg-pink-500 text-xs px-2 py-1 my-auto rounded ml-2"
+              onClick={editMode ? handleSave : handleEdit}
+            >
+              {editMode ? 'Save' : 'Edit'}
+            </button>
           </div>
+
+          </div>
+
           <div className='bg-pink-300 p-4 rounded'>
               <div class="mb-2">Friends</div>
               <div className='grid grid-cols-3 grid-rows-2'>
