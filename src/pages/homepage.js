@@ -8,6 +8,11 @@ function Homepage() {
     navigate('/register');
   };
 
+  const newsContent = [];
+  for (let i = 1; i <= 6; i++) {
+    newsContent.push({ name: `News ${i}`, description:`Description ${i}`});
+  } 
+
   return (
     <div className="flex flex-col items-center w-full">
       {/* User Auth section */}
@@ -58,50 +63,23 @@ function Homepage() {
           <div className="mb-5">
             <h3 className="text-xl font-semibold">Recently News</h3>
             <div className="grid grid-cols-3 gap-4">
-              <div className="flex bg-gray-100 p-3 rounded">
-                <img src="https://image.spreadshirtmedia.com/image-server/v1/mp/products/T1459A839PA3861PT28D12636882W10000H9574/views/1,width=1200,height=630,appearanceId=839,backgroundColor=F2F2F2/letter-m-sticker.jpg" alt="News 1" className="w-20 h-20 mr-2 rounded" />
-                <div className="flex flex-col justify-between">
-                  <div className="font-semibold line-clamp-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                  <div className="line-clamp-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+              {/* NewsLoop */}
+              {newsContent.map((news, index) => (
+                <div key={index} className="flex bg-gray-100 p-3 rounded">
+                  <img
+                    src="https://image.spreadshirtmedia.com/image-server/v1/mp/products/T1459A839PA3861PT28D12636882W10000H9574/views/1,width=1200,height=630,appearanceId=839,backgroundColor=F2F2F2/letter-m-sticker.jpg"
+                    alt={news.name}
+                    className="w-20 h-20 mr-2 rounded"
+                  />
+                  <div className="flex flex-col justify-between">
+                    <div className="font-semibold line-clamp-1">{news.name}</div>
+                    <div className="line-clamp-3">{news.description}</div>
+                  </div>
                 </div>
-              </div>
-              <div className="flex bg-gray-100 p-3 rounded">
-                <img src="https://image.spreadshirtmedia.com/image-server/v1/mp/products/T1459A839PA3861PT28D12636882W10000H9574/views/1,width=1200,height=630,appearanceId=839,backgroundColor=F2F2F2/letter-m-sticker.jpg" alt="News 1" className="w-20 h-20 mr-2 rounded" />
-                <div className="flex flex-col justify-between">
-                  <div className="font-semibold line-clamp-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                  <div className="line-clamp-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                </div>
-              </div>
-              <div className="flex bg-gray-100 p-3 rounded">
-                <img src="https://image.spreadshirtmedia.com/image-server/v1/mp/products/T1459A839PA3861PT28D12636882W10000H9574/views/1,width=1200,height=630,appearanceId=839,backgroundColor=F2F2F2/letter-m-sticker.jpg" alt="News 1" className="w-20 h-20 mr-2 rounded" />
-                <div className="flex flex-col justify-between">
-                  <div className="font-semibold line-clamp-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                  <div className="line-clamp-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                </div>
-              </div>
-              <div className="flex bg-gray-100 p-3 rounded">
-                <img src="https://image.spreadshirtmedia.com/image-server/v1/mp/products/T1459A839PA3861PT28D12636882W10000H9574/views/1,width=1200,height=630,appearanceId=839,backgroundColor=F2F2F2/letter-m-sticker.jpg" alt="News 1" className="w-20 h-20 mr-2 rounded" />
-                <div className="flex flex-col justify-between">
-                  <div className="font-semibold line-clamp-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                  <div className="line-clamp-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                </div>
-              </div>
-              <div className="flex bg-gray-100 p-3 rounded">
-                <img src="https://image.spreadshirtmedia.com/image-server/v1/mp/products/T1459A839PA3861PT28D12636882W10000H9574/views/1,width=1200,height=630,appearanceId=839,backgroundColor=F2F2F2/letter-m-sticker.jpg" alt="News 1" className="w-20 h-20 mr-2 rounded" />
-                <div className="flex flex-col justify-between">
-                  <div className="font-semibold line-clamp-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                  <div className="line-clamp-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                </div>
-              </div>
-              <div className="flex bg-gray-100 p-3 rounded">
-                <img src="https://image.spreadshirtmedia.com/image-server/v1/mp/products/T1459A839PA3861PT28D12636882W10000H9574/views/1,width=1200,height=630,appearanceId=839,backgroundColor=F2F2F2/letter-m-sticker.jpg" alt="News 1" className="w-20 h-20 mr-2 rounded" />
-                <div className="flex flex-col justify-between">
-                  <div className="font-semibold line-clamp-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                  <div className="line-clamp-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
+          
           <div className="mb-5 ">
             <h3 className="text-xl font-semibold">Forum Topics</h3>
             <div className="bg-gray-100 p-4 rounded mb-2">Pinned forum topics</div>

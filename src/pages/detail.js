@@ -8,6 +8,16 @@ function Details() {
     setIsOpen(!isOpen);
   };
 
+  const characters = [];
+  for (let i = 1; i <= 6; i++) {
+    characters.push({ name: `Character ${i}` });
+  } 
+  
+  const staff = [];
+  for (let i = 1; i <= 6; i++) {
+    staff.push({ name: `Staff ${i}` });
+  } 
+
   return (
     <div className="bg-gray-50 min-h-screen ">
       <div className="relative">
@@ -78,13 +88,13 @@ function Details() {
               <h4>Characters</h4>
             </div>
             <br />
+            {/* For Loop for Character */}
             <div className="mb-4 grid grid-cols-2 grid-rows-3 gap-4 ml-4">
-              <div className="bg-gray-100 p-4 rounded">Characters</div>
-              <div className="bg-gray-100 p-4 rounded">Characters</div>
-              <div className="bg-gray-100 p-4 rounded">Characters</div>
-              <div className="bg-gray-100 p-4 rounded">Characters</div>
-              <div className="bg-gray-100 p-4 rounded">Characters</div>
-              <div className="bg-gray-100 p-4 rounded">Characters</div>
+              {characters.map((character, index) => (
+                <div key={index} className="bg-gray-100 p-4 rounded">
+                  {character.name}
+                </div>
+              ))}
             </div>
             <div className="ml-4 text-right mb-2">
               <a href="#" className="text-blue-500 no-underline cursor-pointer">View More...</a>
@@ -97,13 +107,13 @@ function Details() {
               <h4>Staff</h4>
             </div>
             <br />
+            {/* For Loop for Staff */}
             <div className="ml-5 mb-4 grid grid-cols-3 gap-4">
-              <div className="bg-gray-100 p-4 rounded">Staff</div>
-              <div className="bg-gray-100 p-4 rounded">Staff</div>
-              <div className="bg-gray-100 p-4 rounded">Staff</div>
-              <div className="bg-gray-100 p-4 rounded">Staff</div>
-              <div className="bg-gray-100 p-4 rounded">Staff</div>
-              <div className="bg-gray-100 p-4 rounded">Staff</div>
+              {staff.map((staff, index) => (
+                <div key={index} className="bg-gray-100 p-4 rounded">
+                  {staff.name}
+                </div>
+              ))}
             </div>
             <div className="ml-4 text-right mb-2">
               <a href="#" className="text-blue-500 no-underline cursor-pointer">View More...</a>
