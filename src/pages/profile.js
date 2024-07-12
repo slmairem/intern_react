@@ -1,22 +1,62 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 
 function Profile() {
+  const profileRef = useRef(null);
+  const backgroundRef = useRef(null);
+  const [profileImage, setProfileImage] = useState("");
+  const [backgroundImage, setBackgroundImage] = useState("");
+
+  const profileImgClick = () => {
+    profileRef.current.click();
+  }
+
+  const backImgClick = () => {
+    backgroundRef.current.click();
+  }
+
+  const profileImgChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setProfileImage(URL.createObjectURL(file));
+    }
+  }
+
+  const backImgChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setBackgroundImage(URL.createObjectURL(file));
+    }
+  }
+
   return (
     <div className='profile '>
+
+      {/* Up */}
       <div className='pb-10'>
+        {/* backgroundPic */}
         <div className='relative pt-40 '>
-          <div><img src="https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg&ga=GA1.1.2113030492.1720396800&semt=sph" alt="backImg" className="w-full absolute top-0 left-0 z-0 h-60" /></div>
+          <div className="w-full absolute top-0 left-0 z-0 h-60" onClick={backImgClick}>
+            {backgroundImage ? 
+              <img src={backgroundImage} alt="backPic" className="object-cover w-full h-60" />
+            :
+              <img src='https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg&ga=GA1.1.2113030492.1720396800&semt=sph' alt="defaultBacPic" className="object-cover w-full h-60" />
+            }
+            <input type='file' ref={backgroundRef} onChange={backImgChange} style={{display: "none"}} /> 
+          </div>
         </div>
-        
+
         <div className="relative">
+          {/* profilePic */}
           <div className="relative flex items-start ">
-            <div className="bg-gray-200 w-32 h-32 relative overflow-hidden ml-10 z-10">
-                <img 
-                  src="https://t3.ftcdn.net/jpg/04/12/82/16/360_F_412821610_95RpjzPXCE2LiWGVShIUCGJSktkJQh6P.jpg" 
-                  alt="profilePic" 
-                  className="object-cover w-32 h-32"
-                />
+            <div className="bg-gray-200 w-32 h-32 relative overflow-hidden ml-10 z-10" onClick={profileImgClick}>
+              {profileImage ? 
+                <img src={profileImage} alt="profilePic" className="object-cover w-32 h-32" />
+              :
+                <img src='https://t3.ftcdn.net/jpg/04/12/82/16/360_F_412821610_95RpjzPXCE2LiWGVShIUCGJSktkJQh6P.jpg' alt="defaultProfilePic" className="object-cover w-32 h-32" />
+              }
+              <input type='file' ref={profileRef} onChange={profileImgChange} style={{display: "none"}} />
             </div>
+            {/* userName and Follow */}
             <div className="ml-4 mt-10 z-10">
               <div><h3 className="text-black text-xl font-bold mt-2">Username</h3></div>
             </div>
@@ -24,16 +64,18 @@ function Profile() {
               <div><button type="button" className="bg-blue-500 text-white px-4 py-2 rounded-md ">Follow</button></div>
             </div>
           </div>
-
+          
+          {/* innerNavBar */}
           <div className="relative w-full flex justify-center bg-pink-300 h-12 font-bold z-0 -mt-12">
             <div><button type="button" className="navBut mx-2 mt-2">Profile</button></div>
             <div><button type="button" className="navBut mx-2 mt-2">Lists</button></div>
             <div><button type="button" className="navBut mx-2 mt-2">Stats</button></div>
             <div><button type="button" className="navBut mx-2 mt-2">Journal</button></div>
           </div>
-        </div>         
+        </div>  
       </div>
 
+      {/* Bottom */}
       <div className='flex'>
         {/* Bottom Left */}
         <div className='w-1/4 p-4'>

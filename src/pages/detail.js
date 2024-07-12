@@ -118,7 +118,9 @@ function Details() {
             <br /> 
 
             <div className="ml-5 flex p-4 rounded-lg border">
-              <img className="w-16 h-16 border-1 " src="https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg" alt=""/>
+              <div>
+                <img className="w-16 h-16 border-1 " src="https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg" alt=""/>
+              </div>
               <div className="ml-4">
                 <div className="text-l font-bold">Username</div>
                 <div className="mt-2 text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
