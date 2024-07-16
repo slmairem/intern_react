@@ -1,0 +1,26 @@
+[
+{
+    "userId": 1,
+    "username": "Movie 1",
+    "email": "Movies",
+    "password": "Description for Movie 1",
+    "birthday": ["action", "drama"],
+    "profileImg": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg",
+    "backgroundImg": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg",
+    "bioText": "",
+    "favourites": "",
+    "lists": ""
+},
+{
+    "userId": 2,
+    "username": "Movie 1",
+    "email": "Movies",
+    "password": "Description for Movie 1",
+    "birthday": ["action", "drama"],
+    "profileImg": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg",
+    "backgroundImg": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg",
+    "bioText": "",
+    "favourites": "",
+    "lists": ""
+}
+]

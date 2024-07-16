@@ -1,0 +1,18 @@
+[
+{
+    "forumId": 1,
+    "forumName": "Forum Topic Name1",
+    "pinned": "pin",
+    "description": "Description for Forum Topic",
+    "tags": ["Movies"],
+    "publishUser": ""
+},
+{
+    "forumId": 2,
+    "forumName": "Forum Topic Name2",
+    "pinned": "noPin",
+    "description": "Description for Forum Topic",
+    "tags": ["Series"],
+    "publishUser": ""
+}
+]

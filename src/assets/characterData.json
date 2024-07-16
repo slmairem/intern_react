@@ -1,0 +1,20 @@
+[
+{
+    "charId": 1,
+    "charName": "char1",
+    "charShow": "Movies1",
+    "charStaff": "StaffName",
+    "charFav": 123,
+    "charDesc": "Description for Char2",
+    "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
+},
+{
+    "charId": 2,
+    "charName": "char2",
+    "charShow": "Movies2",
+    "charStaff": "StaffName",
+    "charFav": 123,
+    "charDesc": "Description for Char2",
+    "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
+}
+]

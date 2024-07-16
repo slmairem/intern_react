@@ -1,0 +1,20 @@
+[
+{
+    "listId": 1,
+    "listName": "Movie 1",
+    "popularity": "Movies",
+    "likes": 123,
+    "description": "Description for Movie 1",
+    "movies": "",
+    "publishUser": ""
+},
+{
+    "listId": 2,
+    "listName": "Movie 1",
+    "popularity": "Movies",
+    "likes": 123,
+    "description": "Description for Movie 1",
+    "movies": "",
+    "publishUser": ""
+}
+]

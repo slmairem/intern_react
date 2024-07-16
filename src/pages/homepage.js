@@ -1,5 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import forumData from '../assets/forumData.json';
+import newsData from '../assets/newsData.json';
+import movieData from '../assets/movieData.json';
 
 function Homepage() {
   const navigate = useNavigate();
@@ -8,20 +11,9 @@ function Homepage() {
     navigate('/register');
   };
 
-  const newsContent = [];
-  for (let i = 1; i <= 6; i++) {
-    newsContent.push({ name: `News ${i}`, description:`Description ${i}`});
-  } 
-
-  const forumTopics = [];
-  for (let i = 1; i <= 3; i++) {
-    forumTopics.push({ name: `Forum Topics ${i}`});
-  } 
-
-  const lists = [];
-  for (let i = 1 ; i <= 4 ; i++){
-    lists.push({ name: `Lists ${i}`});
-  }
+  const forumTopics = forumData.slice(0, 3); // Show max 3 forum topics
+  const recentNews = newsData.slice(0, 6); // Show max 6 news items
+  const lists = Array.from({ length: 4 }, (_, i) => ({ name: `Lists ${i + 1}` }));
 
   return (
     <div className="flex flex-col items-center w-full">
@@ -47,24 +39,24 @@ function Homepage() {
       
       {/* Lists section */}
       <div className="w-full flex flex-col items-center">
-        <div className="w-4/5 my-2">
-          <div className="flex justify-between font-semibold mb-2">
-            <a>Movies</a>
-            <a className="text-right text-black	no-underline">Database Num</a>
+        {['Movies', 'Series'].map((type) => (
+          <div className="w-4/5 my-2" key={type}>
+            <div className="flex justify-between font-semibold mb-2">
+              <a>{type}</a>
+              <a className="text-right text-black no-underline">Database Num</a>
+            </div>
+            <div className="mt-2">
+              <div className="grid grid-cols-10 gap-2">
+                {movieData.filter(item => item.type === type).map((item) => (
+                  <div key={item.id} className="flex flex-col items-center">
+                    <img src={item.imgSrc} alt={item.name} className="w-24 h-32 object-cover rounded" />
+                    <span>{item.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-          <div className="mt-2">
-            Movies List || yan ana 10 tane resim olacak, resimlerin altında da isimleri yazacak
-          </div>
-        </div>
-        <div className="w-4/5 my-2">
-          <div className="flex justify-between font-semibold mb-2">
-            <a>Series</a>
-            <a className="text-right text-black	no-underline">Database Num</a>
-          </div>
-          <div className="mt-2">
-            Series List || yan ana 10 tane resim olacak, resimlerin altında da isimleri yazacak
-          </div>
-        </div>
+        ))}
       </div>
 
       {/* Bottom section */}
@@ -73,21 +65,19 @@ function Homepage() {
           <div className="mb-5">
             <h3 className="text-xl font-semibold">Recently News</h3>
             <div className="grid grid-cols-3 gap-4 mb-2">
-              {/* NewsLoop */}
-              {newsContent.map((news, index) => (
-                <div key={index} className="flex bg-gray-100 p-3 rounded">
+              {recentNews.map((news) => (
+                <div key={news.newsId} className="flex bg-gray-100 p-3 rounded">
                   <img
-                    src="https://image.spreadshirtmedia.com/image-server/v1/mp/products/T1459A839PA3861PT28D12636882W10000H9574/views/1,width=1200,height=630,appearanceId=839,backgroundColor=F2F2F2/letter-m-sticker.jpg"
-                    alt={news.name}
+                    src={news.imgSrc}
+                    alt={news.newsName}
                     className="w-20 h-20 mr-2 rounded"
                   />
                   <div className="flex flex-col justify-between">
-                    <div className="font-semibold line-clamp-1">{news.name}</div>
-                    <div className="line-clamp-3">{news.description}</div>
+                    <div className="font-semibold line-clamp-1">{news.newsName}</div>
+                    <div className="line-clamp-3">{news.content}</div>
                   </div>
                 </div>
               ))}
-              
             </div>
             <div className="ml-4 text-right mb-2">
               <a href="/news" className="text-blue-500 no-underline cursor-pointer">View More...</a>
@@ -95,11 +85,11 @@ function Homepage() {
           </div>
           <div className="mb-5 ">
             <h3 className="text-xl font-semibold">Forum Topics</h3>
-              {forumTopics.map((forumTopics, index) => (
-                <div key={index} className="bg-gray-100 p-4 rounded mb-2">
-                  <div>{forumTopics.name}</div>
-                </div>
-              ))}
+            {forumTopics.map((forum) => (
+              <div key={forum.forumId} className="bg-gray-100 p-4 rounded mb-2">
+                <div>{forum.forumName}</div>
+              </div>
+            ))}
             <div className="ml-4 text-right mb-2">
               <a href="/forum" className="text-blue-500 no-underline cursor-pointer">View More...</a>
             </div>
@@ -108,9 +98,9 @@ function Homepage() {
         <div className="w-1/4 ml-5 border-l ">
           <div className="mb-5 ml-5">
             <h3 className="text-xl font-semibold">Popular Lists</h3>
-            {lists.map((lists, index) => (
+            {lists.map((list, index) => (
               <div key={index} className="bg-gray-100 p-4 rounded mb-2">
-                <div>{lists.name}</div>
+                <div>{list.name}</div>
               </div>
             ))}
             <div className="ml-4 text-right mb-2">

@@ -1,27 +1,8 @@
 import React, { useState } from 'react';
+import data from '../assets/movieData.json';
 
 function SearchResults() {
   const [filter, setFilter] = useState('All');
-
-  const data = [
-    {
-      id: 1,
-      name: 'Movie 1',
-      type: 'Movies',
-      likes: 123,
-      description: 'Description for Movie 1',
-      imgSrc: 'https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg',
-    },
-    {
-      id: 2,
-      name: 'Series 1',
-      type: 'Series',
-      likes: 200,
-      description: 'Description for Series 1',
-      imgSrc: 'https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg',
-    },
-    // Add more items as needed
-  ];
 
   const filteredData = data.filter(item => filter === 'All' || item.type === filter);
 
@@ -30,7 +11,6 @@ function SearchResults() {
       <div className="sections mb-4">
         <div className="pageName text-2xl font-bold">Search Results</div>
       </div>
-
 
       <div className='flex'>
         <div className="left w-3/4 pr-4">
