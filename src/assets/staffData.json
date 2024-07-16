@@ -1,19 +1,18 @@
 [
     {
         "staffId": 1,
-        "staffName": "staff1",
+        "staffName": "Staff Name1",
         "staffShow": "Movies1",
         "staffFav": 123,
-        "staffDesc": "Description for Char2",
+        "staffDesc": "Description for Staff1",
         "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
     },
     {
-        "charId": 2,
-        "staffId": "staff2",
+        "staffId": "2",
+        "staffName": "Staff Name2",
         "staffShow": "Movies2",
-        "staffName": "StaffName",
         "staffFav": 123,
-        "staffDesc": "Description for Char2",
+        "staffDesc": "Description for Staff2",
         "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
     }
     ]

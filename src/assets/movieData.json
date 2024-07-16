@@ -9,10 +9,75 @@
 },
 {
   "id": 2,
+  "name": "Movie 2",
+  "type": "Movies",
+  "likes": 123,
+  "description": "Description for Movie 2",
+  "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
+},
+{
+  "id": 3,
+  "name": "Movie 3",
+  "type": "Movies",
+  "likes": 123,
+  "description": "Description for Movie 3",
+  "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
+},
+{
+  "id": 4,
+  "name": "Movie 4",
+  "type": "Movies",
+  "likes": 123,
+  "description": "Description for Movie 4",
+  "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
+},
+{
+  "id": 5,
+  "name": "Movie 5",
+  "type": "Movies",
+  "likes": 123,
+  "description": "Description for Movie 4",
+  "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
+},
+{
+  "id": 6,
   "name": "Series 1",
   "type": "Series",
   "likes": 200,
   "description": "Description for Series 1",
   "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
+},
+{
+  "id": 7,
+  "name": "Series 2",
+  "type": "Series",
+  "likes": 123,
+  "description": "Description for Series 2",
+  "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
+},
+{
+  "id": 8,
+  "name": "Series 3",
+  "type": "Series",
+  "likes": 123,
+  "description": "Description for Series 3",
+  "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
+},
+{
+  "id": 9,
+  "name": "Series 4",
+  "type": "Series",
+  "likes": 123,
+  "description": "Description for Series 4",
+  "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
+},
+{
+  "id": 10,
+  "name": "Series 5",
+  "type": "Series",
+  "likes": 123,
+  "description": "Description for Series 5",
+  "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
 }
+
 ]

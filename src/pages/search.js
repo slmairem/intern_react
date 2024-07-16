@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import data from '../assets/movieData.json';
+import staffData from '../assets/staffData.json';
+import newsData from '../assets/newsData.json';
 
 function SearchResults() {
   const [filter, setFilter] = useState('All');
 
-  const filteredData = data.filter(item => filter === 'All' || item.type === filter);
+  const filteredData = filter === 'Voice Actors' 
+  ? staffData
+  : filter === 'News'
+  ? newsData
+  : data.filter(item => filter === 'All' || item.type === filter);
+
+  const combinedData = [...data, ...staffData, ...newsData];
 
   return (
     <div className='container mx-auto p-4'>
@@ -14,22 +22,22 @@ function SearchResults() {
 
       <div className='flex'>
         <div className="left w-3/4 pr-4">
-        <div className="pageName text-2xl font-bold mb-3">{filter}</div>
+          <div className="pageName text-2xl font-bold mb-3">{filter}</div>
           <div className='grid grid-row-10'>
-            {/* Filtering */}
-            {filteredData.map(item => (
-              <div key={item.id} className="flex p-4 mb-4 rounded-lg border shadow-md">
-                <img className="w-16 h-24 border-1 shadow-lg" src={item.imgSrc} alt={item.name} />
+            {/* Display all or filtered data */}
+            {(filter === 'All' ? combinedData : filteredData).map(item => (
+              <div key={item.id || item.staffId || item.newsId} className="flex p-4 mb-4 rounded-lg border shadow-md">
+                <img className="w-16 h-24 border-1 shadow-lg" src={item.imgSrc} alt={item.name || item.staffName || item.newsName} />
                 <div className="ml-4">
-                  <div className="text-xl font-bold">{item.name}</div>
-                  <span className="flex mt-2 text-sm">Likes: {item.likes}</span>
-                  <div className="mt-2 text-gray-700 dark:text-gray-300">{item.description}</div>
+                  <div className="text-xl font-bold">{item.name || item.staffName || item.newsName}</div>
+                  <span className="flex mt-2 text-sm">Likes: {item.likes || item.staffFav || item.newsName}</span>
+                  <div className="mt-2 text-gray-700 dark:text-gray-300">{item.description || item.staffDesc || item.content}</div>
                 </div>
               </div>
             ))}
           </div>
         </div>
-        
+
         {/* Buttons */}
         <div className="left w-1/4 pr-4 pt-12">
           <div className="pl-5">
@@ -43,7 +51,6 @@ function SearchResults() {
             <div className='mb-2'><button onClick={() => setFilter('Users')}>Users</button></div>
           </div>
         </div>
-
       </div>
     </div>
   );

@@ -41,16 +41,16 @@ function Homepage() {
       <div className="w-full flex flex-col items-center">
         {['Movies', 'Series'].map((type) => (
           <div className="w-4/5 my-2" key={type}>
-            <div className="flex justify-between font-semibold mb-2">
+            <div className="flex justify-between font-medium mb-2 text-gray-500">
               <a>{type}</a>
-              <a className="text-right text-black no-underline">Database Num</a>
+              <a className="text-right text-gray-500 no-underline">Database Num</a>
             </div>
             <div className="mt-2">
               <div className="grid grid-cols-10 gap-2">
                 {movieData.filter(item => item.type === type).map((item) => (
                   <div key={item.id} className="flex flex-col items-center">
-                    <img src={item.imgSrc} alt={item.name} className="w-24 h-32 object-cover rounded" />
-                    <span>{item.name}</span>
+                    <img src={item.imgSrc} alt={item.name} className="w-24 h-32 object-cover"/>
+                    <span className='font-medium'>{item.name}</span>
                   </div>
                 ))}
               </div>
