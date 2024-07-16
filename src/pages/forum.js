@@ -1,6 +1,16 @@
 import React from 'react';
 
 function Forum() {
+  const forumTopicsPin = [];
+  for (let i = 1; i <= 6; i++) {
+    forumTopicsPin.push({ name: `Pinned forum Topics ${i}` });
+  } 
+
+  const forumTopics = [];
+  for (let i = 1; i <= 6; i++) {
+    forumTopics.push({ name: `Forum Topics ${i} || Only include Header ` });
+  } 
+
   return (
     <div className="container mx-auto p-4">
       <div className="top mb-8">
@@ -8,15 +18,16 @@ function Forum() {
         <div className="sections mb-4">
           <div className="pageName text-2xl font-bold">Forums</div>
         </div>
+
         {/* Pinned Topics Section */}
         <div className="pinned-topics mb-4 grid grid-cols-3 grid-rows-2 gap-4">
-          <div className="bg-gray-100 p-4 rounded">Pinned forum topics</div>
-          <div className='bg-gray-100 p-4 rounded'>Pinned forum topics</div>
-          <div className='bg-gray-100 p-4 rounded'>Pinned forum topics</div>
-          <div className='bg-gray-100 p-4 rounded'>Pinned forum topics</div>
-          <div className='bg-gray-100 p-4 rounded'>Pinned forum topics</div>
-          <div className='bg-gray-100 p-4 rounded'>Pinned forum topics</div>
+          {forumTopicsPin.map((forumTopicsPin, index) => (
+            <div key={index} className="bg-gray-100 p-4 rounded">
+              <div>{forumTopicsPin.name}</div>
+            </div>
+          ))}
         </div>
+
         {/* Create Topic Button */}
         <div className=" flex justify-end mb-4">
           <button className="bg-blue-500 text-white px-4 py-2 rounded">Create Topic</button>
@@ -34,12 +45,12 @@ function Forum() {
         </div>
         {/* Right Section: Forum Topics and Pagination */}
         <div className="bottom-right w-3/4 pl-4">
-          <div className="forum-topics ">
-            <div className='bg-gray-100 p-4 mb-4 rounded'>Forum topics container || Only include Header</div>
-            <div className='bg-gray-100 p-4 mb-4 rounded'>Forum topics container</div>
-            <div className='bg-gray-100 p-4 mb-4 rounded'>Forum topics container</div>
-            <div className='bg-gray-100 p-4 mb-4 rounded'>Forum topics container</div>
-          </div>
+          {forumTopics.map((forumTopics, index) => (
+            <div key={index} className="bg-gray-100 p-4 mb-4 rounded">
+              <div>{forumTopics.name}</div>
+            </div>
+          ))}
+          
           <div className="flex justify-center">
             <button className="bg-blue-500 text-white px-4 py-2 rounded mr-2">Previous</button>
             <button className="bg-blue-500 text-white px-4 py-2 rounded">Next</button>

@@ -38,7 +38,7 @@ function SearchResults() {
           <div className='grid grid-row-10'>
             {/* Filtering */}
             {filteredData.map(item => (
-              <div key={item.id} className="flex p-4 rounded-lg border shadow-md">
+              <div key={item.id} className="flex p-4 mb-4 rounded-lg border shadow-md">
                 <img className="w-16 h-24 border-1 shadow-lg" src={item.imgSrc} alt={item.name} />
                 <div className="ml-4">
                   <div className="text-xl font-bold">{item.name}</div>

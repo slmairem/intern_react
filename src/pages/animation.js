@@ -42,7 +42,7 @@ function Animation(){
         <div className="pageName text-2xl font-bold mb-3">{filter}</div>
         <div className='grid grid-row-10'>
           {filteredData.map(item => (
-            <div key={item.id} className="flex p-4 rounded-lg border shadow-md">
+            <div key={item.id} className="flex p-4 rounded-lg border mb-3 shadow-md">
               <img className="w-16 h-24 border-1 shadow-lg" src={item.imgSrc} alt={item.name} />
               <div className="ml-4">
                 <div className="text-xl font-bold">{item.name}</div>

@@ -13,6 +13,16 @@ function Homepage() {
     newsContent.push({ name: `News ${i}`, description:`Description ${i}`});
   } 
 
+  const forumTopics = [];
+  for (let i = 1; i <= 3; i++) {
+    forumTopics.push({ name: `Forum Topics ${i}`});
+  } 
+
+  const lists = [];
+  for (let i = 1 ; i <= 4 ; i++){
+    lists.push({ name: `Lists ${i}`});
+  }
+
   return (
     <div className="flex flex-col items-center w-full">
       {/* User Auth section */}
@@ -62,7 +72,7 @@ function Homepage() {
         <div className="w-3/4">
           <div className="mb-5">
             <h3 className="text-xl font-semibold">Recently News</h3>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-4 mb-2">
               {/* NewsLoop */}
               {newsContent.map((news, index) => (
                 <div key={index} className="flex bg-gray-100 p-3 rounded">
@@ -77,23 +87,35 @@ function Homepage() {
                   </div>
                 </div>
               ))}
+              
+            </div>
+            <div className="ml-4 text-right mb-2">
+              <a href="/news" className="text-blue-500 no-underline cursor-pointer">View More...</a>
             </div>
           </div>
-          
           <div className="mb-5 ">
             <h3 className="text-xl font-semibold">Forum Topics</h3>
-            <div className="bg-gray-100 p-4 rounded mb-2">Pinned forum topics</div>
-            <div className="bg-gray-100 p-4 rounded mb-2">Pinned forum topics</div>
-            <div className="bg-gray-100 p-4 rounded mb-2">Pinned forum topics</div>
+              {forumTopics.map((forumTopics, index) => (
+                <div key={index} className="bg-gray-100 p-4 rounded mb-2">
+                  <div>{forumTopics.name}</div>
+                </div>
+              ))}
+            <div className="ml-4 text-right mb-2">
+              <a href="/forum" className="text-blue-500 no-underline cursor-pointer">View More...</a>
+            </div>
           </div>
         </div>
         <div className="w-1/4 ml-5 border-l ">
           <div className="mb-5 ml-5">
             <h3 className="text-xl font-semibold">Popular Lists</h3>
-            <div className="bg-gray-100 p-4 rounded mb-2">Lists</div>
-            <div className="bg-gray-100 p-4 rounded mb-2">Lists</div>
-            <div className="bg-gray-100 p-4 rounded mb-2">Lists</div>
-            <div className="bg-gray-100 p-4 rounded mb-2">Lists</div>
+            {lists.map((lists, index) => (
+              <div key={index} className="bg-gray-100 p-4 rounded mb-2">
+                <div>{lists.name}</div>
+              </div>
+            ))}
+            <div className="ml-4 text-right mb-2">
+              <a href="/lists" className="text-blue-500 no-underline cursor-pointer">View More...</a>
+            </div>
           </div>
         </div>
       </div>
