@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import data from '../assets/movieData.json';
 import staffData from '../assets/staffData.json';
 import newsData from '../assets/newsData.json';
+import { useNavigate } from 'react-router-dom';
 
 function SearchResults() {
   const [filter, setFilter] = useState('All');
+  const navigate = useNavigate();
 
   const filteredData = filter === 'Voice Actors' 
   ? staffData
@@ -13,6 +15,10 @@ function SearchResults() {
   : data.filter(item => filter === 'All' || item.type === filter);
 
   const combinedData = [...data, ...staffData, ...newsData];
+
+  const handleItemClick = (id) => {
+    navigate(`/detail/${id}`);
+  };
 
   return (
     <div className='container mx-auto p-4'>
@@ -26,7 +32,7 @@ function SearchResults() {
           <div className='grid grid-row-10'>
             {/* Display all or filtered data */}
             {(filter === 'All' ? combinedData : filteredData).map(item => (
-              <div key={item.id || item.staffId || item.newsId} className="flex p-4 mb-4 rounded-lg border shadow-md">
+              <div key={item.id || item.staffId || item.newsId} className="flex p-4 mb-4 rounded-lg border shadow-md cursor-pointer" onClick={() => handleItemClick(item.id)}>
                 <img className="w-16 h-24 border-1 shadow-lg" src={item.imgSrc} alt={item.name || item.staffName || item.newsName} />
                 <div className="ml-4">
                   <div className="text-xl font-bold">{item.name || item.staffName || item.newsName}</div>

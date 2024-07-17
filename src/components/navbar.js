@@ -17,7 +17,6 @@ function Navbar() {
         </Link>
       </div>
       <div className="middleSide flex space-x-4">
-        <Link to="/detail" className="text-white no-underline">Detail</Link>
         <Link to="/search" className="text-white no-underline">Search</Link>
         <Link to="/profile" className="text-white no-underline">Profile</Link>
         <Link to="/animation" className="text-white no-underline pr-4 border-r border-gray-400">Animations</Link>

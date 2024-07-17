@@ -11,6 +11,10 @@ function Homepage() {
     navigate('/register');
   };
 
+  const handleItemClick = (id) => {
+    navigate(`/detail/${id}`);
+  };
+
   const forumTopics = forumData.slice(0, 3); // Show max 3 forum topics
   const recentNews = newsData.slice(0, 6); // Show max 6 news items
   const lists = Array.from({ length: 4 }, (_, i) => ({ name: `Lists ${i + 1}` }));
@@ -48,7 +52,11 @@ function Homepage() {
             <div className="mt-2">
               <div className="grid grid-cols-10 gap-2">
                 {movieData.filter(item => item.type === type).map((item) => (
-                  <div key={item.id} className="flex flex-col items-center">
+                  <div 
+                    key={item.id} 
+                    className="flex flex-col items-center cursor-pointer"
+                    onClick={() => handleItemClick(item.id)}
+                  >
                     <img src={item.imgSrc} alt={item.name} className="w-24 h-32 object-cover"/>
                     <span className='font-medium'>{item.name}</span>
                   </div>

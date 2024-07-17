@@ -9,16 +9,16 @@ function Forum() {
   // Filtering
   const [filter, setFilter] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
-  const topicsPerPage = 3;
+  const topicsPerPage = 5;
 
   const filteredData = filter === 'All' ? data : data.filter(item => item.tags.includes(filter));
 
   // Pagination logic
   const indexOfLastTopic = currentPage * topicsPerPage;
   const indexOfFirstTopic = indexOfLastTopic - topicsPerPage;
-  const currentTopics = filteredData.slice(indexOfFirstTopic, indexOfLastTopic);
+  const currentTopics = filteredData.slice(indexOfFirstTopic, indexOfLastTopic); //Certain page elements that are between First and Last Topic
 
-  const totalPages = Math.ceil(filteredData.length / topicsPerPage);
+  const totalPages = Math.ceil(filteredData.length / topicsPerPage); //filteredData.length => total element
 
   const handleNext = () => {
     if (currentPage < totalPages) setCurrentPage(prev => prev + 1);

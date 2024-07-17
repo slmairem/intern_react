@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import data from '../assets/movieData.json';
 
 function Details() {
-  // Dropdown Button Commands
   const [isOpen, setIsOpen] = useState(false);
   const [currentSection, setCurrentSection] = useState('Overview');
 
@@ -12,11 +13,18 @@ function Details() {
   const characters = Array.from({ length: 6 }, (_, i) => ({ name: `Character ${i + 1}` }));
   const staff = Array.from({ length: 6 }, (_, i) => ({ name: `Staff ${i + 1}` }));
 
+  const { id } = useParams();
+  const item = data.find(item => item.id === parseInt(id));
+
+  if (!item) {
+    return <div>Item not found</div>;
+  }
+
   return (
     <div className="bg-gray-50 min-h-screen">
       <div className="relative">
         <img 
-          src="https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg&ga=GA1.1.2113030492.1720396800&semt=sph" 
+          src={item.backSrc}
           alt="Background" 
           className="w-full absolute top-0 left-0 z-0 h-60 object-cover" 
         />
@@ -25,16 +33,16 @@ function Details() {
       <div className="relative flex items-start mt-10">
         <div className="bg-gray-200 w-56 h-64 relative overflow-hidden ml-10 z-10">
           <img 
-            src="https://t3.ftcdn.net/jpg/04/12/82/16/360_F_412821610_95RpjzPXCE2LiWGVShIUCGJSktkJQh6P.jpg" 
+            src={item.imgSrc}
             alt="Profile" 
             className="object-cover h-64 w-full"
           />
         </div>
 
         <div className="ml-6 z-10 w-full">
-          <h3 className="text-black text-2xl font-bold mt-2">Name</h3>
+          <h3 className="text-black text-2xl font-bold mt-2">{item.name}</h3>
           <p className="text-gray-700 mt-2 overflow-hidden max-w-max pr-4 flex">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            {item.description}
           </p>
         </div>
       </div>
@@ -66,7 +74,9 @@ function Details() {
           <div className="border border-black rounded w-52 h-56 mt-2">
             <div className="details p-4">
               <div>DETAILS</div>
-              <div>Genres, Episodes, Year</div>
+              <div>Genres, Episodes, Year
+                {item.type}, {item.likes}
+              </div>
             </div>
           </div>
 
@@ -128,7 +138,7 @@ function Details() {
                   <div className="ml-4">
                     <div className="text-l font-bold">Username</div>
                     <div className="mt-2 text-gray-700">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                      Bu bir yorumdur.
                     </div>
                   </div>              
                 </div>
@@ -185,7 +195,7 @@ function Details() {
                 <div className="ml-4">
                   <div className="text-l font-bold">Username</div>
                   <div className="mt-2 text-gray-700">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Bu bir yorumdur.
                   </div>
                 </div>              
               </div>
