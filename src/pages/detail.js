@@ -104,7 +104,13 @@ function Details() {
                   ))}
                 </div>
                 <div className="ml-4 text-right mb-2">
-                  <a href="#" className="text-blue-500 no-underline cursor-pointer">View More...</a>
+                <a 
+                  href="#" 
+                  className="text-blue-500 no-underline cursor-pointer"
+                  onClick={() => setCurrentSection('Characters')}
+                >
+                  View More...
+                </a>
                 </div>
                 <div className="border-b ml-4"></div>
               </div>
@@ -123,7 +129,13 @@ function Details() {
                   ))}
                 </div>
                 <div className="ml-4 text-right mb-2">
-                  <a href="#" className="text-blue-500 no-underline cursor-pointer">View More...</a>
+                <a 
+                  href="#" 
+                  className="text-blue-500 no-underline cursor-pointer"
+                  onClick={() => setCurrentSection('Staff')}
+                >
+                  View More...
+                </a>
                 </div>
                 <div className="border-b ml-4"></div>
               </div>
@@ -143,7 +155,13 @@ function Details() {
                   </div>              
                 </div>
                 <div className="ml-4 text-right mb-2">
-                  <a href="#" className="text-blue-500 no-underline cursor-pointer">View More...</a>
+                <a 
+                  href="#" 
+                  className="text-blue-500 no-underline cursor-pointer pt-2"
+                  onClick={() => setCurrentSection('Reviews')}
+                >
+                  View More...
+                </a>
                 </div>
                 <div className="border-b ml-4"></div>
               </div>

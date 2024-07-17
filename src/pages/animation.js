@@ -43,7 +43,7 @@ function Animation() {
               <div className="ml-4">
                 <div className="text-xl font-bold">{item.name || item.staffName}</div>
                 <span className="flex mt-2 text-sm">Likes: {item.likes || item.staffFav}</span>
-                <div className="mt-2 text-gray-700 dark:text-gray-300">{item.description || item.staffDesc}</div>
+                <div className="mt-2 text-gray-500">{item.description || item.staffDesc}</div>
               </div>
             </div>
           ))}

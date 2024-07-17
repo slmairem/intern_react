@@ -2,3 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+.font-medium {
+    font-family: 'Code Next', sans-serif;
+ }
+  
+  
+

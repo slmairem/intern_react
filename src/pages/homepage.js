@@ -19,6 +19,9 @@ function Homepage() {
   const recentNews = newsData.slice(0, 6); // Show max 6 news items
   const lists = Array.from({ length: 4 }, (_, i) => ({ name: `Lists ${i + 1}` }));
 
+  const movieCount = movieData.filter(item => item.type === 'Movies').length;
+  const seriesCount = movieData.filter(item => item.type === 'Series').length;
+
   return (
     <div className="flex flex-col items-center w-full">
       {/* User Auth section */}
@@ -46,8 +49,10 @@ function Homepage() {
         {['Movies', 'Series'].map((type) => (
           <div className="w-4/5 my-2" key={type}>
             <div className="flex justify-between font-medium mb-2 text-gray-500">
-              <a>{type}</a>
-              <a className="text-right text-gray-500 no-underline">Database Num</a>
+              <span>{type}</span>
+              <span className="text-right text-gray-500 no-underline">
+                {type === 'Movies' ? movieCount : seriesCount}
+              </span>
             </div>
             <div className="mt-2">
               <div className="grid grid-cols-10 gap-2">
@@ -57,8 +62,8 @@ function Homepage() {
                     className="flex flex-col items-center cursor-pointer"
                     onClick={() => handleItemClick(item.id)}
                   >
-                    <img src={item.imgSrc} alt={item.name} className="w-24 h-32 object-cover"/>
-                    <span className='font-medium'>{item.name}</span>
+                    <img src={item.imgSrc} alt={item.name} className="w-24 h-32 object-cover rounded-md"/>
+                    <span className='font-medium text-center mt-2'>{item.name}</span>
                   </div>
                 ))}
               </div>
