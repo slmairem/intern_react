@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import data from '../assets/movieData.json';
 import charData from '../assets/characterData.json';
+import staffData from '../assets/staffData.json';
 
 function Details() {
   const [currentSection, setCurrentSection] = useState('Overview');
@@ -12,19 +13,37 @@ function Details() {
     return <div>Item not found</div>;
   }
 
+  // Character listesi
+  const charShow = charData.filter(character => character.charShow.trim() === item.name.trim())
+    .map(character => {
+      const staff = staffData.find(staff => staff.staffName.trim() === character.charStaff.trim());
+      return {
+        ...character,
+        charStaff: staff ? staff.staffName : "", // Karakterin VA'sı ile eşleşen staffName
+        staffImgSrc: staff ? staff.staffImgSrc : "" 
+      };
+    });
+
+  // Staff listesi
+  const staffShow = staffData.filter(staff => staff.staffShow.trim() === item.name.trim())
+    .map(staff => ({
+      ...staff,
+      charName: charData.find(character => character.charStaff.trim() === staff.staffName.trim()).charName // Staff'ın karakterin VA'sı ile eşleşmesi
+    }));
+
   const sections = {
     Overview: (
       <>
-        <Section title="Characters" items={Array.from({ length: 6 }, (_, i) => ({ name: `Character ${i + 1}` }))} setCurrentSection={setCurrentSection} />
-        <Section title="Staff" items={Array.from({ length: 6 }, (_, i) => ({ name: `Staff ${i + 1}` }))} setCurrentSection={setCurrentSection} />
+        <Section title="Characters" items={charShow} setCurrentSection={setCurrentSection} />
+        <Section title="Staff" items={staffShow} setCurrentSection={setCurrentSection} />
         <Reviews setCurrentSection={setCurrentSection} />
       </>
     ),
     Characters: (
-      <Section title="Characters" items={Array.from({ length: 6 }, (_, i) => ({ name: `Character ${i + 1}` }))} setCurrentSection={setCurrentSection} />
+      <Section title="Characters" items={charShow} setCurrentSection={setCurrentSection} />
     ),
     Staff: (
-      <Section title="Staff" items={Array.from({ length: 6 }, (_, i) => ({ name: `Staff ${i + 1}` }))} setCurrentSection={setCurrentSection} />
+      <Section title="Staff" items={staffShow} setCurrentSection={setCurrentSection} />
     ),
     Reviews: <Reviews setCurrentSection={setCurrentSection} />,
     Stats: <Stats />,
@@ -82,18 +101,34 @@ function Details() {
 }
 
 const Section = ({ title, items, setCurrentSection }) => (
+  
   <div className="h-full w-full">
-    <div className="ml-5">
+    <div className="ml-5 mt-2">
       <h4>{title}</h4>
     </div>
     <br />
-    <div className="mb-4 grid grid-cols-2 grid-rows-3 gap-4 ml-4">
+    <div className="mb-4 grid grid-cols-3 ml-4 ">
       {items.map((item, index) => (
-        <div key={index} className="bg-gray-100 p-4 rounded">
-          {item.name}
+        <div key={index} className="bg-gray-100 p-4 rounded flex items-center w-96 space-x-4 mb-4">
+          {title === 'Characters' && (
+            <div className="flex items-center">
+              <img src={item.imgSrc} alt={item.charName} className="w-16 h-20 mr-4" />
+              <div className="font-bold">{item.charName}</div>
+            </div>
+          )}
+          {title === 'Staff' && (
+            <div className="flex items-center">
+              <img src={item.staffImgSrc} alt={item.staffName} className="w-16 h-20 mr-4" />
+              <div>
+                <div className="font-bold">{item.staffName}</div>
+                <div className='text-gray-500'><span>{item.charName}'s VA </span></div>
+              </div>
+            </div>
+          )}
         </div>
       ))}
     </div>
+
     <div className="ml-4 text-right mb-2">
       <a 
         href="#" 
@@ -108,7 +143,7 @@ const Section = ({ title, items, setCurrentSection }) => (
 );
 
 const Reviews = ({ setCurrentSection }) => (
-  <div className="h-full w-full">
+  <div className="h-full w-full mt-2 mb-4">
     <div className="ml-5">
       <h4>Reviews</h4>
     </div>
@@ -122,16 +157,25 @@ const Reviews = ({ setCurrentSection }) => (
         </div>
       </div>              
     </div>
-    <div className="ml-4 text-right mb-2">
+    <div className="ml-4 text-right mt-2">
       <a 
         href="#" 
-        className="text-blue-500 no-underline cursor-pointer pt-2"
+        className="text-blue-500 no-underline cursor-pointer pt-2 "
         onClick={() => setCurrentSection('Reviews')}
       >
         View More...
       </a>
     </div>
-    <div className="border-b ml-4"></div>
+
+  </div>
+);
+
+const Staff = () => (
+  <div className="h-full w-full">
+    <div className="ml-5">
+      <h4>Staff</h4>
+    </div>
+    {/* Add Staff content here */}
   </div>
 );
 

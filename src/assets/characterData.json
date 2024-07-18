@@ -1,20 +1,20 @@
 [
 {
     "charId": 1,
-    "charName": "char1",
-    "charShow": "Movies1",
-    "charStaff": "StaffName",
+    "charName": "Gumball Watterson",
+    "charShow": "The Amazing World of Gumball",
+    "charStaff": "Nicolas Cantu",
     "charFav": 123,
     "charDesc": "Description for Char2",
-    "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
+    "imgSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwnw_87Y6fn66FIiTUguhS0eGzYXIhng0KkA&s"
 },
 {
     "charId": 2,
-    "charName": "char2",
-    "charShow": "Movies2",
-    "charStaff": "StaffName",
+    "charName": "Darwin Watterson",
+    "charShow": "The Amazing World of Gumball",
+    "charStaff": "Terrell Ransom Jr.",
     "charFav": 123,
     "charDesc": "Description for Char2",
-    "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
+    "imgSrc": "https://assets.mycast.io/characters/darwin-watterson-276552-normal.jpg?1669272555"
 }
 ]

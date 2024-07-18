@@ -1,19 +1,19 @@
 [
     {
-        "staffId": 1,
-        "staffName": "Staff Name1",
-        "staffShow": "Movies1",
-        "staffFav": 123,
-        "staffDesc": "Description for Staff1",
-        "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
-    },
-    {
         "staffId": "2",
-        "staffName": "Staff Name2",
-        "staffShow": "Movies2",
+        "staffName": "Nicolas Cantu",
+        "staffShow": "The Amazing World of Gumball",
         "staffFav": 123,
         "staffDesc": "Description for Staff2",
-        "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
+        "staffImgSrc": "https://m.media-amazon.com/images/M/MV5BYTI3ZTgxNTQtNTM1OC00ZjY4LWJhYjAtNDBiMTA2OTBjYTk4XkEyXkFqcGdeQXVyNjUxNDcyMzg@._V1_.jpg"
+    },
+    {
+        "staffId": 1,
+        "staffName": "Terrell Ransom Jr.",
+        "staffShow": "The Amazing World of Gumball",
+        "staffFav": 123,
+        "staffDesc": "Description for Staff1",
+        "staffImgSrc": "https://m.media-amazon.com/images/M/MV5BZmVlNDkyOGMtNjVjYi00YTE2LTkxYWUtYmQ0NjQxZjYyYjEwXkEyXkFqcGdeQXVyMTk1ODA5NTY@._V1_.jpg"
     }
-    ]
+]
     
