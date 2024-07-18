@@ -4,6 +4,7 @@ import { FaSearch } from 'react-icons/fa';
 import data from '../assets/movieData.json';
 import staffData from '../assets/staffData.json';
 import usersData from '../assets/userData.json'; 
+import charData from '../assets/characterData.json'; 
 
 function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -24,11 +25,13 @@ function Navbar() {
     const movieMatches = data.filter(item => item.name.toLowerCase().includes(lowerTerm));
     const staffMatches = staffData.filter(item => item.staffName.toLowerCase().includes(lowerTerm));
     const userMatches = usersData.filter(item => item.username.toLowerCase().includes(lowerTerm));
+    const charMatches = charData.filter(item => item.charName.toLowerCase().includes(lowerTerm));
 
     return {
       movies: movieMatches,
       staff: staffMatches,
       users: userMatches,
+      characters: charMatches,
     };
   };
 
@@ -55,49 +58,45 @@ function Navbar() {
       </div>
 
       {searchOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-20"
-          onClick={toggleSearch}>
-          <div className="bg-white p-5 rounded" onClick={(e) => e.stopPropagation()}>
-            <div>
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={handleInputChange}
-              className="w-72 p-2 border text-black border-gray-300 rounded"
-            />
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-20" onClick={toggleSearch}>
+          <div className="bg-white p-5 rounded max-w-3xl w-full" onClick={(e) => e.stopPropagation()}>
+            <div className="mb-2">
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={handleInputChange}
+                className="w-full p-2 border text-black border-gray-300 rounded"
+              />
             </div>
 
-            <div className="mt-4">
+            <div className="mt-2">
               {searchTerm.length >= 3 && (
                 <div className="flex space-x-4">
                   {Object.keys(results).map(category => (
                     results[category].length > 0 && (
-                      <div key={category} className="mt-2 text-black">
+                      <div key={category} className="mt-2 text-black no-underline">
                         <h3 className="font-bold">{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
-                        <ul>
                           {results[category].map(item => (
-                            <li key={item.id} className="text-black flex items-center mr-10 mb-2">
-                              {item.profileImg && <img src={item.profileImg} alt={item.username} className="h-10 w-10 mr-2" />}
-                              {item.imgSrc && <img src={item.imgSrc} alt={item.name} className="h-10 w-10 mr-2" />}
-                              {item.staffImg && <img src={item.staffImg} alt={item.staffName} className="h-10 w-10 mr-2" />}
-                              <Link to={`/detail/${item.id}`} onClick={closeSearch}>
-                                {item.name || item.username || item.newsName}
+                            <li key={item.id || item.staffId || item.charId} className="text-black flex items-center mb-2 no-underline mr-10">
+                              {item.profileImg && <img src={item.profileImg} alt={item.username} className="h-14 w-10 mr-2" />}
+                              {item.imgSrc && <img src={item.imgSrc} alt={item.name || item.charName} className="h-14 w-10 mr-2" />}
+                              {item.staffImgSrc && <img src={item.staffImgSrc} alt={item.staffName} className="h-14 w-10 mr-2" />}
+                              <Link to={`/detail/${item.id || item.staffId || item.charId}`} onClick={closeSearch} className="text-black no-underline">
+                                {item.name || item.username || item.newsName || item.charName || item.staffName}
                               </Link>
                             </li>
                           ))}
-                        </ul>
                       </div>
                     )
                   ))}
                 </div>
               )}
             </div>
-
-
           </div>
         </div>
       )}
+
     </div>
   );
 }
