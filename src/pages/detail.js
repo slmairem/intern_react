@@ -6,8 +6,9 @@ import staffData from '../assets/staffData.json';
 
 function Details() {
   const [currentSection, setCurrentSection] = useState('Overview');
-  const { id } = useParams();
-  const item = data.find(item => item.id === parseInt(id));
+  const { name } = useParams();
+  const decodedName = decodeURIComponent(name); 
+  const item = data.find(item => item.name === decodedName);
 
   if (!item) {
     return <div>Item not found</div>;

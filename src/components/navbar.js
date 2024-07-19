@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import data from '../assets/movieData.json';
 import staffData from '../assets/staffData.json';
-import usersData from '../assets/userData.json'; 
-import charData from '../assets/characterData.json'; 
+import usersData from '../assets/userData.json';
+import charData from '../assets/characterData.json';
 
 function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+
   const closeSearch = () => setSearchOpen(false);
 
   const toggleSearch = () => {
@@ -82,7 +83,16 @@ function Navbar() {
                               {item.profileImg && <img src={item.profileImg} alt={item.username} className="h-14 w-10 mr-2" />}
                               {item.imgSrc && <img src={item.imgSrc} alt={item.name || item.charName} className="h-14 w-10 mr-2" />}
                               {item.staffImgSrc && <img src={item.staffImgSrc} alt={item.staffName} className="h-14 w-10 mr-2" />}
-                              <Link to={`/detail/${item.id || item.staffId || item.charId}`} onClick={closeSearch} className="text-black no-underline">
+                              <Link 
+                                to={
+                                  item.name ? `/detail/${encodeURIComponent(item.name)}` : 
+                                  item.charName ? `/detail/${encodeURIComponent(item.charName)}` : 
+                                  item.staffName ? `/detail/${encodeURIComponent(item.staffName)}` : 
+                                  `/detail/${item.id || item.staffId || item.charId}`
+                                } 
+                                onClick={closeSearch} 
+                                className="text-black no-underline"
+                              >
                                 {item.name || item.username || item.newsName || item.charName || item.staffName}
                               </Link>
                             </li>
@@ -96,7 +106,6 @@ function Navbar() {
           </div>
         </div>
       )}
-
     </div>
   );
 }

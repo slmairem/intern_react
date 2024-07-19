@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [days, setDays] = useState(Array.from({ length: 31 }, (_, i) => i + 1));
@@ -15,6 +15,7 @@ const Register = () => {
   const [formError, setFormError] = useState({});
   const [selectedDay, setSelectedDay] = useState('');
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const currentYear = new Date().getFullYear();
@@ -46,7 +47,7 @@ const Register = () => {
     }
   };
 
-  const validateForm = (event) => {
+  const validateForm = async (event) => {
     event.preventDefault();
     let inputError = {};
   
@@ -60,15 +61,40 @@ const Register = () => {
     setFormError(inputError);
   
     if (Object.values(inputError).every(error => error === "")) {
-      document.getElementById("registerForm").submit();
+      try {
+        const response = await fetch('/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: formInput.email,
+            username: formInput.username,
+            password: formInput.password,
+            birthday: `${selectedYear}-${selectedMonth}-${selectedDay}`,
+          }),
+        });
+  
+        if (response.ok) {
+          navigate('/login');
+        } else {
+          const errorData = await response.json();
+          setFormError((prev) => ({ ...prev, form: errorData.error || 'An error occurred' }));
+          console.error('Server Response Error:', errorData);
+        }
+      } catch (err) {
+        console.error('Register Error:', err);
+        setFormError((prev) => ({ ...prev, form: 'An error occurred' }));
+      }
     }
   };
   
+
   return (
     <div className="flex items-center justify-center h-max p-4">
       <div className="w-full max-w-sm p-8 space-y-6 bg-white shadow-lg rounded-lg">
         <h2 className="text-2xl font-semibold text-center">Register</h2>
-        <form id="registerForm" action="/register" method="POST" onSubmit={validateForm}>
+        <form id="registerForm" onSubmit={validateForm}>
           {['email', 'username', 'password', 'confirmPassword'].map((field) => (
             <div key={field} className="mb-4">
               <label htmlFor={field} className="block text-sm font-medium text-gray-700">
@@ -128,6 +154,8 @@ const Register = () => {
           >
             Register
           </button>
+
+          {formError.form && <p className="text-red-600 text-sm text-center">{formError.form}</p>}
         </form>
 
         <div className="text-center">

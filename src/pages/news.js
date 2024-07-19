@@ -4,8 +4,15 @@ import data from '../assets/newsData.json';
 function News() {
   // Filtering
   const [filter, setFilter] = useState('All');
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredData = data.filter(item => filter === 'All' || item.tags.includes(filter));
+  const filteredData = data
+    .filter(item => filter === 'All' || item.tags.includes(filter))
+    .filter(item => item.newsName.toLowerCase().includes(searchTerm.toLowerCase()));
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
   return (
     <div className='container mx-auto p-4'>
@@ -33,7 +40,13 @@ function News() {
         </div>
 
         <div className="bg-white rounded mx-2 mt-2 justify-end">
-          <input type="text" placeholder="Search..." className="border text-black border-gray-300 rounded pl-2" />
+          <input
+            type="text"
+            placeholder="Search..."
+            className="border text-black border-gray-300 rounded pl-2"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
         </div>
       </div>
 

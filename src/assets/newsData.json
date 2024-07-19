@@ -16,6 +16,24 @@
     "publisherName": "",
     "publishDate":"",
     "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
+},
+{
+    "newsId": 3,
+    "newsName": "News 3",
+    "content": "Description for News2",
+    "tags": ["Events", "Voice Actors"],
+    "publisherName": "",
+    "publishDate":"",
+    "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
+},
+{
+    "newsId": 3,
+    "newsName": "News 3",
+    "content": "Description for News2",
+    "tags": ["Voice Actors"],
+    "publisherName": "",
+    "publishDate":"",
+    "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
 }
 ]
   

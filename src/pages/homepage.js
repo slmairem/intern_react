@@ -11,12 +11,13 @@ function Homepage() {
     navigate('/register');
   };
 
-  const handleItemClick = (id) => {
-    navigate(`/detail/${id}`);
+  const handleItemClick = (name) => {
+    const encodedName = encodeURIComponent(name); 
+    navigate(`/detail/${encodedName}`);
   };
 
-  const forumTopics = forumData.slice(0, 3); // Show max 3 forum topics
-  const recentNews = newsData.slice(0, 6); // Show max 6 news items
+  const forumTopics = forumData.slice(0, 3); 
+  const recentNews = newsData.slice(0, 6); 
   const lists = Array.from({ length: 4 }, (_, i) => ({ name: `Lists ${i + 1}` }));
 
   const movieCount = movieData.filter(item => item.type === 'Movies').length;
@@ -55,22 +56,26 @@ function Homepage() {
               </span>
             </div>
             <div className="mt-2">
-              <div className="grid grid-cols-10 gap-2">
-                {movieData.filter(item => item.type === type).map((item) => (
-                  <div 
-                    key={item.id} 
-                    className="flex flex-col items-center cursor-pointer"
-                    onClick={() => handleItemClick(item.id)}
-                  >
-                    <img src={item.imgSrc} alt={item.name} className="w-24 h-32 object-cover rounded-md"/>
-                    <span className='font-medium text-center mt-2'>{item.name}</span>
-                  </div>
-                ))}
+              <div className="grid grid-cols-10 grid-row-1 gap-2">
+                {movieData
+                  .filter(item => item.type === type)
+                  .slice(0, 10)
+                  .map((item) => (
+                    <div 
+                      key={item.id} 
+                      className="flex flex-col items-center cursor-pointer"
+                      onClick={() => handleItemClick(item.name)}
+                    >
+                      <img src={item.imgSrc} alt={item.name} className="w-24 h-32 object-cover rounded-md"/>
+                      <span className='font-medium text-center mt-2'>{item.name}</span>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
         ))}
       </div>
+
 
       {/* Bottom section */}
       <div className="w-4/5 flex justify-between my-5">

@@ -13,8 +13,9 @@ function Animation() {
     ? data.filter(item => item.type === 'Movies')
     : data.filter(item => item.type === 'Series');
 
-  const handleItemClick = (id) => {
-    navigate(`/detail/${id}`);
+  const handleItemClick = (name) => {
+    const encodedName = encodeURIComponent(name); 
+    navigate(`/detail/${encodedName}`);
   };
 
   return (
@@ -43,7 +44,7 @@ function Animation() {
             <div 
               key={item.id || item.staffId} 
               className="flex p-4 rounded-lg border mb-3 shadow-md cursor-pointer"
-              onClick={() => handleItemClick(item.id || item.staffId)}
+              onClick={() => handleItemClick(item.name || item.staffName)}
             >
               <img 
                 className="w-16 h-20 border-1 shadow-lg" 
