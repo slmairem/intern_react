@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import data from '../assets/movieData.json';
@@ -37,6 +37,14 @@ function Navbar() {
   };
 
   const results = filterResults(searchTerm);
+
+  useEffect(() => {
+    if (searchOpen) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+  }, [searchOpen]);
 
   return (
     <div className="flex justify-between items-center p-4 bg-gray-900 text-white">
