@@ -1,26 +1,28 @@
 [
 {
     "userId": 1,
-    "username": "Movie 1",
-    "email": "Movies",
-    "password": "Description for Movie 1",
-    "birthday": ["action", "drama"],
-    "profileImg": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg",
-    "backgroundImg": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg",
+    "username": "User 1",
+    "email": " ",
+    "password": "password1",
+    "birthday": "12.12.2023",
+    "profileImg": "https://image.spreadshirtmedia.com/image-server/v1/products/T1459A839PA3861PT28D1035686237W8333H10000/views/1,width=550,height=550,appearanceId=839,backgroundColor=F2F2F2/alphabet-letter-i-sticker.jpg",
+    "backgroundImg": "",
     "bioText": "",
     "favourites": "",
-    "lists": ""
+    "lists": "",
+    "friends": ""
 },
 {
     "userId": 2,
-    "username": "Movie 1",
-    "email": "Movies",
-    "password": "Description for Movie 1",
-    "birthday": ["action", "drama"],
+    "username": "User 2",
+    "email": " ",
+    "password": "password2",
+    "birthday": "20.12.2012",
     "profileImg": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg",
     "backgroundImg": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg",
     "bioText": "",
     "favourites": "",
-    "lists": ""
+    "lists": "",
+    "friends": ""
 }
 ]

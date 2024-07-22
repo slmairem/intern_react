@@ -123,11 +123,11 @@ function Forum() {
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-bold mb-2" htmlFor="description">Description</label>
-                <textarea id="description" name="description" value={newTopic.description} onChange={handleFormChange} className="w-full px-3 py-2 border border-gray-300 rounded" rows="4" />
+                <textarea id="description" name="description" value={newTopic.description} onChange={handleFormChange} className="w-full px-3 py-2 border border-gray-300 rounded" rows="4" required/>
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-bold mb-2" htmlFor="tags">Tags</label>
-                <select id="tags" name="tags" multiple value={newTopic.tags} onChange={handleTagsChange} className="w-full px-3 py-2 border border-gray-300 rounded">
+                <select id="tags" name="tags" multiple value={newTopic.tags} onChange={handleTagsChange} className="w-full px-3 py-2 border border-gray-300 rounded" required>
                   {['Movies', 'Series', 'Voice Actors', 'Events'].map(tag => (
                     <option key={tag} value={tag}>{tag}</option>
                   ))}

@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import userData from '../assets/userData.json'; // Adjust the path if necessary
 
 function Profile() {
+  const { userId } = useParams(); // Get userId from URL params
   const profileRef = useRef(null);
   const backgroundRef = useRef(null);
   const [profileImage, setProfileImage] = useState("");
@@ -8,8 +11,18 @@ function Profile() {
   const [text, setText] = useState('Welcome to my profile!');
   const [editMode, setEditMode] = useState(false);
   const textareaRef = useRef(null);
+  const [user, setUser] = useState(null);
 
-  // Profile and Background Image Handlers
+  useEffect(() => {
+    const user = userData.find(user => user.userId === parseInt(userId)); 
+    if (user) {
+      setUser(user);
+      setProfileImage(user.profileImg);
+      setBackgroundImage(user.backgroundImg);
+      setText(user.bioText || 'Welcome to my profile!'); 
+    }
+  }, [userId]); 
+
   const handleImageClick = (ref) => {
     ref.current.click();
   };
@@ -21,9 +34,10 @@ function Profile() {
     }
   };
 
-  // Detail Section Handlers
   const handleEdit = () => setEditMode(true);
-  const handleSave = () => setEditMode(false);
+  const handleSave = () => {
+    setEditMode(false);
+  };
   const handleChange = (event) => setText(event.target.value);
 
   useEffect(() => {
@@ -33,6 +47,8 @@ function Profile() {
       textarea.style.height = `${textarea.scrollHeight}px`;
     }
   }, [editMode, text]);
+
+  if (!user) return <div>Loading...</div>; 
 
   return (
     <div className='profile'>
@@ -64,7 +80,7 @@ function Profile() {
 
             {/* Username and Follow Button */}
             <div className="ml-4 mt-10 z-10">
-              <h3 className="text-black text-xl font-bold mt-2">Username</h3>
+              <h3 className="text-black text-xl font-bold mt-2">{user.username}</h3>
             </div>
             <div className="ml-4 mt-10 z-10">
               <button type="button" className="bg-blue-500 text-white px-4 py-2 rounded-md">Follow</button>
@@ -85,9 +101,9 @@ function Profile() {
         {/* Bottom Left */}
         <div className='w-1/4 p-4'>
           <div className='mb-4'>
-            <div className="mb-2">Pronouns:</div>
-            <div className="mb-2">Last Online:</div>
-            <div className="mb-2">Joined:</div>
+            <div className="mb-2">Pronouns: {user.pronouns}</div>
+            <div className="mb-2">Last Online: {user.lastOnline}</div>
+            <div className="mb-2">Joined: {user.joined}</div>
           </div>
 
           <div className='p-4 rounded mb-4 bg-pink-300'>
@@ -118,7 +134,9 @@ function Profile() {
           <div className='bg-pink-300 p-4 rounded'>
             <div className="mb-2">Friends</div>
             <div className='grid grid-cols-3 grid-rows-2'>
-              {new Array(6).fill("").map((_, index) => (
+              {user.friends ? user.friends.map((friend, index) => (
+                <img key={index} src={friend.profileImg} alt={`Friend ${index + 1}`} className="w-16 h-16" />
+              )) : new Array(6).fill("").map((_, index) => (
                 <img key={index} src='' alt={`Friend ${index + 1}`} className="w-16 h-16" />
               ))}
             </div>
@@ -153,13 +171,7 @@ function Profile() {
                           <span className="text-gray-400 text-sm">Update Date</span>
                         </div>
                         <div className="flex items-center mt-2">
-                          <div className="flex-grow h-2 bg-gray-600 rounded-full overflow-hidden">
-                            <div className="h-full bg-blue-500 rounded-full" style={{ width: '50%' }}></div>
-                          </div>
-                        </div>
-                        <div className="flex justify-between mt-2 text-gray-400 text-sm">
-                          <span>50% watched</span>
-                          <span>Score:</span>
+                          <span className="text-gray-300 text-sm">Additional Info</span>
                         </div>
                       </div>
                     </div>
@@ -168,31 +180,6 @@ function Profile() {
               </div>
             </div>
           ))}
-
-          {/* Comments */}
-          <div className="mx-auto px-4 bg-blue-300">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white mt-5">Comments</h2>
-            </div>
-            <form className="mb-6">
-              <div className="py-2 px-4 mb-4 dark:bg-gray-800 rounded dark:border-gray-700">
-                <label htmlFor="comment" className="sr-only">Your comment</label>
-                <textarea
-                  id="comment"
-                  rows="6"
-                  className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
-                  placeholder="Write a comment..."
-                  required
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
-              >
-                Post comment
-              </button>
-            </form>
-          </div>
         </div>
       </div>
     </div>
