@@ -1,20 +1,20 @@
 [
 {
     "listId": 1,
-    "listName": "Movie 1",
-    "popularity": "Movies",
+    "listName": "List 1",
+    "popularity": 1234,
     "likes": 123,
-    "description": "Description for Movie 1",
-    "movies": "",
-    "publishUser": ""
+    "description": "Description for List1",
+    "movies": [1,2,3,4],
+    "publishUser": "User 1"
 },
 {
     "listId": 2,
-    "listName": "Movie 1",
-    "popularity": "Movies",
-    "likes": 123,
-    "description": "Description for Movie 1",
-    "movies": "",
-    "publishUser": ""
+    "listName": "List 2",
+    "popularity": 124,
+    "likes": 1212,
+    "description": "Description for List 2",
+    "movies": [3,7,8],
+    "publishUser": "User 2"
 }
 ]

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import userData from '../assets/userData.json'; 
 
 function Profile() {
@@ -12,6 +12,11 @@ function Profile() {
   const [editMode, setEditMode] = useState(false);
   const textareaRef = useRef(null);
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Sayfanın en üstüne kaydır
+  }, [userId]);
 
   useEffect(() => {
     const user = userData.find(user => user.userId === parseInt(userId)); 
@@ -47,6 +52,10 @@ function Profile() {
       textarea.style.height = `${textarea.scrollHeight}px`;
     }
   }, [editMode, text]);
+
+  const handleFriendClick = (friendId) => {
+    navigate(`/profile/${friendId}`);
+  };
 
   if (!user) return <div>Loading...</div>; 
 
@@ -138,13 +147,13 @@ function Profile() {
                 const friend = userData.find(u => u.username === friendName);
                 if (friend) {
                   return (
-                    <img
-                      key={index}
-                      src={friend.profileImg}
-                      alt={`Friend ${index + 1}`}
-                      className="w-16 h-16 border rounded mb-2 cursor-pointer"
-                      onClick={() => window.location.href = `/profile/${friend.userId}`}
-                    />
+                    <div key={index} onClick={() => handleFriendClick(friend.userId)} className="cursor-pointer">
+                      <img
+                        src={friend.profileImg}
+                        alt={`Friend ${index + 1}`}
+                        className="w-16 h-16 border rounded mb-2"
+                      />
+                    </div>
                   );
                 }
                 return (

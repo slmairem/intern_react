@@ -20,16 +20,16 @@
 {
     "newsId": 3,
     "newsName": "News 3",
-    "content": "Description for News2",
+    "content": "Description for News3",
     "tags": ["Events", "Voice Actors"],
     "publisherName": "",
     "publishDate":"",
     "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
 },
 {
-    "newsId": 3,
-    "newsName": "News 3",
-    "content": "Description for News2",
+    "newsId": 4,
+    "newsName": "News 4",
+    "content": "Description for News4",
     "tags": ["Voice Actors"],
     "publisherName": "",
     "publishDate":"",

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import forumData from '../assets/forumData.json';
 import newsData from '../assets/newsData.json';
 import movieData from '../assets/movieData.json';
@@ -41,7 +41,7 @@ function Homepage() {
             Create a free account
           </button>
           or 
-          <a href="/login" className="text-blue-500 ml-2">login</a> if you have an account.
+          <Link to="/login" className="text-blue-500 ml-2">login</Link> if you have an account.
         </div>   
       </div>
       
@@ -76,7 +76,6 @@ function Homepage() {
         ))}
       </div>
 
-
       {/* Bottom section */}
       <div className="w-4/5 flex justify-between my-5">
         <div className="w-3/4">
@@ -98,7 +97,7 @@ function Homepage() {
               ))}
             </div>
             <div className="ml-4 text-right mb-2">
-              <a href="/news" className="text-blue-500 no-underline cursor-pointer">View More...</a>
+              <Link to="/news" className="text-blue-500 no-underline cursor-pointer">View More...</Link>
             </div>
           </div>
           <div className="mb-5 ">
@@ -109,7 +108,7 @@ function Homepage() {
               </div>
             ))}
             <div className="ml-4 text-right mb-2">
-              <a href="/forum" className="text-blue-500 no-underline cursor-pointer">View More...</a>
+              <Link to="/forum" className="text-blue-500 no-underline cursor-pointer">View More...</Link>
             </div>
           </div>
         </div>
@@ -122,7 +121,7 @@ function Homepage() {
               </div>
             ))}
             <div className="ml-4 text-right mb-2">
-              <a href="/lists" className="text-blue-500 no-underline cursor-pointer">View More...</a>
+              <Link to="/lists" className="text-blue-500 no-underline cursor-pointer">View More...</Link>
             </div>
           </div>
         </div>
