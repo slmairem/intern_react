@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import userData from '../assets/userData.json'; // Adjust the path if necessary
+import { useParams, Link } from 'react-router-dom';
+import userData from '../assets/userData.json'; 
 
 function Profile() {
-  const { userId } = useParams(); // Get userId from URL params
+  const { userId } = useParams(); 
   const profileRef = useRef(null);
   const backgroundRef = useRef(null);
   const [profileImage, setProfileImage] = useState("");
@@ -69,11 +69,11 @@ function Profile() {
         <div className="relative">
           {/* Profile Image */}
           <div className="relative flex items-start">
-            <div className="bg-gray-200 w-32 h-32 relative overflow-hidden ml-10 z-10" onClick={() => handleImageClick(profileRef)}>
+            <div className=" w-32 h-32 relative overflow-hidden ml-10 z-10" onClick={() => handleImageClick(profileRef)}>
               <img
                 src={profileImage || 'https://t3.ftcdn.net/jpg/04/12/82/16/360_F_412821610_95RpjzPXCE2LiWGVShIUCGJSktkJQh6P.jpg'}
                 alt="Profile"
-                className="object-cover w-32 h-32"
+                className="object-cover border rounded w-32 h-32"
               />
               <input type='file' ref={profileRef} onChange={(e) => handleImageChange(e, setProfileImage)} style={{ display: "none" }} />
             </div>
@@ -133,11 +133,25 @@ function Profile() {
 
           <div className='bg-pink-300 p-4 rounded'>
             <div className="mb-2">Friends</div>
-            <div className='grid grid-cols-3 grid-rows-2'>
-              {user.friends ? user.friends.map((friend, index) => (
-                <img key={index} src={friend.profileImg} alt={`Friend ${index + 1}`} className="w-16 h-16" />
-              )) : new Array(6).fill("").map((_, index) => (
-                <img key={index} src='' alt={`Friend ${index + 1}`} className="w-16 h-16" />
+            <div className='grid grid-cols-3 '>
+              {user.friends ? user.friends.slice(0, 6).map((friendName, index) => {
+                const friend = userData.find(u => u.username === friendName);
+                if (friend) {
+                  return (
+                    <img
+                      key={index}
+                      src={friend.profileImg}
+                      alt={`Friend ${index + 1}`}
+                      className="w-16 h-16 border rounded mb-2 cursor-pointer"
+                      onClick={() => window.location.href = `/profile/${friend.userId}`}
+                    />
+                  );
+                }
+                return (
+                  <div key={index} className="w-16 h-16 rounded-full "></div>
+                );
+              }) : new Array(6).fill("").map((_, index) => (
+                <div key={index} className="w-16 h-16 rounded-full "></div>
               ))}
             </div>
           </div>

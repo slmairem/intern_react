@@ -1,6 +1,6 @@
 [
     {
-        "staffId": "2",
+        "staffId": 2,
         "staffName": "Nicolas Cantu",
         "staffShow": "The Amazing World of Gumball",
         "staffFav": 123,
@@ -14,6 +14,15 @@
         "staffFav": 123,
         "staffDesc": "Description for Staff1",
         "staffImgSrc": "https://m.media-amazon.com/images/M/MV5BZmVlNDkyOGMtNjVjYi00YTE2LTkxYWUtYmQ0NjQxZjYyYjEwXkEyXkFqcGdeQXVyMTk1ODA5NTY@._V1_.jpg"
+    }
+    ,
+    {
+        "staffId": 1,
+        "staffName": "Amy Poehler",
+        "staffShow": "Inside Out",
+        "staffFav": 123,
+        "staffDesc": "Description for Staff1",
+        "staffImgSrc": "https://m.media-amazon.com/images/M/MV5BYjIzMDA0NmUtMTlhZi00ZDU3LTkzYWMtZDhkYTU1ZDJlMGRkXkEyXkFqcGdeQXVyNzcwODE0OTk@._V1_.jpg"
     }
 ]
     

@@ -116,7 +116,7 @@ function Navbar() {
           <button className="flex items-center text-white" onClick={handleUserDropdownToggle}>
             {selectedUser ? (
               <>
-                <img src={selectedUser.profileImg} alt={selectedUser.username} className="h-10 w-10  mr-2" />
+                <img src={selectedUser.profileImg} alt={selectedUser.username} className="h-10 w-10 rounded mr-2" />
                 <Link to={`/profile/${selectedUser.userId}`} className="text-white no-underline">
                   {selectedUser.username}
                 </Link>
@@ -126,14 +126,14 @@ function Navbar() {
             )}
           </button>
           {userDropdownOpen && !selectedUser && (
-            <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded shadow-lg z-10 max-h-48 overflow-y-auto">
+            <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded shadow-lg z-20 max-h-48 overflow-y-auto">
               {usersData.map(user => (
                 <button
                   key={user.userId}
                   onClick={() => handleUserSelect(user)}
                   className="flex items-center px-4 py-2 hover:bg-gray-200 w-full text-left"
                 >
-                  <img src={user.profileImg} alt={user.username} className="h-10 w-10  mr-2" />
+                  <img src={user.profileImg} alt={user.username} className="h-10 w-10 rounded mr-2" />
                   <span>{user.username}</span>
                 </button>
               ))}
@@ -142,13 +142,13 @@ function Navbar() {
         </div>
 
         {selectedUser && (
-          <div className="relative z-10" ref={dropdownRef}>
-            <button className="flex items-center cursor-pointer" onClick={handleDropdownToggle}>
+          <div className="relative z-30" ref={dropdownRef}>
+            <button className="flex items-center cursor-pointer z-30" onClick={handleDropdownToggle}>
               <FaCaretDown />
             </button>
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded shadow-lg">
-                <button onClick={handleSignOut} className="block px-4 py-2 w-full text-left rounded hover:bg-gray-200">Sign Out</button>
+              <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded shadow-lg z-30">
+                <button onClick={handleSignOut} className="block px-4 py-2 w-full text-left rounded hover:bg-gray-200 ">Sign Out</button>
               </div>
             )}
           </div>

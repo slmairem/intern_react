@@ -16,5 +16,14 @@
     "charFav": 123,
     "charDesc": "Description for Char2",
     "imgSrc": "https://assets.mycast.io/characters/darwin-watterson-276552-normal.jpg?1669272555"
+},
+{
+    "charId": 3,
+    "charName": "Joy",
+    "charShow": "Inside Out",
+    "charStaff": "Amy Poehler",
+    "charFav": 123,
+    "charDesc": "Description for Char2",
+    "imgSrc": "https://w0.peakpx.com/wallpaper/488/835/HD-wallpaper-inside-out-emotion-joy-thumbnail.jpg"
 }
 ]
