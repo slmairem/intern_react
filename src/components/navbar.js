@@ -96,17 +96,17 @@ function Navbar() {
   };
 
   return (
-    <div className="flex justify-between items-center p-4 bg-gray-900 text-white">
+    <div className="flex justify-between items-center p-4 bg-gradient-to-b from-gray-900 to-indigo-950 text-white font-IndieFlower font-semibold text-lg">
       <div className="leftSide">
         <Link to="/">
-          <img src='https://cdn.pixabay.com/photo/2016/10/02/00/53/a-1708752_1280.png' className="h-10" alt="Logo" />
+          <img src='https://cdn.pixabay.com/photo/2016/10/02/00/53/a-1708752_1280.png' className="h-10 hover:scale-110 duration-500" alt="Logo" />
         </Link>
       </div>
       <div className="middleSide flex space-x-4">
-        <Link to="/animation" className="text-white no-underline pr-4 border-r border-gray-400">Animations</Link>
-        <Link to="/lists" className="text-white no-underline pr-4 border-r border-gray-400">Lists</Link>
-        <Link to="/forum" className="text-white no-underline pr-4 border-r border-gray-400">Forum</Link>
-        <Link to="/news" className="text-white no-underline">News</Link>
+        <Link to="/animation" className="text-slate-200 hover:text-slate-300 no-underline pr-4 border-r border-dotted border-gray-400">Animations</Link>
+        <Link to="/lists" className="text-slate-200 hover:text-slate-300 no-underline pr-4 border-r border-dotted border-gray-400">Lists</Link>
+        <Link to="/forum" className="text-slate-200 hover:text-slate-300 no-underline pr-4 border-r border-dotted border-gray-400">Forum</Link>
+        <Link to="/news" className="text-slate-200 hover:text-slate-300 no-underline">News</Link>
       </div>
 
       <div className="rightSide flex items-center space-x-4">
@@ -117,12 +117,12 @@ function Navbar() {
             {selectedUser ? (
               <>
                 <img src={selectedUser.profileImg} alt={selectedUser.username} className="h-10 w-10 rounded mr-2" />
-                <Link to={`/profile/${selectedUser.userId}`} className="text-white no-underline">
+                <Link to={`/profile/${selectedUser.userId}`} className="text-slate-200 hover:text-slate-300 no-underline">
                   {selectedUser.username}
                 </Link>
               </>
             ) : (
-              <span className="text-white">Select User</span>
+              <span className="text-slate-200 hover:text-slate-300">Select User</span>
             )}
           </button>
           {userDropdownOpen && !selectedUser && (
@@ -148,7 +148,7 @@ function Navbar() {
             </button>
             {dropdownOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded shadow-lg z-30">
-                <button onClick={handleSignOut} className="block px-4 py-2 w-full text-left rounded hover:bg-gray-200 ">Sign Out</button>
+                <button onClick={handleSignOut} className="block px-4 py-2 w-full text-left rounded hover:bg-gray-200">Sign Out</button>
               </div>
             )}
           </div>
@@ -156,8 +156,8 @@ function Navbar() {
 
         {!selectedUser && (
           <>
-            <Link to="/login" className="text-white no-underline">Login</Link>
-            <Link to="/register" className="text-white no-underline">Register</Link>
+            <Link to="/login" className="text-slate-200 hover:text-slate-300 no-underline">Login</Link>
+            <Link to="/register" className="text-slate-200 hover:text-slate-300 no-underline">Register</Link>
           </>
         )}
       </div>
@@ -197,7 +197,7 @@ function Navbar() {
                               onClick={closeSearch} 
                               className="text-black no-underline"
                             >
-                              {item.name || item.username || item.newsName || item.charName || item.staffName}
+                              {item.name || item.username || item.staffName || item.charName}
                             </Link>
                           </li>
                         ))}
