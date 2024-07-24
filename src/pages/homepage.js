@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import forumData from '../assets/forumData.json';
 import newsData from '../assets/newsData.json';
 import movieData from '../assets/movieData.json';
+import listsData from '../assets/listsData.json';
 
 function Homepage() {
   const navigate = useNavigate();
@@ -12,16 +13,28 @@ function Homepage() {
   };
 
   const handleItemClick = (name) => {
-    const encodedName = encodeURIComponent(name); 
+    const encodedName = encodeURIComponent(name);
     navigate(`/detail/${encodedName}`);
   };
 
-  const forumTopics = forumData.slice(0, 3); 
-  const recentNews = newsData.slice(0, 6); 
-  const lists = Array.from({ length: 4 }, (_, i) => ({ name: `Lists ${i + 1}` }));
+  const forumTopics = forumData.slice(0, 3);
+  const recentNews = newsData.slice(0, 6);
 
   const movieCount = movieData.filter(item => item.type === 'Movies').length;
   const seriesCount = movieData.filter(item => item.type === 'Series').length;
+
+  const getMovieImages = (movieIds) => {
+    return movieIds.map(id => {
+      const movie = movieData.find(movie => movie.id === id);
+      return movie ? movie.imgSrc : '';
+    });
+  };
+
+  const Placeholder = ({ size }) => (
+    <div className={`${size} bg-gray-200 dark:bg-gray-700 border-1 shadow-lg`}></div>
+  );
+
+  const popularLists = listsData.sort((a, b) => b.popularity - a.popularity).slice(0, 4);
 
   return (
     <div className="flex flex-col items-center w-full">
@@ -115,11 +128,31 @@ function Homepage() {
         <div className="w-1/4 ml-5 border-l ">
           <div className="mb-5 ml-5">
             <h3 className="text-xl font-semibold">Popular Lists</h3>
-            {lists.map((list, index) => (
-              <div key={index} className="bg-gray-100 p-4 rounded mb-2">
-                <div>{list.name}</div>
-              </div>
-            ))}
+            {popularLists.map((list) => {
+              const images = getMovieImages(list.movies);
+              const placeholderCount = 4 - images.length;
+
+              return (
+                <div key={list.listId} className="flex flex-col items-start p-4 rounded-lg border shadow-md mb-2">
+                  <div className="flex flex-shrink-0 -space-x-4 mb-4">
+                    {images.map((src, index) => (
+                      <img key={index} className="w-16 h-24 border-1 shadow-lg" src={src} alt="" />
+                    ))}
+                    {Array.from({ length: placeholderCount }).map((_, index) => (
+                      <Placeholder key={index} size="w-16 h-24" />
+                    ))}
+                  </div>
+                  <div className="w-full overflow-hidden">
+                    <div className="text-xl font-bold truncate">{list.listName}</div>
+                    <div className="flex items-center mt-2 text-gray-600 dark:text-gray-400">
+                      <span className="text-sm truncate">{list.publishUser}</span>
+                      <span className="ml-2 text-sm truncate">Likes: {list.likes}</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+
             <div className="ml-4 text-right mb-2">
               <Link to="/lists" className="text-blue-500 no-underline cursor-pointer">View More...</Link>
             </div>
