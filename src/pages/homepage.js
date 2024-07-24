@@ -5,6 +5,29 @@ import newsData from '../assets/newsData.json';
 import movieData from '../assets/movieData.json';
 import listsData from '../assets/listsData.json';
 
+export const TextRevealTW = () => {
+  const text = "\nDidn't you discover the Neverland yet?";
+
+  return (
+    <h1 className="overflow-hidden pb-4 text-lg font-semibold text-white font-PlaywriteBE ">
+      {text.split('\n').map((line, lineIndex) => (
+        <div key={lineIndex}>
+          {line.split('').map((char, index) => (
+            <span
+              className="inline-block animate-text-reveal"
+              key={`${char}-${index}`}
+              style={{ animationDelay: `${index * 0.05}s` }}
+            >
+              {char === " " ? "\u00A0" : char}
+            </span>
+          ))}
+          <br />
+        </div>
+      ))}
+    </h1>
+  );
+};
+
 function Homepage() {
   const navigate = useNavigate();
 
@@ -37,32 +60,31 @@ function Homepage() {
   const popularLists = listsData.sort((a, b) => b.popularity - a.popularity).slice(0, 4);
 
   return (
-    <div className="flex flex-col items-center w-full">
+    <div className="flex flex-col items-center w-full font-IndieFlower text-lg">
       {/* User Auth section */}
-      <div className="text-center my-5">
-        <div className="text-lg font-semibold">
-          App Name 
-          <br />
-          Didn't you discover the Neverland yet? 
+      <div className="relative w-full bg-gradient-to-b via-sky-500 from-indigo-500 transition-transform text-center py-20">
+        <div className="relative z-10 text-lg font-extrabold text-white font-PlaywriteBE">
+            App Name 
         </div> 
+        <TextRevealTW />
         <div className="mt-4">
           <button 
             type="button" 
-            className="bg-gray-700 text-white px-4 py-2 rounded mr-2"
+            className="bg-rose-800 text-white px-4 py-2 rounded mr-2 hover:bg-rose-900 transition duration-500 hover:scale-105"
             onClick={navigateToRegister}
           >
             Create a free account
           </button>
           or 
-          <Link to="/login" className="text-blue-500 ml-2">login</Link> if you have an account.
+          <Link to="/login" className="text-slate-100 ml-2 no-underline font-bold hover:text-rose-800 duration-500 hover:text-3xl">login</Link> if you have an account.
         </div>   
       </div>
       
       {/* Lists section */}
-      <div className="w-full flex flex-col items-center">
+      <div className="w-full flex flex-col items-center pt-4 font-IndieFlower">
         {['Movies', 'Series'].map((type) => (
           <div className="w-4/5 my-2" key={type}>
-            <div className="flex justify-between font-medium mb-2 text-gray-500">
+            <div className="flex justify-between font-medium mb-2 text-gray-500 text-xl">
               <span>{type}</span>
               <span className="text-right text-gray-500 no-underline">
                 {type === 'Movies' ? movieCount : seriesCount}
@@ -76,11 +98,20 @@ function Homepage() {
                   .map((item) => (
                     <div 
                       key={item.id} 
-                      className="flex flex-col items-center cursor-pointer"
-                      onClick={() => handleItemClick(item.name)}
+                      className="flex flex-col items-center group"
                     >
-                      <img src={item.imgSrc} alt={item.name} className="w-24 h-32 object-cover rounded-md"/>
-                      <span className='font-medium text-center mt-2'>{item.name}</span>
+                      <img 
+                        src={item.imgSrc} 
+                        alt={item.name} 
+                        className="w-24 h-32 object-cover rounded-md duration-300 group-hover:scale-110 cursor-pointer"
+                        onClick={() => handleItemClick(item.name)}
+                      />
+                      <span 
+                        className='font-semibold text-center mt-2 text-l cursor-pointer'
+                        onClick={() => handleItemClick(item.name)}
+                      >
+                        {item.name}
+                      </span>
                     </div>
                   ))}
               </div>
@@ -90,13 +121,13 @@ function Homepage() {
       </div>
 
       {/* Bottom section */}
-      <div className="w-4/5 flex justify-between my-5">
+      <div className="w-4/5 flex justify-between my-5 font-IndieFlower">
         <div className="w-3/4">
           <div className="mb-5">
             <h3 className="text-xl font-semibold">Recently News</h3>
             <div className="grid grid-cols-3 gap-4 mb-2">
               {recentNews.map((news) => (
-                <div key={news.newsId} className="flex bg-gray-100 p-3 rounded">
+                <div key={news.newsId} className="flex bg-gray-100 p-3 rounded cursor-pointer">
                   <img
                     src={news.imgSrc}
                     alt={news.newsName}
@@ -110,30 +141,30 @@ function Homepage() {
               ))}
             </div>
             <div className="ml-4 text-right mb-2">
-              <Link to="/news" className="text-blue-500 no-underline cursor-pointer">View More...</Link>
+              <Link to="/news" className="text-blue-500 no-underline cursor-pointer font-bold hover:text-xl duration-300">View More...</Link>
             </div>
           </div>
           <div className="mb-5 ">
             <h3 className="text-xl font-semibold">Forum Topics</h3>
             {forumTopics.map((forum) => (
-              <div key={forum.forumId} className="bg-gray-100 p-4 rounded mb-2">
+              <div key={forum.forumId} className="bg-gray-100 p-4 rounded mb-2 cursor-pointer">
                 <div>{forum.forumName}</div>
               </div>
             ))}
             <div className="ml-4 text-right mb-2">
-              <Link to="/forum" className="text-blue-500 no-underline cursor-pointer">View More...</Link>
+              <Link to="/forum" className="text-blue-500 no-underline cursor-pointer font-bold hover:text-xl duration-300">View More...</Link>
             </div>
           </div>
         </div>
-        <div className="w-1/4 ml-5 border-l ">
+        <div className="w-1/4 ml-5 border-l font-IndieFlower">
           <div className="mb-5 ml-5">
-            <h3 className="text-xl font-semibold">Popular Lists</h3>
+            <h3 className="text-xl font-semibold font-IndieFlower">Popular Lists</h3>
             {popularLists.map((list) => {
               const images = getMovieImages(list.movies);
               const placeholderCount = 4 - images.length;
 
               return (
-                <div key={list.listId} className="flex flex-col items-start p-4 rounded-lg border shadow-md mb-2">
+                <div key={list.listId} className="flex flex-col items-start p-4 rounded-lg border shadow-md mb-2 cursor-pointer">
                   <div className="flex flex-shrink-0 -space-x-4 mb-4">
                     {images.map((src, index) => (
                       <img key={index} className="w-16 h-24 border-1 shadow-lg" src={src} alt="" />
@@ -154,7 +185,7 @@ function Homepage() {
             })}
 
             <div className="ml-4 text-right mb-2">
-              <Link to="/lists" className="text-blue-500 no-underline cursor-pointer">View More...</Link>
+              <Link to="/lists" className="text-blue-500 no-underline cursor-pointer font-bold hover:text-xl duration-300">View More...</Link>
             </div>
           </div>
         </div>
