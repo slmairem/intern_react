@@ -3,10 +3,11 @@ import { useParams } from 'react-router-dom';
 import data from '../assets/movieData.json';
 import charData from '../assets/characterData.json';
 import staffData from '../assets/staffData.json';
-import Rating from '../rating.js';
-import AddReviews from '../review.js';
+import Rating from '../functions/detailPage/rating.js';
+import AddReviews from '../functions/detailPage/review.js';
 import { FaHeart } from 'react-icons/fa';
-import Dropdown from '../dropdown.js';
+import Dropdown from '../functions/detailPage/dropdown.js';
+import BarChart from '../functions/detailPage/chart.js';
 
 function Details() {
   const [currentSection, setCurrentSection] = useState('Overview');
@@ -224,11 +225,15 @@ const Sidebar = ({ item }) => (
       </div>
     </div>
 
-    <div className="border border-black rounded w-52 h-52 mt-2 mb-2 bg-white">
-      <div className="details p-4">
-        <div>AvgRatingTable</div>
+    <div className="border border-black rounded w-52 h-52 mt-2 mb-2 bg-white overflow-hidden">
+      <div className="details p-4 h-full flex flex-col items-center">
+        <div className="text-lg font-semibold mb-2">Average Rating</div>
+        <div className="flex-grow overflow-auto">
+          <BarChart />
+        </div>
       </div>
     </div>
+
   </div>
 );
 
