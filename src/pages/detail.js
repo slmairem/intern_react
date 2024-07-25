@@ -5,6 +5,8 @@ import charData from '../assets/characterData.json';
 import staffData from '../assets/staffData.json';
 import Rating from '../rating.js';
 import AddReviews from '../review.js';
+import { FaHeart } from 'react-icons/fa';
+import Dropdown from '../dropdown.js';
 
 function Details() {
   const [currentSection, setCurrentSection] = useState('Overview');
@@ -108,14 +110,14 @@ function Details() {
 }
 
 const Section = ({ title, items, setCurrentSection }) => (
-  <div className="h-full w-full">
+  <div className="h-full w-full ml-2">
     <div className="ml-5 mt-2">
-      <h4 className='font-semibold'>{title}</h4>
+      <h4 className='font-semibold mt-3 -mb-3'>{title}</h4>
     </div>
     <br />
-    <div className="mb-4 grid grid-cols-3 ml-4">
+    <div className="mb-4 ml-4 flex flex-wrap gap-4">
       {items.map((item, index) => (
-        <div key={index} className="bg-gray-100 p-4 rounded flex items-center w-96 space-x-4 mb-4 cursor-pointer">
+        <div key={index} className="bg-gray-100 p-4 rounded flex items-center w-80 space-x-4 cursor-pointer shadow-sm">
           {title === 'Characters' && (
             <div className="flex items-center">
               <img src={item.imgSrc} alt={item.charName} className="w-16 h-20 mr-4" />
@@ -127,7 +129,7 @@ const Section = ({ title, items, setCurrentSection }) => (
               <img src={item.staffImgSrc} alt={item.staffName} className="w-16 h-20 mr-4" />
               <div>
                 <div className="font-bold">{item.staffName}</div>
-                <div className='text-gray-500'><span>{item.charName}'s VA </span></div>
+                <div className='text-gray-500'>{item.charName}'s VA</div>
               </div>
             </div>
           )}
@@ -148,10 +150,11 @@ const Section = ({ title, items, setCurrentSection }) => (
   </div>
 );
 
-const Reviews = ({ title, setCurrentSection }) => (
-  <div className="h-full w-full mt-2 mb-4">
+{/* Reviews */}
+const Reviews = ({setCurrentSection }) => (
+  <div className="h-full w-full mt-2 mb-4 ml-2 mr-2">
     <div className="ml-4">
-      <h4 className='font-semibold'>Reviews</h4>
+      <h4 className='font-semibold mt-3 -mb-3'>Reviews</h4>
     </div>
     <br />
     <AddReviews />
@@ -168,35 +171,44 @@ const Reviews = ({ title, setCurrentSection }) => (
 );
 
 const Stats = () => (
-  <div className="h-full w-full">
+  <div className="h-full w-full ml-2">
     <div className="ml-5">
-      <h4 className='font-semibold'>Stats</h4>
+      <h4 className='font-semibold mt-3 -mb-3'>Stats</h4>
     </div>
     {/* Add Stats content here */}
   </div>
 );
 
 const Social = () => (
-  <div className="h-full w-full">
+  <div className="h-full w-full ml-2">
     <div className="ml-5">
-      <h4 className='font-semibold'>Social</h4>
+      <h4 className='font-semibold mt-3 -mb-3'>Social</h4>
     </div>
     {/* Add Social content here */}
   </div>
 );
 
 const Sidebar = ({ item }) => (
-  <div className="flex flex-col items-center pt-3 h-full">
+  <div className="flex flex-col items-center pt-4 h-full">
+    {/* Add List, Fav, Rating Buttons */}
     <div className="flex">
-      <button className="bg-blue-500 text-white px-4 py-2 mr-4 rounded w-36">AddList</button>
-      <button className="bg-red-500 text-white rounded w-12">❤️</button>
+      <Dropdown/>
+      <button
+        className="ml-2 relative inline-flex items-center justify-center w-10 h-10 bg-red-900 text-white rounded-lg text-xs shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-950"
+        type="button">
+        <span className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+          <FaHeart aria-hidden="true" />
+        </span>
+      </button>
+
     </div>
 
     <div className="mt-4">
       <Rating/>
     </div>
 
-    <div className="border border-black rounded w-52 h-56 -mt-4">
+    {/* Details */}
+    <div className="border border-black rounded w-52 h-56 -mt-4 bg-white">
       <div className="details p-3">
         <div>
           <span className="inline-block font-bold">Year:</span> <span className="inline-block">{item.year}</span> <br/>
@@ -212,7 +224,7 @@ const Sidebar = ({ item }) => (
       </div>
     </div>
 
-    <div className="border border-black rounded w-52 h-52 mt-2 mb-2">
+    <div className="border border-black rounded w-52 h-52 mt-2 mb-2 bg-white">
       <div className="details p-4">
         <div>AvgRatingTable</div>
       </div>

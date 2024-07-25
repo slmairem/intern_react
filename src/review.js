@@ -11,7 +11,7 @@ const StarIcon = ({ filled = true }) => (
   );
   
   const Reviews = () => (
-    <div className="h-full w-full mt-2 mb-4 ml-4">
+    <div className="h-full w-full mt-2 mb-4 ml-4 mr-2 cursor-pointer">
       <article className="bg-white p-4 rounded-lg shadow-md">
         <div className="flex items-start">
           <img className="w-10 h-10 rounded me-4" src="https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg" alt="User" />
