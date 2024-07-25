@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import data from '../assets/movieData.json';
 import charData from '../assets/characterData.json';
 import staffData from '../assets/staffData.json';
+import Rating from '../rating.js';
+import AddReviews from '../review.js';
 
 function Details() {
   const [currentSection, setCurrentSection] = useState('Overview');
@@ -14,7 +16,7 @@ function Details() {
     return <div>Item not found</div>;
   }
 
-  // Character listesi
+  // Character List
   const charShow = charData.filter(character => character.charShow.trim() === item.name.trim())
     .map(character => {
       const staff = staffData.find(staff => staff.staffName.trim() === character.charStaff.trim());
@@ -25,7 +27,7 @@ function Details() {
       };
     });
 
-  // Staff listesi
+  // Staff List
   const staffShow = staffData.filter(staff => staff.staffShow.trim() === item.name.trim())
     .map(staff => ({
       ...staff,
@@ -51,18 +53,20 @@ function Details() {
     Social: <Social />
   };
 
-  return (
-    <div className="bg-gray-50 min-h-screen">
-      <div className="relative">
+  return ( 
+    <div className="bg-gray-50 min-h-screen font-IndieFlower text-lg">
+      {/* background */}
+      <div className="relative blur-sm">
         <img 
-          src={item.backSrc}
+          src={item.imgSrc}
           alt="Background" 
-          className="w-full absolute top-0 left-0 z-0 h-60 object-cover" 
+          className="w-full absolute top-0 left-0 z-0 h-60 object-cover brightness-75" 
         />
       </div>
 
+      {/* profilePic */}
       <div className="relative flex items-start mt-10">
-        <div className="bg-gray-200 w-56 h-64 relative overflow-hidden ml-10 z-10">
+        <div className="bg-gray-200 w-56 h-64 relative overflow-hidden ml-10 z-10 hover:scale-105 border rounded-md">
           <img 
             src={item.imgSrc}
             alt="Profile" 
@@ -71,19 +75,21 @@ function Details() {
         </div>
 
         <div className="ml-6 z-10 w-full">
-          <h3 className="text-black text-2xl font-bold mt-2">{item.name}</h3>
-          <p className="text-gray-700 mt-2 overflow-hidden max-w-max pr-4 flex">
+          <h3 className="text-slate-200 text-4xl font-extrabold mt-2 inline-block bg-indigo-950 bg-opacity-75 p-1 rounded">
+            {item.name}
+          </h3>
+          <p className="text-slate-100 mt-2 overflow-hidden max-w-max pr-4 text-xl flex bg-indigo-950 bg-opacity-75 p-1 rounded">
             {item.description}
           </p>
         </div>
       </div>
 
-      <div className="relative flex justify-center bg-pink-300 h-12 font-bold z-0 shadow-md -mt-20 w-full">
+      <div className="relative flex justify-center bg-sky-700 h-12 font-bold z-0 shadow-md -mt-20 w-full">
         {Object.keys(sections).map((section) => (
           <button 
             key={section} 
             type="button" 
-            className="navBut mx-2 mt-2"
+            className="navBut mx-2 mt-2 text-slate-200 hover:text-slate-300 "
             onClick={() => setCurrentSection(section)}
           >
             {section}
@@ -102,15 +108,14 @@ function Details() {
 }
 
 const Section = ({ title, items, setCurrentSection }) => (
-  
   <div className="h-full w-full">
     <div className="ml-5 mt-2">
-      <h4>{title}</h4>
+      <h4 className='font-semibold'>{title}</h4>
     </div>
     <br />
-    <div className="mb-4 grid grid-cols-3 ml-4 ">
+    <div className="mb-4 grid grid-cols-3 ml-4">
       {items.map((item, index) => (
-        <div key={index} className="bg-gray-100 p-4 rounded flex items-center w-96 space-x-4 mb-4">
+        <div key={index} className="bg-gray-100 p-4 rounded flex items-center w-96 space-x-4 mb-4 cursor-pointer">
           {title === 'Characters' && (
             <div className="flex items-center">
               <img src={item.imgSrc} alt={item.charName} className="w-16 h-20 mr-4" />
@@ -133,7 +138,7 @@ const Section = ({ title, items, setCurrentSection }) => (
     <div className="ml-4 text-right mb-2">
       <a 
         href="#" 
-        className="text-blue-500 no-underline cursor-pointer"
+        className="text-blue-500 no-underline cursor-pointer font-semibold hover:text-blue-900"
         onClick={() => setCurrentSection(title)}
       >
         View More...
@@ -143,47 +148,29 @@ const Section = ({ title, items, setCurrentSection }) => (
   </div>
 );
 
-const Reviews = ({ setCurrentSection }) => (
+const Reviews = ({ title, setCurrentSection }) => (
   <div className="h-full w-full mt-2 mb-4">
-    <div className="ml-5">
-      <h4>Reviews</h4>
+    <div className="ml-4">
+      <h4 className='font-semibold'>Reviews</h4>
     </div>
     <br />
-    <div className="ml-5 flex p-4 rounded-lg border">
-      <img className="w-16 h-16 border-1" src="https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg" alt="User" />
-      <div className="ml-4">
-        <div className="text-l font-bold">Username</div>
-        <div className="mt-2 text-gray-700">
-          Bu bir yorumdur.
-        </div>
-      </div>              
-    </div>
+    <AddReviews />
     <div className="ml-4 text-right mt-2">
       <a 
         href="#" 
-        className="text-blue-500 no-underline cursor-pointer pt-2 "
+        className="text-blue-500 no-underline cursor-pointer pt-2 font-semibold hover:text-blue-900"
         onClick={() => setCurrentSection('Reviews')}
       >
         View More...
       </a>
     </div>
-
-  </div>
-);
-
-const Staff = () => (
-  <div className="h-full w-full">
-    <div className="ml-5">
-      <h4>Staff</h4>
-    </div>
-    {/* Add Staff content here */}
   </div>
 );
 
 const Stats = () => (
   <div className="h-full w-full">
     <div className="ml-5">
-      <h4>Stats</h4>
+      <h4 className='font-semibold'>Stats</h4>
     </div>
     {/* Add Stats content here */}
   </div>
@@ -192,7 +179,7 @@ const Stats = () => (
 const Social = () => (
   <div className="h-full w-full">
     <div className="ml-5">
-      <h4>Social</h4>
+      <h4 className='font-semibold'>Social</h4>
     </div>
     {/* Add Social content here */}
   </div>
@@ -205,11 +192,11 @@ const Sidebar = ({ item }) => (
       <button className="bg-red-500 text-white rounded w-12">❤️</button>
     </div>
 
-    <div className="mt-2">
-      <button className="bg-blue-500 text-white px-4 py-2 rounded w-52">Rating</button>
+    <div className="mt-4">
+      <Rating/>
     </div>
 
-    <div className="border border-black rounded w-52 h-56 mt-2">
+    <div className="border border-black rounded w-52 h-56 -mt-4">
       <div className="details p-3">
         <div>
           <span className="inline-block font-bold">Year:</span> <span className="inline-block">{item.year}</span> <br/>
