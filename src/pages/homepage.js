@@ -148,7 +148,8 @@ function Homepage() {
             <h3 className="text-xl font-semibold">Forum Topics</h3>
             {forumTopics.map((forum) => (
               <div key={forum.forumId} className="bg-gray-100 p-4 rounded mb-2 cursor-pointer hover:shadow-md">
-                <div>{forum.forumName}</div>
+                <div className="text-sm text-gray-600">{forum.publishUser}</div>
+                <div className="text-md font-semibold">{forum.forumName}</div>
               </div>
             ))}
             <div className="ml-4 text-right mb-2">

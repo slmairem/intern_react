@@ -4,8 +4,8 @@
     "newsName": "News 1",
     "content": "Description for News1",
     "tags": ["Movies"],
-    "publisherName": "",
-    "publishDate":"",
+    "publisherName": "User1",
+    "publishDate":"12.12.2024",
     "imgSrc": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
 },
 {

@@ -14,27 +14,29 @@ function News() {
     setSearchTerm(event.target.value);
   };
 
+  const buttonClassName = 'mx-2 mt-2 relative text-black cursor-pointer transition-all ease-in-out before:transition-[width] before:ease-in-out before:duration-700 before:absolute before:bg-gray-400 before:origin-center before:h-[2px] before:w-0 hover:before:w-[50%] before:bottom-0 before:left-[50%] after:transition-[width] after:ease-in-out after:duration-700 after:absolute after:bg-gray-400 after:origin-center after:h-[2px] after:w-0 hover:after:w-[50%] after:bottom-0 after:right-[50%]';
+
   return (
-    <div className='container mx-auto p-4'>
+    <div className='container mx-auto p-4 font-IndieFlower'>
       <div className="sections mb-4">
         <div className="pageName text-2xl font-bold">News</div>
       </div>
 
       <div className='flex'>
-        <div className="relative w-full flex justify-center font-bold z-0 mb-2">
-          <div className="navBut mx-2 mt-2">
+        <div className="relative w-full flex justify-center font-bold z-0 mb-2 ">
+          <div className={buttonClassName}>
             <button onClick={() => setFilter('All')}>All</button>
           </div>
-          <div className="navBut mx-2 mt-2">
+          <div className={buttonClassName}>
             <button onClick={() => setFilter('Series')}>Series</button>
           </div>
-          <div className="navBut mx-2 mt-2">
+          <div className={buttonClassName}>
             <button onClick={() => setFilter('Movies')}>Movies</button>
           </div>
-          <div className="navBut mx-2 mt-2">
+          <div className={buttonClassName}>
             <button onClick={() => setFilter('Voice Actors')}>Voice Actors</button>
           </div>
-          <div className="navBut mx-2 mt-2">
+          <div className={buttonClassName}>
             <button onClick={() => setFilter('Events')}>Events</button>
           </div>
         </div>
@@ -50,9 +52,9 @@ function News() {
         </div>
       </div>
 
-      <div className='grid grid-cols-3 gap-4'>
+      <div className='grid grid-cols-3 gap-4 mt-3'>
         {filteredData.map((item) => (
-          <div key={item.newsId} className="flex bg-white p-4 rounded shadow-md">
+          <div key={item.newsId} className="flex bg-white border border-s-gray-950 p-4 rounded shadow-md hover:shadow-lg cursor-pointer">
             <div className="w-1/4">
               <img src={item.imgSrc} alt="News Image" className="w-full h-auto rounded" />
             </div>
@@ -65,7 +67,7 @@ function News() {
                 <p>{item.publishDate} by {item.publisherName}</p>
                 <div className="mt-2">
                   {item.tags.map((tag, index) => (
-                    <button key={index} className="bg-gray-200 text-gray-600 text-xs px-2 py-1 rounded mr-2">
+                    <button key={index} className="bg-gray-200 hover:bg-gray-400 text-gray-600 hover:text-white text-xs px-2 py-1 rounded mr-2">
                       {tag}
                     </button>
                   ))}

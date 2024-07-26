@@ -39,7 +39,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-max p-4">
+    <div className="flex items-center justify-center h-max p-4 font-IndieFlower">
       <div className="w-full max-w-sm p-8 space-y-6 bg-white shadow-lg rounded-lg">
         <h2 className='text-2xl font-semibold text-center'>Login</h2>
         <form id="loginForm" action="/login" method="POST" onSubmit={validateForm}>
