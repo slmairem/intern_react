@@ -38,24 +38,26 @@ function Animation() {
     navigate(`/detail/${encodedName}`);
   };
 
+  const buttonClassName = 'relative text-black cursor-pointer transition-all ease-in-out before:transition-[width] before:ease-in-out before:duration-700 before:absolute before:bg-gray-400 before:origin-center before:h-[2px] before:w-0 hover:before:w-[50%] before:bottom-0 before:left-[50%] after:transition-[width] after:ease-in-out after:duration-700 after:absolute after:bg-gray-400 after:origin-center after:h-[2px] after:w-0 hover:after:w-[50%] after:bottom-0 after:right-[50%]';
+
   return (
-    <div className='container mx-auto p-4'>
+    <div className='container mx-auto p-4 font-IndieFlower'>
       <div className="sections mb-4">
         <div className="pageName text-2xl font-bold">Most Popular</div>
 
         {/* Filtering */}
-        <div className="relative w-full flex justify-center font-bold z-0 mb-2">
+        <div className="relative w-full flex justify-center font-bold text-xl z-0 mb-2">
           <div className="navBut mx-2 mt-2">
-            <button onClick={() => setFilter('Movies')}>Movies</button>
+            <button className={buttonClassName} onClick={() => setFilter('Movies')}>Movies</button>
           </div>
           <div className="navBut mx-2 mt-2">
-            <button onClick={() => setFilter('Series')}>Series</button>
+            <button className={buttonClassName} onClick={() => setFilter('Series')}>Series</button>
           </div>
           <div className="navBut mx-2 mt-2">
-            <button onClick={() => setFilter('Characters')}>Characters</button>
+            <button className={buttonClassName} onClick={() => setFilter('Characters')}>Characters</button>
           </div>
           <div className="navBut mx-2 mt-2">
-            <button onClick={() => setFilter('Voice Actors')}>Voice Actors</button>
+            <button className={buttonClassName} onClick={() => setFilter('Voice Actors')}>Voice Actors</button>
           </div>
         </div>
       </div>
@@ -66,7 +68,7 @@ function Animation() {
           {filteredData.map(item => (
             <div 
               key={item.id} 
-              className="flex p-4 rounded-lg border mb-3 shadow-md cursor-pointer"
+              className="flex p-4 rounded-lg border mb-3 shadow-md cursor-pointer hover:shadow-lg"
               onClick={() => handleItemClick(item.name)}
             >
               <img 

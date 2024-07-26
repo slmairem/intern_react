@@ -9,14 +9,14 @@ export const TextRevealTW = () => {
   const text = "\nDidn't you discover the Neverland yet?";
 
   return (
-    <h1 className="overflow-hidden pb-4 text-lg font-semibold text-white font-PlaywriteBE ">
+    <h1 className="pb-4 text-lg font-semibold text-white font-PlaywriteBE">
       {text.split('\n').map((line, lineIndex) => (
         <div key={lineIndex}>
           {line.split('').map((char, index) => (
             <span
               className="inline-block animate-text-reveal"
               key={`${char}-${index}`}
-              style={{ animationDelay: `${index * 0.05}s` }}
+              style={{ animationDelay: `${index * 0.04}s` }}
             >
               {char === " " ? "\u00A0" : char}
             </span>
@@ -62,7 +62,7 @@ function Homepage() {
   return (
     <div className="flex flex-col items-center w-full font-IndieFlower text-lg">
       {/* User Auth section */}
-      <div className="relative w-full bg-gradient-to-b via-sky-500 from-indigo-500 transition-transform text-center py-20">
+      <div className="relative w-full bg-gradient-to-b via-sky-600 from-indigo-600 transition-transform text-center py-20">
         <div className="relative z-10 text-lg font-extrabold text-white font-PlaywriteBE">
             App Name 
         </div> 
@@ -70,13 +70,13 @@ function Homepage() {
         <div className="mt-4">
           <button 
             type="button" 
-            className="bg-rose-800 text-white px-4 py-2 rounded mr-2 hover:bg-rose-900 transition duration-500 hover:scale-105"
+            className="bg-amber-700 text-white px-4 py-2 rounded mr-2 hover:bg-amber-800 transition duration-500 hover:scale-105"
             onClick={navigateToRegister}
           >
             Create a free account
           </button>
           or 
-          <Link to="/login" className="text-slate-100 ml-2 no-underline font-bold hover:text-rose-800 duration-500 hover:text-3xl">login</Link> if you have an account.
+          <Link to="/login" className="text-slate-100 ml-2 no-underline font-bold hover:text-amber-700 duration-500 hover:text-3xl">login</Link> if you have an account.
         </div>   
       </div>
       
@@ -127,7 +127,7 @@ function Homepage() {
             <h3 className="text-xl font-semibold">Recently News</h3>
             <div className="grid grid-cols-3 gap-4 mb-2">
               {recentNews.map((news) => (
-                <div key={news.newsId} className="flex bg-gray-100 p-3 rounded cursor-pointer">
+                <div key={news.newsId} className="flex bg-gray-100 p-3 rounded cursor-pointer hover:shadow-md">
                   <img
                     src={news.imgSrc}
                     alt={news.newsName}
@@ -141,18 +141,18 @@ function Homepage() {
               ))}
             </div>
             <div className="ml-4 text-right mb-2">
-              <Link to="/news" className="text-blue-500 no-underline cursor-pointer font-bold hover:text-xl duration-300">View More...</Link>
+              <Link to="/news" className="text-blue-500 no-underline cursor-pointer pt-2 font-semibold hover:text-blue-900">View More...</Link>
             </div>
           </div>
           <div className="mb-5 ">
             <h3 className="text-xl font-semibold">Forum Topics</h3>
             {forumTopics.map((forum) => (
-              <div key={forum.forumId} className="bg-gray-100 p-4 rounded mb-2 cursor-pointer">
+              <div key={forum.forumId} className="bg-gray-100 p-4 rounded mb-2 cursor-pointer hover:shadow-md">
                 <div>{forum.forumName}</div>
               </div>
             ))}
             <div className="ml-4 text-right mb-2">
-              <Link to="/forum" className="text-blue-500 no-underline cursor-pointer font-bold hover:text-xl duration-300">View More...</Link>
+              <Link to="/forum" className="text-blue-500 no-underline cursor-pointer pt-2 font-semibold hover:text-blue-900">View More...</Link>
             </div>
           </div>
         </div>
@@ -164,7 +164,7 @@ function Homepage() {
               const placeholderCount = 4 - images.length;
 
               return (
-                <div key={list.listId} className="flex flex-col items-start p-4 rounded-lg border shadow-md mb-2 cursor-pointer">
+                <div key={list.listId} className="flex flex-col items-start p-4 rounded-lg border shadow-md mb-2 cursor-pointer hover:shadow-lg">
                   <div className="flex flex-shrink-0 -space-x-4 mb-4">
                     {images.map((src, index) => (
                       <img key={index} className="w-16 h-24 border-1 shadow-lg" src={src} alt="" />
@@ -185,7 +185,7 @@ function Homepage() {
             })}
 
             <div className="ml-4 text-right mb-2">
-              <Link to="/lists" className="text-blue-500 no-underline cursor-pointer font-bold hover:text-xl duration-300">View More...</Link>
+              <Link to="/lists" className="text-blue-500 no-underline cursor-pointer pt-2 font-semibold hover:text-blue-900">View More...</Link>
             </div>
           </div>
         </div>
