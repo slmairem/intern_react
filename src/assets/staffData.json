@@ -1,6 +1,6 @@
 [
     {
-        "staffId": 2,
+        "staffId": 1,
         "staffName": "Nicolas Cantu",
         "staffShow": "The Amazing World of Gumball",
         "staffFav": 123,
@@ -8,7 +8,7 @@
         "staffImgSrc": "https://m.media-amazon.com/images/M/MV5BYTI3ZTgxNTQtNTM1OC00ZjY4LWJhYjAtNDBiMTA2OTBjYTk4XkEyXkFqcGdeQXVyNjUxNDcyMzg@._V1_.jpg"
     },
     {
-        "staffId": 1,
+        "staffId": 2,
         "staffName": "Terrell Ransom Jr.",
         "staffShow": "The Amazing World of Gumball",
         "staffFav": 123,
@@ -17,7 +17,7 @@
     }
     ,
     {
-        "staffId": 1,
+        "staffId": 3,
         "staffName": "Amy Poehler",
         "staffShow": "Inside Out",
         "staffFav": 123,

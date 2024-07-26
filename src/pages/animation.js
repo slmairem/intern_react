@@ -2,19 +2,39 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import data from '../assets/movieData.json';
 import staffData from '../assets/staffData.json';
+import charData from '../assets/characterData.json';
 
 function Animation() {
   const [filter, setFilter] = useState('Movies');
   const navigate = useNavigate();
 
-  const filteredData = filter === 'Voice Actors'
-    ? staffData
-    : filter === 'Movies'
-    ? data.filter(item => item.type === 'Movies')
-    : data.filter(item => item.type === 'Series');
+  let filteredData = [];
+  if (filter === 'Voice Actors') {
+    filteredData = staffData.map(item => ({
+      id: item.staffId,
+      name: item.staffName,
+      imgSrc: item.staffImgSrc,
+      likes: item.staffFav,
+      description: item.staffDesc,
+    }));
+  } else if (filter === 'Movies') {
+    filteredData = data.filter(item => item.type === 'Movies');
+  } else if (filter === 'Series') {
+    filteredData = data.filter(item => item.type === 'Series');
+  } else if (filter === 'Characters') {
+    filteredData = charData.map(item => ({
+      id: item.charId,
+      name: item.charName,
+      imgSrc: item.imgSrc,
+      likes: item.charFav,
+      description: item.charDesc,
+    }));
+  }
+
+  filteredData.sort((a, b) => b.likes - a.likes);
 
   const handleItemClick = (name) => {
-    const encodedName = encodeURIComponent(name); 
+    const encodedName = encodeURIComponent(name);
     navigate(`/detail/${encodedName}`);
   };
 
@@ -32,6 +52,9 @@ function Animation() {
             <button onClick={() => setFilter('Series')}>Series</button>
           </div>
           <div className="navBut mx-2 mt-2">
+            <button onClick={() => setFilter('Characters')}>Characters</button>
+          </div>
+          <div className="navBut mx-2 mt-2">
             <button onClick={() => setFilter('Voice Actors')}>Voice Actors</button>
           </div>
         </div>
@@ -42,19 +65,19 @@ function Animation() {
         <div className='grid grid-row-10'>
           {filteredData.map(item => (
             <div 
-              key={item.id || item.staffId} 
+              key={item.id} 
               className="flex p-4 rounded-lg border mb-3 shadow-md cursor-pointer"
-              onClick={() => handleItemClick(item.name || item.staffName)}
+              onClick={() => handleItemClick(item.name)}
             >
               <img 
                 className="w-16 h-20 border-1 shadow-lg" 
-                src={filter === 'Voice Actors' ? item.staffImgSrc : item.imgSrc} 
-                alt={item.name || item.staffName} 
+                src={item.imgSrc} 
+                alt={item.name} 
               />
               <div className="ml-4">
-                <div className="text-xl font-bold">{item.name || item.staffName}</div>
-                <span className="flex mt-2 text-sm">Likes: {item.likes || item.staffFav}</span>
-                <div className="mt-2 text-gray-500">{item.description || item.staffDesc}</div>
+                <div className="text-xl font-bold">{item.name}</div>
+                <span className="flex mt-2 text-sm">Likes: {item.likes}</span>
+                <div className="mt-2 text-gray-500">{item.description}</div>
               </div>
             </div>
           ))}
