@@ -25,7 +25,7 @@ const Placeholder = ({ size }) => (
 const ImageGrid = ({ images, listName, username, likes, comments }) => {
   const placeholderCount = Math.max(0, 4 - images.length);
   return (
-    <div className='p-4 rounded-lg border shadow-md mb-4 mr-4'>
+    <div className='p-4 rounded-lg border shadow-md hover:shadow-lg mb-4 mr-4 cursor-pointer'>
       <div className="flex -space-x-4">
         {images.map((src, index) => (
           <img key={index} className="w-24 h-32 border-1 shadow-lg" src={src} alt="" />
@@ -35,7 +35,7 @@ const ImageGrid = ({ images, listName, username, likes, comments }) => {
         ))}
       </div>
       <div className="mt-2 text-xl font-bold text-gray-900">{listName}</div>
-      <div className="flex items-center justify-between mt-1 text-gray-600 dark:text-gray-400">
+      <div className="flex items-center justify-between mt-1 text-gray-400">
         <span className="text-sm">{username}</span>
         <div className="flex space-x-4">
           <span className="text-sm">Likes: {likes}</span>
@@ -49,7 +49,7 @@ const ImageGrid = ({ images, listName, username, likes, comments }) => {
 const ListCard = ({ images, listName, username, description, likes }) => {
   const placeholderCount = Math.max(0, 4 - images.length);
   return (
-    <div className="flex items-start p-4 rounded-lg border shadow-md">
+    <div className="flex items-start p-4 rounded-lg border shadow-md hover:shadow-lg cursor-pointer">
       <div className="flex-shrink-0 flex -space-x-4">
         {images.map((src, index) => (
           <img key={index} className="w-16 h-24 border-1 shadow-lg" src={src} alt="" />
@@ -60,19 +60,17 @@ const ListCard = ({ images, listName, username, description, likes }) => {
       </div>
       <div className="ml-4">
         <div className="text-xl font-bold">{listName}</div>
-        <div className="flex items-center mt-2 text-gray-600 dark:text-gray-400">
+        <div className="flex items-center mt-2 text-gray-500">
           <span className="text-sm">{username}</span>
           <span className="ml-2 text-sm">Likes: {likes}</span>
         </div>
-        <div className="mt-2 text-gray-700 dark:text-gray-300">{description}</div>
+        <div className="mt-2 text-gray-400">{description}</div>
       </div>
     </div>
   );
 };
 
 function Lists() {
-  const navigate = useNavigate();
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -81,20 +79,13 @@ function Lists() {
   const userFavorites = getSortedUserFavorites();
 
   return (
-    <div className='container mx-auto p-4'>
+    <div className='container mx-auto p-4 font-IndieFlower'>
       <div className="sections mb-4">
         <div className="pageName text-2xl font-bold">Lists</div>
-        <button 
-          type="button" 
-          className="bg-gray-700 text-white px-4 py-2 rounded mr-2"
-          onClick={() => navigate('/login')}
-        >
-          Make your own Lists.
-        </button>
       </div>
       
       <div className='middle'>
-        <div className='font-semibold mb-2'>Popular This Week</div>
+        <div className='font-semibold text-lg mb-2'>Popular This Week</div>
         <div className='grid grid-cols-3 grid-rows-2'>
           {popularLists.map((list) => (
             <ImageGrid
@@ -111,7 +102,7 @@ function Lists() {
 
       <div className="flex">
         <div className="w-3/4 p-4">
-          <div className='font-semibold mb-2'>Recently Updated</div>
+          <div className='font-semibold text-lg mb-2'>Recently Updated</div>
           <div className='grid grid-cols-2 gap-4'>
             {userFavorites.map((list) => (
               <ListCard
@@ -127,13 +118,13 @@ function Lists() {
         </div>
 
         <div className="w-1/4 p-4 border-l">
-          <div className="font-semibold mb-2">Users Favourite</div>
+          <div className="font-semibold text-lg mb-2">Users Favourite</div>
           {userFavorites.map((list) => {
             const images = getMovieImages(list.movies);
             const placeholderCount = 4 - images.length;
 
             return (
-              <div key={list.listId} className="flex flex-col items-start p-4 rounded-lg border shadow-md mb-4">
+              <div key={list.listId} className="flex flex-col items-start p-4 rounded-lg border shadow-md hover:shadow-lg mb-4 cursor-pointer">
                 <div className="flex flex-shrink-0 -space-x-4 mb-4">
                   {images.map((src, index) => (
                     <img key={index} className="w-16 h-24 border-1 shadow-lg" src={src} alt="" />
@@ -144,7 +135,7 @@ function Lists() {
                 </div>
                 <div className="w-full overflow-hidden">
                   <div className="text-xl font-bold truncate">{list.listName}</div>
-                  <div className="flex items-center mt-2 text-gray-600 dark:text-gray-400">
+                  <div className="flex items-center mt-2 text-gray-400">
                     <span className="text-sm truncate">{list.publishUser}</span>
                     <span className="ml-2 text-sm truncate">Likes: {list.likes}</span>
                   </div>

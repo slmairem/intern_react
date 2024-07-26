@@ -5,7 +5,8 @@
     "pinned": "pin",
     "description": "Description for Forum Topic",
     "tags": ["Movies"],
-    "publishUser": ""
+    "publishUser": "User",
+    "date": "12.12.2024"
 },
 {
     "forumId": 2,
