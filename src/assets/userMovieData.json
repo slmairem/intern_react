@@ -1,0 +1,7 @@
+[
+    {
+        "userId": 1,
+        "movieData": [1,2,7,10],
+        "status":["c", "ptw","ptw", "c"]
+    }
+]

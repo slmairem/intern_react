@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import userData from '../assets/userData.json'; 
+import userMovieData from '../assets/userMovieData.json';
+import movieData from '../assets/movieData.json';
 
 function Profile() {
   const { userId } = useParams(); 
@@ -12,21 +14,32 @@ function Profile() {
   const [editMode, setEditMode] = useState(false);
   const textareaRef = useRef(null);
   const [user, setUser] = useState(null);
+  const [userMovies, setUserMovies] = useState([]);
+  const [userSeries, setUserSeries] = useState([]);
   const navigate = useNavigate();
+  
+//  useEffect(() => {
+//    window.scrollTo(0, 0); // Scroll to the top of the page
+//  }, [userId]);
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Sayfanın en üstüne kaydır
-  }, [userId]);
-
-  useEffect(() => {
-    const user = userData.find(user => user.userId === parseInt(userId)); 
+    const user = userData.find(user => user.userId === parseInt(userId));
     if (user) {
       setUser(user);
       setProfileImage(user.profileImg);
       setBackgroundImage(user.backgroundImg);
-      setText(user.bioText || 'Welcome to my profile!'); 
+      setText(user.bioText || 'Welcome to my profile!');
     }
-  }, [userId]); 
+
+    const userMoviesData = userMovieData.find(data => data.userId === parseInt(userId));
+    if (userMoviesData) {
+      const movies = movieData.filter(movie => userMoviesData.movieData.includes(movie.id) && movie.type === "Movies");
+      setUserMovies(movies);
+
+      const series = movieData.filter(series => userMoviesData.movieData.includes(series.id) && series.type === "Series");
+      setUserSeries(series);
+    }
+  }, [userId]);
 
   const handleImageClick = (ref) => {
     ref.current.click();
@@ -40,9 +53,7 @@ function Profile() {
   };
 
   const handleEdit = () => setEditMode(true);
-  const handleSave = () => {
-    setEditMode(false);
-  };
+  const handleSave = () => setEditMode(false);
   const handleChange = (event) => setText(event.target.value);
 
   useEffect(() => {
@@ -51,7 +62,7 @@ function Profile() {
       textarea.style.height = 'auto';
       textarea.style.height = `${textarea.scrollHeight}px`;
     }
-  }, [editMode, text]);
+  }, [editMode, text]); 
 
   const handleFriendClick = (friendId) => {
     navigate(`/profile/${friendId}`);
@@ -117,8 +128,8 @@ function Profile() {
 
           {/* UserInfo Section */}
           <div className='p-4 rounded bg-gradient-to-br from-sky-500 to-sky-300 mb-4'>
-            <div className="flex justify-between  items-start">
-              <div className="flex-grow max-h-64  overflow-auto">
+            <div className="flex justify-between items-start">
+              <div className="flex-grow max-h-64 overflow-auto">
                 {editMode ? (
                   <textarea
                     ref={textareaRef}
@@ -185,14 +196,14 @@ function Profile() {
                 ))}
               </div>
               <div className='grid grid-cols-1 gap-4 w-2/4'>
-                {new Array(3).fill("").map((_, idx) => (
+                {userMovies.length > 0 ? userMovies.map((movie, idx) => (
                   <div key={idx} className="flex items-center bg-gradient-to-br from-teal-500 to-teal-700 border p-2 rounded">
                     <div className="flex-shrink-0 mr-4">
-                      <img src='' alt={`Movie ${idx + 1}`} className="w-16 h-16 rounded-full" />
+                      <img src={movie.imgSrc || 'https://via.placeholder.com/64'} alt={movie.name} className="w-14 h-16 rounded" />
                     </div>
                     <div className="flex flex-col flex-grow">
                       <div className="flex justify-between">
-                        <h2 className="text-white text-lg font-semibold">Movie Name</h2>
+                        <h2 className="text-white text-lg font-semibold">{movie.name}</h2>
                         <span className="text-gray-300 text-sm">Update Date</span>
                       </div>
                       <div className="flex items-center mt-2">
@@ -200,7 +211,9 @@ function Profile() {
                       </div>
                     </div>
                   </div>
-                ))}
+                )) : (
+                  <div>No movies found</div>
+                )}
               </div>
             </div>
           </div>
@@ -220,14 +233,14 @@ function Profile() {
                 ))}
               </div>
               <div className='grid grid-cols-1 gap-4 w-2/4'>
-                {new Array(3).fill("").map((_, idx) => (
+                {userSeries.length > 0 ? userSeries.map((series, idx) => (
                   <div key={idx} className="flex items-center bg-gradient-to-br from-teal-500 to-teal-700 border p-2 rounded">
                     <div className="flex-shrink-0 mr-4">
-                      <img src='' alt={`Series ${idx + 1}`} className="w-16 h-16 rounded-full" />
+                      <img src={series.imgSrc || 'https://via.placeholder.com/64'} alt={series.name} className="w-14 h-16 rounded" />
                     </div>
                     <div className="flex flex-col flex-grow">
                       <div className="flex justify-between">
-                        <h2 className="text-white text-lg font-semibold">Series Name</h2>
+                        <h2 className="text-white text-lg font-semibold">{series.name}</h2>
                         <span className="text-gray-300 text-sm">Update Date</span>
                       </div>
                       <div className="flex items-center mt-2">
@@ -235,7 +248,9 @@ function Profile() {
                       </div>
                     </div>
                   </div>
-                ))}
+                )) : (
+                  <div>No series found</div>
+                )}
               </div>
             </div>
           </div>
