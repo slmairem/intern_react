@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import userData from '../assets/userData.json'; 
 import userMovieData from '../assets/userMovieData.json';
 import movieData from '../assets/movieData.json';
+import Comment from '../functions/profileSection/comment.js';
 
 function Profile() {
   const { userId } = useParams(); 
@@ -141,7 +142,7 @@ function Profile() {
               <h3 className="text-black text-xl font-bold mt-2">{user.username}</h3>
             </div>
             <div className="ml-4 mt-10 z-10">
-              <button type="button" className="bg-blue-500 text-white px-4 py-2 rounded-md">Follow</button>
+              <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md">Follow</button>
             </div>
           </div>
 
@@ -167,14 +168,14 @@ function Profile() {
           {/* UserInfo Section */}
           <div className='p-4 rounded bg-gradient-to-br from-sky-500 to-sky-300 mb-4'>
             <div className="flex justify-between items-start">
-              <div className="flex-grow max-h-64 overflow-auto">
+              <div className="flex-grow max-h-64 overflow-auto text-lg">
                 {editMode ? (
                   <textarea
                     ref={textareaRef}
                     value={text}
                     onChange={handleChange}
                     rows="1"
-                    className="w-full bg-sky-300 rounded p-2 resize-none overflow-hidden"
+                    className="w-full bg-sky-300 rounded p-2 text-lg resize-none overflow-hidden"
                     style={{ overflowX: 'hidden' }}
                   />
                 ) : (
@@ -192,7 +193,7 @@ function Profile() {
           
           {/* Friend Section */}
           <div className='bg-gradient-to-br from-sky-500 to-sky-300 p-4 rounded'>
-            <div className="mb-2 font-semibold font-md">Friends</div>
+            <div className="mb-2 font-semibold font-lg">Friends</div>
             <div className='grid grid-cols-4 '>
               {user.friends ? user.friends.slice(0, 8).map((friendName, index) => {
                 const friend = userData.find(u => u.username === friendName);
@@ -226,28 +227,35 @@ function Profile() {
         <div className='w-3/4 p-4'>
           {/* Movies Section */}
           <div className='bg-gradient-to-br from-sky-300 to-sky-500 p-4 rounded mb-4'>
-            <div className='mb-2 font-semibold'>Movies</div>
             <div className='flex mb-4'>
               <div className='w-1/4'>
-                {['Completed', 'Plan to Watch', 'On Hold', 'Dropped'].map(status => (
-                  <div key={status} className='mb-2'>
-                    {status}: {status === 'Completed' ? movieStatusCounts.completed : 
-                              status === 'Plan to Watch' ? movieStatusCounts.planToWatch :
-                              status === 'On Hold' ? movieStatusCounts.onHold :
-                              status === 'Dropped' ? movieStatusCounts.dropped : 0}
-                  </div>
-                ))}
-              </div>
-              <div className='w-1/4'>
+                <div className='mb-2 font-bold text-xl underline'>Movies</div>
+                  {['Completed', 'Plan to Watch', 'On Hold', 'Dropped'].map(status => (
+                    <div key={status} className='mb-2'>
+                      <span className='font-semibold text-gray-700'>{status}:</span>
+                      <span className='ml-2 text-lg text-gray-800'>
+                        {status === 'Completed' ? movieStatusCounts.completed : 
+                        status === 'Plan to Watch' ? movieStatusCounts.planToWatch :
+                        status === 'On Hold' ? movieStatusCounts.onHold :
+                        status === 'Dropped' ? movieStatusCounts.dropped : 0}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              <div className='w-1/4 mt-3'>
+                <br/>
                 {['Total Entries', 'Rewatched'].map(detail => (
                   <div key={detail} className='mb-2'>
-                    {detail}: {detail === 'Total Entries' ? totalMovies :
-                              detail === 'Rewatched' ? rewatchedMovies : 0}
+                    <span className='font-semibold text-gray-700'>{detail}:</span>
+                    <span className='ml-2 text-lg text-gray-800'>
+                      {detail === 'Total Entries' ? totalMovies :
+                      detail === 'Rewatched' ? rewatchedMovies : 0}
+                    </span>
                   </div>
                 ))}
               </div>
               <div className='grid grid-cols-1 gap-4 w-2/4'>
-                <div className='font-bold text-md'>Recently Updated</div>
+                <div className='font-bold text-xl underline'>Recently Updated</div>
                 {userMovies.slice(0, 3).length > 0 ? userMovies.slice(0, 3).map((movie, idx) => (
                   <div key={idx} className="flex items-center bg-gradient-to-br from-slate-50 to-slate-200 border p-2 rounded hover:shadow-md cursor-pointer" onClick={() => handleItemClick(movie.name)}>
                     <div className="flex-shrink-0 mr-4">
@@ -272,30 +280,38 @@ function Profile() {
 
           {/* Series Section */}
           <div className='bg-gradient-to-br from-sky-300 to-sky-500 p-4 rounded mb-4'>
-            <div className='mb-2 font-semibold'>Series</div>
             <div className='flex mb-4'>
               <div className='w-1/4'>
+              <div className='mb-2 font-bold text-xl underline'>Series</div>
                 {['Completed', 'On Hold', 'Watching', 'Dropped', 'Plan to Watch'].map(status => (
                   <div key={status} className='mb-2'>
-                    {status} : {status === 'Completed' ? seriesStatusCounts.completed :
-                              status === 'On Hold' ? seriesStatusCounts.onHold :
-                              status === 'Watching' ? seriesStatusCounts.watching :
-                              status === 'Dropped' ? seriesStatusCounts.dropped :
-                              status === 'Plan to Watch' ? seriesStatusCounts.planToWatch : 0}
+                    <span className='font-semibold text-gray-700'>{status}:</span>
+                    <span className='ml-2 text-lg text-gray-800'>
+                      {status === 'Completed' ? seriesStatusCounts.completed :
+                      status === 'On Hold' ? seriesStatusCounts.onHold :
+                      status === 'Watching' ? seriesStatusCounts.watching :
+                      status === 'Dropped' ? seriesStatusCounts.dropped :
+                      status === 'Plan to Watch' ? seriesStatusCounts.planToWatch : 0}
+                    </span>
                   </div>
                 ))}
               </div>
-
               <div className='w-1/4'>
+                <br/>
                 {['Total Entries', 'Rewatched', 'Episodes'].map(detail => (
-                  <div key={detail} className='mb-2'>
-                    {detail}: {detail === 'Total Entries' ? totalSeries :
-                              detail === 'Rewatched' ? rewatchedSeries : 0}
+                  <div key={detail} className='mb-2 mt-2'>
+                    <span className='font-semibold text-gray-700'>{detail}:</span>
+                    <span className='ml-2 text-lg text-gray-800'>
+                      {detail === 'Total Entries' ? totalSeries :
+                      detail === 'Rewatched' ? rewatchedSeries : 0
+                      }
+                    </span>
                   </div>
                 ))}
+
               </div>
               <div className='grid grid-cols-1 gap-4 w-2/4'>
-                <div className='font-bold text-md'>Recently Updated</div>
+                <div className='font-bold text-xl underline'>Recently Updated</div>
                 {userSeries.slice(0, 3).length > 0 ? userSeries.slice(0, 3).map((series, idx) => (
                   <div key={idx} className="flex items-center bg-gradient-to-br from-slate-50 to-slate-200 border p-2 rounded hover:shadow-md cursor-pointer" onClick={() => handleItemClick(series.name)}>
                     <div className="flex-shrink-0 mr-4">
@@ -317,6 +333,11 @@ function Profile() {
               </div>
             </div>
           </div>
+
+          <div className=''>
+          <Comment />
+          </div>
+
         </div>
       </div>
     </div>
