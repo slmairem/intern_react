@@ -20,9 +20,9 @@ function Profile() {
   const [seriesStatusCounts, setSeriesStatusCounts] = useState({});
   const navigate = useNavigate();
   
-//  useEffect(() => {
-//    window.scrollTo(0, 0); // Scroll to the top of the page
-//  }, [userId]);
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top of the page
+  }, [userId]);
 
   useEffect(() => {
     const user = userData.find(user => user.userId === parseInt(userId));
@@ -76,6 +76,11 @@ function Profile() {
 
   const handleImageClick = (ref) => {
     ref.current.click();
+  };
+
+  const handleItemClick = (name) => {
+    const encodedName = encodeURIComponent(name);
+    navigate(`/detail/${encodedName}`);
   };
 
   const handleImageChange = (event, setImage) => {
@@ -244,9 +249,9 @@ function Profile() {
               <div className='grid grid-cols-1 gap-4 w-2/4'>
                 <div className='font-bold text-md'>Recently Updated</div>
                 {userMovies.slice(0, 3).length > 0 ? userMovies.slice(0, 3).map((movie, idx) => (
-                  <div key={idx} className="flex items-center bg-gradient-to-br from-slate-50 to-slate-200 border p-2 rounded hover:shadow-md cursor-pointer">
+                  <div key={idx} className="flex items-center bg-gradient-to-br from-slate-50 to-slate-200 border p-2 rounded hover:shadow-md cursor-pointer" onClick={() => handleItemClick(movie.name)}>
                     <div className="flex-shrink-0 mr-4">
-                      <img src={movie.imgSrc || 'https://via.placeholder.com/64'} alt={movie.name} className="w-14 h-16 rounded" />
+                      <img src={movie.imgSrc || 'https://via.placeholder.com/64'} alt={movie.name} className="w-14 h-16 rounded"/>
                     </div>
                     <div className="flex flex-col flex-grow">
                       <div className="flex justify-between">
@@ -292,7 +297,7 @@ function Profile() {
               <div className='grid grid-cols-1 gap-4 w-2/4'>
                 <div className='font-bold text-md'>Recently Updated</div>
                 {userSeries.slice(0, 3).length > 0 ? userSeries.slice(0, 3).map((series, idx) => (
-                  <div key={idx} className="flex items-center bg-gradient-to-br from-slate-50 to-slate-200 border p-2 rounded hover:shadow-md cursor-pointer">
+                  <div key={idx} className="flex items-center bg-gradient-to-br from-slate-50 to-slate-200 border p-2 rounded hover:shadow-md cursor-pointer" onClick={() => handleItemClick(series.name)}>
                     <div className="flex-shrink-0 mr-4">
                       <img src={series.imgSrc || 'https://via.placeholder.com/64'} alt={series.name} className="w-14 h-16 rounded" />
                     </div>
