@@ -16,6 +16,8 @@ function Profile() {
   const [user, setUser] = useState(null);
   const [userMovies, setUserMovies] = useState([]);
   const [userSeries, setUserSeries] = useState([]);
+  const [movieStatusCounts, setMovieStatusCounts] = useState({});
+  const [seriesStatusCounts, setSeriesStatusCounts] = useState({});
   const navigate = useNavigate();
   
 //  useEffect(() => {
@@ -39,7 +41,38 @@ function Profile() {
       const series = movieData.filter(series => userMoviesData.movieData.includes(series.id) && series.type === "Series");
       setUserSeries(series);
     }
+
+    const movieCounts = { completed: 0, planToWatch: 0, onHold: 0, dropped: 0 };
+    const seriesCounts = { completed: 0, watching: 0, planToWatch: 0, onHold: 0, dropped: 0 };
+
+    const statusMapping = {
+      c: 'completed',
+      ptw: 'planToWatch',
+      oh: 'onHold',
+      d: 'dropped',
+      w: 'watching'
+    };
+
+    userMoviesData.status.forEach((status, index) => {
+      const type = movieData.find(movie => movie.id === userMoviesData.movieData[index])?.type;
+      const countType = statusMapping[status];
+
+      if (type === "Movies" && countType) {
+        movieCounts[countType] += 1;
+      } else if (type === "Series" && countType) {
+        seriesCounts[countType] += 1;
+      }
+    });
+
+    setMovieStatusCounts(movieCounts);
+    setSeriesStatusCounts(seriesCounts);
+    
   }, [userId]);
+
+  const totalMovies = userMovies.length;
+  const totalSeries = userSeries.length;
+  const rewatchedMovies = userMovies.filter(movie => movie.rewatched).length;
+  const rewatchedSeries = userSeries.filter(series => series.rewatched).length;
 
   const handleImageClick = (ref) => {
     ref.current.click();
@@ -121,9 +154,9 @@ function Profile() {
         {/* Details Section */}
         <div className='w-1/4 p-4'>
           <div className='mb-4 bg-gradient-to-br from-sky-500 to-sky-300 rounded p-3'>
-            <div className="mb-2">Pronouns: {user.pronouns}</div>
-            <div className="mb-2">Last Online: {user.lastOnline}</div>
-            <div className="mb-2">Joined: {user.joined}</div>
+            <div className="mb-2"> <span className='font-semibold'>Pronouns:</span> {user.pronouns}</div>
+            <div className="mb-2"> <span className='font-semibold'>Last Online:</span> {user.lastOnline}</div>
+            <div className="mb-2"> <span className='font-semibold'>Joined:</span> {user.joined}</div>
           </div>
 
           {/* UserInfo Section */}
@@ -154,18 +187,23 @@ function Profile() {
           
           {/* Friend Section */}
           <div className='bg-gradient-to-br from-sky-500 to-sky-300 p-4 rounded'>
-            <div className="mb-2">Friends</div>
-            <div className='grid grid-cols-3 '>
-              {user.friends ? user.friends.slice(0, 6).map((friendName, index) => {
+            <div className="mb-2 font-semibold font-md">Friends</div>
+            <div className='grid grid-cols-4 '>
+              {user.friends ? user.friends.slice(0, 8).map((friendName, index) => {
                 const friend = userData.find(u => u.username === friendName);
                 if (friend) {
                   return (
-                    <div key={index} onClick={() => handleFriendClick(friend.userId)} className="cursor-pointer">
-                      <img
-                        src={friend.profileImg}
-                        alt={`Friend ${index + 1}`}
-                        className="w-16 h-16 border rounded mb-2"
-                      />
+                    <div key={index} className="flex items-center justify-center">
+                      <div 
+                        className="cursor-pointer" 
+                        onClick={() => handleFriendClick(friend.userId)}
+                      >
+                        <img
+                          src={friend.profileImg}
+                          alt={`Friend ${index + 1}`}
+                          className="w-16 h-16 border rounded mb-2"
+                        />
+                      </div>
                     </div>
                   );
                 }
@@ -186,28 +224,37 @@ function Profile() {
             <div className='mb-2 font-semibold'>Movies</div>
             <div className='flex mb-4'>
               <div className='w-1/4'>
-                {['Completed', 'Plan to Watch'].map(status => (
-                  <div key={status} className='mb-2'>{status}</div>
+                {['Completed', 'Plan to Watch', 'On Hold', 'Dropped'].map(status => (
+                  <div key={status} className='mb-2'>
+                    {status}: {status === 'Completed' ? movieStatusCounts.completed : 
+                              status === 'Plan to Watch' ? movieStatusCounts.planToWatch :
+                              status === 'On Hold' ? movieStatusCounts.onHold :
+                              status === 'Dropped' ? movieStatusCounts.dropped : 0}
+                  </div>
                 ))}
               </div>
               <div className='w-1/4'>
-                {['Total Entries', 'Rewatched', 'Episodes'].map(detail => (
-                  <div key={detail} className='mb-2'>{detail}</div>
+                {['Total Entries', 'Rewatched'].map(detail => (
+                  <div key={detail} className='mb-2'>
+                    {detail}: {detail === 'Total Entries' ? totalMovies :
+                              detail === 'Rewatched' ? rewatchedMovies : 0}
+                  </div>
                 ))}
               </div>
               <div className='grid grid-cols-1 gap-4 w-2/4'>
-                {userMovies.length > 0 ? userMovies.map((movie, idx) => (
-                  <div key={idx} className="flex items-center bg-gradient-to-br from-teal-500 to-teal-700 border p-2 rounded">
+                <div className='font-bold text-md'>Recently Updated</div>
+                {userMovies.slice(0, 3).length > 0 ? userMovies.slice(0, 3).map((movie, idx) => (
+                  <div key={idx} className="flex items-center bg-gradient-to-br from-slate-50 to-slate-200 border p-2 rounded hover:shadow-md cursor-pointer">
                     <div className="flex-shrink-0 mr-4">
                       <img src={movie.imgSrc || 'https://via.placeholder.com/64'} alt={movie.name} className="w-14 h-16 rounded" />
                     </div>
                     <div className="flex flex-col flex-grow">
                       <div className="flex justify-between">
-                        <h2 className="text-white text-lg font-semibold">{movie.name}</h2>
-                        <span className="text-gray-300 text-sm">Update Date</span>
+                        <h2 className="text-black text-lg font-semibold">{movie.name}</h2>
+                        <span className="text-gray-600 text-sm">Update Date</span>
                       </div>
                       <div className="flex items-center mt-2">
-                        <span className="text-gray-300 text-sm">Additional Info</span>
+                        <span className="text-gray-600 text-sm">Additional Info</span>
                       </div>
                     </div>
                   </div>
@@ -223,28 +270,39 @@ function Profile() {
             <div className='mb-2 font-semibold'>Series</div>
             <div className='flex mb-4'>
               <div className='w-1/4'>
-                {['On-hold', 'Watching', 'Dropped', 'Plan to Watch'].map(status => (
-                  <div key={status} className='mb-2'>{status}</div>
+                {['Completed', 'On Hold', 'Watching', 'Dropped', 'Plan to Watch'].map(status => (
+                  <div key={status} className='mb-2'>
+                    {status} : {status === 'Completed' ? seriesStatusCounts.completed :
+                              status === 'On Hold' ? seriesStatusCounts.onHold :
+                              status === 'Watching' ? seriesStatusCounts.watching :
+                              status === 'Dropped' ? seriesStatusCounts.dropped :
+                              status === 'Plan to Watch' ? seriesStatusCounts.planToWatch : 0}
+                  </div>
                 ))}
               </div>
+
               <div className='w-1/4'>
                 {['Total Entries', 'Rewatched', 'Episodes'].map(detail => (
-                  <div key={detail} className='mb-2'>{detail}</div>
+                  <div key={detail} className='mb-2'>
+                    {detail}: {detail === 'Total Entries' ? totalSeries :
+                              detail === 'Rewatched' ? rewatchedSeries : 0}
+                  </div>
                 ))}
               </div>
               <div className='grid grid-cols-1 gap-4 w-2/4'>
-                {userSeries.length > 0 ? userSeries.map((series, idx) => (
-                  <div key={idx} className="flex items-center bg-gradient-to-br from-teal-500 to-teal-700 border p-2 rounded">
+                <div className='font-bold text-md'>Recently Updated</div>
+                {userSeries.slice(0, 3).length > 0 ? userSeries.slice(0, 3).map((series, idx) => (
+                  <div key={idx} className="flex items-center bg-gradient-to-br from-slate-50 to-slate-200 border p-2 rounded hover:shadow-md cursor-pointer">
                     <div className="flex-shrink-0 mr-4">
                       <img src={series.imgSrc || 'https://via.placeholder.com/64'} alt={series.name} className="w-14 h-16 rounded" />
                     </div>
                     <div className="flex flex-col flex-grow">
                       <div className="flex justify-between">
-                        <h2 className="text-white text-lg font-semibold">{series.name}</h2>
-                        <span className="text-gray-300 text-sm">Update Date</span>
+                        <h2 className="text-black text-lg font-semibold">{series.name}</h2>
+                        <span className="text-gray-600 text-sm">Update Date</span>
                       </div>
                       <div className="flex items-center mt-2">
-                        <span className="text-gray-300 text-sm">Additional Info</span>
+                        <span className="text-gray-600 text-sm">Additional Info</span>
                       </div>
                     </div>
                   </div>

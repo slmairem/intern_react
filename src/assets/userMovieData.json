@@ -1,7 +1,21 @@
 [
     {
         "userId": 1,
-        "movieData": [1,2,7,10],
-        "status":["c", "ptw","ptw", "c"]
+        "movieData": [1,2,3,7,10],
+        "status":["c", "ptw", "oh", "ptw", "c"],
+        "favs": []
+    },
+    {
+        "userId": 2,
+        "movieData": [],
+        "status":[],
+        "favs": []
+    },
+    {
+        "userId": 3,
+        "movieData": [],
+        "status":[],
+        "favs": []
     }
+
 ]

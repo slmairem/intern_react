@@ -62,11 +62,9 @@ function Forum() {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  // Yeni referans ve tıklama olayını ekleyin
   const modalRef = useRef(null);
 
   useEffect(() => {
-    // Modal açık olduğunda tıklama olayını dinle
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
         setShowCreateForm(false);
