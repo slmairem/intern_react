@@ -3,12 +3,15 @@ import { useParams, useNavigate } from 'react-router-dom';
 import userData from '../assets/userData.json'; 
 import userMovieData from '../assets/userMovieData.json';
 import movieData from '../assets/movieData.json';
-import Comment from '../functions/profileSection/comment.js';
+import Comment from '../functions/profilePage/comment.js';
+import MoviesSection from '../functions/profilePage/movieSection.js';
+import SeriesSection from '../functions/profilePage/seriesSection.js';
+import ProfileHeader from '../functions/profilePage/profileHeader.js';
+import FriendList from '../functions/profilePage/friendList.js';
+import UserInfo from '../functions/profilePage/userInfo.js';
 
 function Profile() {
   const { userId } = useParams(); 
-  const profileRef = useRef(null);
-  const backgroundRef = useRef(null);
   const [profileImage, setProfileImage] = useState("");
   const [backgroundImage, setBackgroundImage] = useState("");
   const [text, setText] = useState('Welcome to my profile!');
@@ -22,7 +25,7 @@ function Profile() {
   const navigate = useNavigate();
   
   useEffect(() => {
-    window.scrollTo(0, 0); // Scroll to the top of the page
+    window.scrollTo(0, 0); 
   }, [userId]);
 
   useEffect(() => {
@@ -113,230 +116,61 @@ function Profile() {
     <div className='profile'>
       {/* Upper Section */}
       <div className='pb-10'>
-        {/* Background Image */}
-        <div className='relative pt-40'>
-          <div className="w-full absolute top-0 left-0 z-0 h-60" onClick={() => handleImageClick(backgroundRef)}>
-            <img
-              src={backgroundImage || 'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg&ga=GA1.1.2113030492.1720396800&semt=sph'}
-              alt="Background"
-              className="object-cover w-full h-60"
-            />
-            <input type='file' ref={backgroundRef} onChange={(e) => handleImageChange(e, setBackgroundImage)} style={{ display: "none" }} />
-          </div>
-        </div>
-
-        <div className="relative font-IndieFlower">
-          {/* Profile Image */}
-          <div className="relative flex items-start">
-            <div className=" w-32 h-32 relative overflow-hidden ml-10 z-10" onClick={() => handleImageClick(profileRef)}>
-              <img
-                src={profileImage || 'https://t3.ftcdn.net/jpg/04/12/82/16/360_F_412821610_95RpjzPXCE2LiWGVShIUCGJSktkJQh6P.jpg'}
-                alt="Profile"
-                className="object-cover border rounded w-32 h-32"
-              />
-              <input type='file' ref={profileRef} onChange={(e) => handleImageChange(e, setProfileImage)} style={{ display: "none" }} />
-            </div>
-
-            {/* Username and Follow Button */}
-            <div className="ml-4 mt-10 z-10">
-              <h3 className="text-black text-xl font-bold mt-2">{user.username}</h3>
-            </div>
-            <div className="ml-4 mt-10 z-10">
-              <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md">Follow</button>
-            </div>
-          </div>
-
-          {/* Inner Navigation */}
-          <div className="relative w-full flex justify-center h-12 font-bold z-0 -mt-12 bg-gradient-to-r from-indigo-600 from-10% via-sky-600 via-30% to-emerald-600 to-90% ">
-            {['Profile', 'Lists', 'Stats', 'Journal'].map(tab => (
-              <button key={tab} type="button" className="text-gray-50 mx-2 mt-2 font-bold text-xl hover:text-slate-300">{tab}</button>
-            ))}
-          </div>
-        </div>
+        <ProfileHeader
+          user={user}
+          profileImage={profileImage}
+          setProfileImage={setProfileImage}
+          backgroundImage={backgroundImage}
+          setBackgroundImage={setBackgroundImage}
+          handleImageClick={handleImageClick}
+          handleImageChange={handleImageChange}
+        />
       </div>
 
       {/* Bottom Section */}
       <div className='flex font-IndieFlower'>
         {/* Details Section */}
         <div className='w-1/4 p-4'>
-          <div className='mb-4 bg-gradient-to-br from-sky-500 to-sky-300 rounded p-3'>
-            <div className="mb-2"> <span className='font-semibold'>Pronouns:</span> {user.pronouns}</div>
-            <div className="mb-2"> <span className='font-semibold'>Last Online:</span> {user.lastOnline}</div>
-            <div className="mb-2"> <span className='font-semibold'>Joined:</span> {user.joined}</div>
-          </div>
-
-          {/* UserInfo Section */}
-          <div className='p-4 rounded bg-gradient-to-br from-sky-500 to-sky-300 mb-4'>
-            <div className="flex justify-between items-start">
-              <div className="flex-grow max-h-64 overflow-auto text-lg">
-                {editMode ? (
-                  <textarea
-                    ref={textareaRef}
-                    value={text}
-                    onChange={handleChange}
-                    rows="1"
-                    className="w-full bg-sky-300 rounded p-2 text-lg resize-none overflow-hidden"
-                    style={{ overflowX: 'hidden' }}
-                  />
-                ) : (
-                  <p className='max-h-64 break-words'>{text}</p>
-                )}
-              </div>
-              <button
-                className="bg-sky-900 text-slate-200 text-sm px-2 py-1 my-auto rounded ml-2"
-                onClick={editMode ? handleSave : handleEdit}
-              >
-                {editMode ? 'Save' : 'Edit'}
-              </button>
-            </div>
-          </div>
+          <UserInfo
+            user={user}
+            text={text}
+            editMode={editMode}
+            textareaRef={textareaRef}
+            handleChange={handleChange}
+            handleSave={handleSave}
+            handleEdit={handleEdit}
+          />
           
-          {/* Friend Section */}
-          <div className='bg-gradient-to-br from-sky-500 to-sky-300 p-4 rounded'>
-            <div className="mb-2 font-semibold font-lg">Friends</div>
-            <div className='grid grid-cols-4 '>
-              {user.friends ? user.friends.slice(0, 8).map((friendName, index) => {
-                const friend = userData.find(u => u.username === friendName);
-                if (friend) {
-                  return (
-                    <div key={index} className="flex items-center justify-center">
-                      <div 
-                        className="cursor-pointer" 
-                        onClick={() => handleFriendClick(friend.userId)}
-                      >
-                        <img
-                          src={friend.profileImg}
-                          alt={`Friend ${index + 1}`}
-                          className="w-16 h-16 border rounded mb-2"
-                        />
-                      </div>
-                    </div>
-                  );
-                }
-                return (
-                  <div key={index} className="w-16 h-16 rounded-full "></div>
-                );
-              }) : new Array(6).fill("").map((_, index) => (
-                <div key={index} className="w-16 h-16 rounded-full "></div>
-              ))}
-            </div>
-          </div>
+          <FriendList
+            friends={user.friends}
+            userData={userData}
+            handleFriendClick={handleFriendClick}
+          />
         </div>
 
         {/* Bottom Right */}
         <div className='w-3/4 p-4'>
-          {/* Movies Section */}
           <div className='bg-gradient-to-br from-sky-300 to-sky-500 p-4 rounded mb-4'>
-            <div className='flex mb-4'>
-              <div className='w-1/4'>
-                <div className='mb-2 font-bold text-xl underline'>Movies</div>
-                  {['Completed', 'Plan to Watch', 'On Hold', 'Dropped'].map(status => (
-                    <div key={status} className='mb-2'>
-                      <span className='font-semibold text-gray-700'>{status}:</span>
-                      <span className='ml-2 text-lg text-gray-800'>
-                        {status === 'Completed' ? movieStatusCounts.completed : 
-                        status === 'Plan to Watch' ? movieStatusCounts.planToWatch :
-                        status === 'On Hold' ? movieStatusCounts.onHold :
-                        status === 'Dropped' ? movieStatusCounts.dropped : 0}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              <div className='w-1/4 mt-3'>
-                <br/>
-                {['Total Entries', 'Rewatched'].map(detail => (
-                  <div key={detail} className='mb-2'>
-                    <span className='font-semibold text-gray-700'>{detail}:</span>
-                    <span className='ml-2 text-lg text-gray-800'>
-                      {detail === 'Total Entries' ? totalMovies :
-                      detail === 'Rewatched' ? rewatchedMovies : 0}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <div className='grid grid-cols-1 gap-4 w-2/4'>
-                <div className='font-bold text-xl underline'>Recently Updated</div>
-                {userMovies.slice(0, 3).length > 0 ? userMovies.slice(0, 3).map((movie, idx) => (
-                  <div key={idx} className="flex items-center bg-gradient-to-br from-slate-50 to-slate-200 border p-2 rounded hover:shadow-md cursor-pointer" onClick={() => handleItemClick(movie.name)}>
-                    <div className="flex-shrink-0 mr-4">
-                      <img src={movie.imgSrc || 'https://via.placeholder.com/64'} alt={movie.name} className="w-14 h-16 rounded"/>
-                    </div>
-                    <div className="flex flex-col flex-grow">
-                      <div className="flex justify-between">
-                        <h2 className="text-black text-lg font-semibold">{movie.name}</h2>
-                        <span className="text-gray-600 text-sm">Update Date</span>
-                      </div>
-                      <div className="flex items-center mt-2">
-                        <span className="text-gray-600 text-sm">Additional Info</span>
-                      </div>
-                    </div>
-                  </div>
-                )) : (
-                  <div>No movies found</div>
-                )}
-              </div>
-            </div>
+            <MoviesSection
+              movieStatusCounts={movieStatusCounts}
+              totalMovies={totalMovies}
+              rewatchedMovies={rewatchedMovies}
+              userMovies={userMovies}
+              handleItemClick={handleItemClick}
+            />
           </div>
 
-          {/* Series Section */}
           <div className='bg-gradient-to-br from-sky-300 to-sky-500 p-4 rounded mb-4'>
-            <div className='flex mb-4'>
-              <div className='w-1/4'>
-              <div className='mb-2 font-bold text-xl underline'>Series</div>
-                {['Completed', 'On Hold', 'Watching', 'Dropped', 'Plan to Watch'].map(status => (
-                  <div key={status} className='mb-2'>
-                    <span className='font-semibold text-gray-700'>{status}:</span>
-                    <span className='ml-2 text-lg text-gray-800'>
-                      {status === 'Completed' ? seriesStatusCounts.completed :
-                      status === 'On Hold' ? seriesStatusCounts.onHold :
-                      status === 'Watching' ? seriesStatusCounts.watching :
-                      status === 'Dropped' ? seriesStatusCounts.dropped :
-                      status === 'Plan to Watch' ? seriesStatusCounts.planToWatch : 0}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <div className='w-1/4'>
-                <br/>
-                {['Total Entries', 'Rewatched', 'Episodes'].map(detail => (
-                  <div key={detail} className='mb-2 mt-2'>
-                    <span className='font-semibold text-gray-700'>{detail}:</span>
-                    <span className='ml-2 text-lg text-gray-800'>
-                      {detail === 'Total Entries' ? totalSeries :
-                      detail === 'Rewatched' ? rewatchedSeries : 0
-                      }
-                    </span>
-                  </div>
-                ))}
-
-              </div>
-              <div className='grid grid-cols-1 gap-4 w-2/4'>
-                <div className='font-bold text-xl underline'>Recently Updated</div>
-                {userSeries.slice(0, 3).length > 0 ? userSeries.slice(0, 3).map((series, idx) => (
-                  <div key={idx} className="flex items-center bg-gradient-to-br from-slate-50 to-slate-200 border p-2 rounded hover:shadow-md cursor-pointer" onClick={() => handleItemClick(series.name)}>
-                    <div className="flex-shrink-0 mr-4">
-                      <img src={series.imgSrc || 'https://via.placeholder.com/64'} alt={series.name} className="w-14 h-16 rounded" />
-                    </div>
-                    <div className="flex flex-col flex-grow">
-                      <div className="flex justify-between">
-                        <h2 className="text-black text-lg font-semibold">{series.name}</h2>
-                        <span className="text-gray-600 text-sm">Update Date</span>
-                      </div>
-                      <div className="flex items-center mt-2">
-                        <span className="text-gray-600 text-sm">Additional Info</span>
-                      </div>
-                    </div>
-                  </div>
-                )) : (
-                  <div>No series found</div>
-                )}
-              </div>
-            </div>
+            <SeriesSection
+              seriesStatusCounts={seriesStatusCounts}
+              totalSeries={totalSeries}
+              rewatchedSeries={rewatchedSeries}
+              userSeries={userSeries}
+              handleItemClick={handleItemClick}
+            />
           </div>
 
-          <div className=''>
           <Comment />
-          </div>
 
         </div>
       </div>
