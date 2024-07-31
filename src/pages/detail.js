@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import data from '../assets/movieData.json';
 import charData from '../assets/characterData.json';
@@ -11,14 +11,30 @@ import BarChart from '../functions/detailPage/chart.js';
 
 function Details() {
   const [currentSection, setCurrentSection] = useState('Overview');
+  const [showFullImage, setShowFullImage] = useState(null);
   const { name } = useParams();
   const decodedName = decodeURIComponent(name); 
   const item = data.find(item => item.name === decodedName);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    if (showFullImage) {
+      document.body.style.overflow = 'hidden'; // Disable scroll
+    } else {
+      document.body.style.overflow = ''; // Enable scroll
+    }
+    return () => {
+      document.body.style.overflow = ''; // Clean up when component unmounts
+    };
+  }, [showFullImage]);
+
   if (!item) {
     return <div>Item not found</div>;
   }
-
+ 
   // Character List
   const charShow = charData.filter(character => character.charShow.trim() === item.name.trim())
     .map(character => {
@@ -69,7 +85,10 @@ function Details() {
 
       {/* profilePic */}
       <div className="relative flex items-start mt-10">
-        <div className="bg-gray-200 w-56 h-64 relative overflow-hidden ml-10 z-10 hover:scale-105 border rounded-md">
+        <div 
+          className="bg-gray-200 w-56 h-64 relative overflow-hidden ml-10 z-10 hover:scale-105 border rounded-md cursor-pointer"
+          onClick={() => setShowFullImage(item.imgSrc)}
+        >
           <img 
             src={item.imgSrc}
             alt="Profile" 
@@ -106,6 +125,18 @@ function Details() {
           {sections[currentSection]}
         </div>
       </div>
+
+      {/* Fullscreen Image */}
+      {showFullImage && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" onClick={() => setShowFullImage(null)}>
+          <img
+            src={showFullImage}
+            alt="Fullscreen"
+            className="max-w-full max-h-full cursor-pointer"
+            onClick={(e) => e.stopPropagation()} 
+          />
+        </div>
+      )}
     </div>
   );
 }
