@@ -3,11 +3,9 @@ import { useParams } from 'react-router-dom';
 import data from '../assets/movieData.json';
 import charData from '../assets/characterData.json';
 import staffData from '../assets/staffData.json';
-import Rating from '../functions/detailPage/rating.js';
 import AddReviews from '../functions/detailPage/review.js';
-import { FaHeart } from 'react-icons/fa';
-import Dropdown from '../functions/detailPage/dropdown.js';
-import BarChart from '../functions/detailPage/chart.js';
+import Section from '../functions/detailPage/section.js';
+import DetailsContent from '../functions/detailPage/picturesItemBack.js'; 
 
 function Details() {
   const [currentSection, setCurrentSection] = useState('Overview');
@@ -74,7 +72,6 @@ function Details() {
 
   return ( 
     <div className="bg-gray-50 min-h-screen font-IndieFlower text-lg">
-      {/* background */}
       <div className="relative blur-sm">
         <img 
           src={item.imgSrc}
@@ -82,105 +79,19 @@ function Details() {
           className="w-full absolute top-0 left-0 z-0 h-60 object-cover brightness-75" 
         />
       </div>
-
-      {/* profilePic */}
-      <div className="relative flex items-start mt-10">
-        <div 
-          className="bg-gray-200 w-56 h-64 relative overflow-hidden ml-10 z-10 hover:scale-105 border rounded-md cursor-pointer"
-          onClick={() => setShowFullImage(item.imgSrc)}
-        >
-          <img 
-            src={item.imgSrc}
-            alt="Profile" 
-            className="object-cover h-64 w-full"
-          />
-        </div>
-
-        <div className="ml-6 z-10 w-full">
-          <h3 className="text-slate-200 text-4xl font-extrabold mt-2 inline-block bg-indigo-950 bg-opacity-75 p-1 rounded">
-            {item.name}
-          </h3>
-          <p className="text-slate-100 mt-2 overflow-hidden max-w-max pr-4 text-xl flex bg-indigo-950 bg-opacity-75 p-1 rounded">
-            {item.description}
-          </p>
-        </div>
-      </div>
-
-      <div className="relative flex justify-center bg-sky-700 h-12 font-bold z-0 shadow-md -mt-20 w-full">
-        {Object.keys(sections).map((section) => (
-          <button 
-            key={section} 
-            type="button" 
-            className="navBut mx-2 mt-2 text-slate-200 hover:text-slate-300 "
-            onClick={() => setCurrentSection(section)}
-          >
-            {section}
-          </button>
-        ))}
-      </div>
-
-      <div className="flex mt-4 mx-8 h-full">
-        <Sidebar item={item} />
-        <div className="flex flex-col h-full w-full">
-          {sections[currentSection]}
-        </div>
-      </div>
-
-      {/* Fullscreen Image */}
-      {showFullImage && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" onClick={() => setShowFullImage(null)}>
-          <img
-            src={showFullImage}
-            alt="Fullscreen"
-            className="max-w-full max-h-full cursor-pointer"
-            onClick={(e) => e.stopPropagation()} 
-          />
-        </div>
-      )}
+      <DetailsContent
+      item={item}
+      sections={sections}
+      currentSection={currentSection}
+      setCurrentSection={setCurrentSection}
+      showFullImage={showFullImage}
+      setShowFullImage={setShowFullImage}
+    />
     </div>
   );
 }
 
-const Section = ({ title, items, setCurrentSection }) => (
-  <div className="h-full w-full ml-2">
-    <div className="ml-5 mt-2">
-      <h4 className='font-semibold mt-3 -mb-3'>{title}</h4>
-    </div>
-    <br />
-    <div className="mb-4 ml-4 flex flex-wrap gap-4">
-      {items.map((item, index) => (
-        <div key={index} className="bg-gray-100 p-4 rounded flex items-center w-80 space-x-4 cursor-pointer shadow-sm">
-          {title === 'Characters' && (
-            <div className="flex items-center">
-              <img src={item.imgSrc} alt={item.charName} className="w-16 h-20 mr-4" />
-              <div className="font-bold">{item.charName}</div>
-            </div>
-          )}
-          {title === 'Staff' && (
-            <div className="flex items-center">
-              <img src={item.staffImgSrc} alt={item.staffName} className="w-16 h-20 mr-4" />
-              <div>
-                <div className="font-bold">{item.staffName}</div>
-                <div className='text-gray-500'>{item.charName}'s VA</div>
-              </div>
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-
-    <div className="ml-4 text-right mb-2">
-      <a 
-        href="#" 
-        className="text-blue-500 no-underline cursor-pointer font-semibold hover:text-blue-900"
-        onClick={() => setCurrentSection(title)}
-      >
-        View More...
-      </a>
-    </div>
-    <div className="border-b ml-4"></div>
-  </div>
-);
+<Section/>
 
 {/* Reviews */}
 const Reviews = ({setCurrentSection }) => (
@@ -207,7 +118,7 @@ const Stats = () => (
     <div className="ml-5">
       <h4 className='font-semibold mt-3 -mb-3'>Stats</h4>
     </div>
-    {/* Add Stats content here */}
+    {/* Stats Content */}
   </div>
 );
 
@@ -216,55 +127,7 @@ const Social = () => (
     <div className="ml-5">
       <h4 className='font-semibold mt-3 -mb-3'>Social</h4>
     </div>
-    {/* Add Social content here */}
-  </div>
-);
-
-const Sidebar = ({ item }) => (
-  <div className="flex flex-col items-center pt-4 h-full">
-    {/* Add List, Fav, Rating Buttons */}
-    <div className="flex">
-      <Dropdown/>
-      <button
-        className="ml-2 relative inline-flex items-center justify-center w-10 h-10 bg-red-900 text-white rounded-lg text-xs shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-950"
-        type="button">
-        <span className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-          <FaHeart aria-hidden="true" />
-        </span>
-      </button>
-
-    </div>
-
-    <div className="mt-4">
-      <Rating/>
-    </div>
-
-    {/* Details */}
-    <div className="border border-black rounded w-52 h-56 -mt-4 bg-white">
-      <div className="details p-3">
-        <div>
-          <span className="inline-block font-bold">Year:</span> <span className="inline-block">{item.year}</span> <br/>
-          <span className="inline-block font-bold">Genres:</span> <span className="inline-block">{item.genres}</span> <br/>
-          {item.type === 'Series' && (
-            <>
-              <span className="inline-block font-bold">Episodes:</span> <span className="inline-block">{item.episodes}</span> <br/>
-            </>
-          )}
-          <span className="inline-block font-bold">Duration:</span> <span className="inline-block">{item.duration}</span> <br/>
-          <span className="inline-block font-bold">Likes:</span> <span className="inline-block">{item.likes}</span> 
-        </div>
-      </div>
-    </div>
-
-    <div className="border border-black rounded w-52 h-52 mt-2 mb-2 bg-white overflow-hidden">
-      <div className="details p-4 h-full flex flex-col items-center">
-        <div className="text-lg font-semibold mb-2">Average Rating</div>
-        <div className="flex-grow overflow-auto">
-          <BarChart />
-        </div>
-      </div>
-    </div>
-
+    {/* Social Content */}
   </div>
 );
 
