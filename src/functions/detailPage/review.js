@@ -11,7 +11,7 @@ const StarIcon = ({ filled = true }) => (
   );
   
   const Reviews = () => (
-    <div className="h-full w-full mt-2 mb-4 ml-4 mr-2 cursor-pointer">
+    <div className="h-full w-full mt-2 mb-4 ml-4 mr-2 cursor-pointer hover:shadow-md">
       <article className="bg-white p-4 rounded-lg shadow-md">
         <div className="flex items-start">
           <img className="w-10 h-10 rounded me-4" src="https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg" alt="User" />
@@ -33,7 +33,7 @@ const StarIcon = ({ filled = true }) => (
             </div>
             <p className="text-gray-500 mt-2line-clamp-3">Bu bir yorumdur.</p>
             <div className="flex items-center justify-between mt-2">
-                <a className="px-2 py-1.5 text-xs font-medium text-gray-900 no-underline rounded-lg border border-gray-200 bg-white hover:bg-gray-500 hover:text-slate-950 cursor-pointer ">Helpful</a>
+                <a className="px-2 py-1.5 text-xs font-medium text-gray-900 no-underline rounded-lg border border-gray-500 bg-gray-300 hover:bg-gray-500 hover:text-white cursor-pointer">Helpful</a>
                 <p className="text-xs text-gray-500">19 people found this helpful</p>
             </div>
           </div>
