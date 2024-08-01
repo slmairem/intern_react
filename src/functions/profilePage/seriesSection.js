@@ -1,12 +1,28 @@
 import React from 'react';
 
 const SeriesSection = ({ seriesStatusCounts, totalSeries, rewatchedSeries, userSeries, handleItemClick }) => {
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Completed':
+        return 'bg-blue-500';
+      case 'On Hold':
+        return 'bg-yellow-500';
+      case 'Watching':
+        return 'bg-green-500';
+      case 'Dropped':
+        return 'bg-red-500';
+      case 'Plan to Watch':
+        return 'bg-gray-500';
+    }
+  };
+
   return (
     <div className='flex mb-4'>
       <div className='w-1/4'>
         <div className='mb-2 font-bold text-xl underline'>Series</div>
-        {['Completed', 'On Hold', 'Watching', 'Dropped', 'Plan to Watch'].map(status => (
-          <div key={status} className='mb-2'>
+        {['Watching', 'Completed', 'On Hold', 'Dropped', 'Plan to Watch'].map(status => (
+          <div key={status} className='mb-2 flex items-center'>
+            <div className={`w-4 h-4 rounded-full ${getStatusColor(status)} mr-2`} />
             <span className='font-semibold text-gray-700'>{status}:</span>
             <span className='ml-2 text-lg text-gray-800'>
               {status === 'Completed' ? seriesStatusCounts.completed :
