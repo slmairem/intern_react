@@ -20,12 +20,12 @@ function Details() {
 
   useEffect(() => {
     if (showFullImage) {
-      document.body.style.overflow = 'hidden'; // Disable scroll
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = ''; // Enable scroll
+      document.body.style.overflow = ''; 
     }
     return () => {
-      document.body.style.overflow = ''; // Clean up when component unmounts
+      document.body.style.overflow = '';
     };
   }, [showFullImage]);
 
@@ -39,7 +39,7 @@ function Details() {
       const staff = staffData.find(staff => staff.staffName.trim() === character.charStaff.trim());
       return {
         ...character,
-        charStaff: staff ? staff.staffName : "", // Karakterin VA'sı ile eşleşen staffName
+        charStaff: staff ? staff.staffName : "",
         staffImgSrc: staff ? staff.staffImgSrc : "" 
       };
     });
@@ -79,14 +79,17 @@ function Details() {
           className="w-full absolute top-0 left-0 z-0 h-60 object-cover brightness-75" 
         />
       </div>
+      
       <DetailsContent
-      item={item}
-      sections={sections}
-      currentSection={currentSection}
-      setCurrentSection={setCurrentSection}
-      showFullImage={showFullImage}
-      setShowFullImage={setShowFullImage}
-    />
+        item={item}
+        sections={sections}
+        currentSection={currentSection}
+        setCurrentSection={setCurrentSection}
+        showFullImage={showFullImage}
+        setShowFullImage={setShowFullImage}
+      />
+
+
     </div>
   );
 }

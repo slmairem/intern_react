@@ -30,7 +30,7 @@ const Rating = () => {
   };
 
   return (
-    <div className="flex items-center mb-5">
+    <div className="flex items-center">
       {[...Array(5)].map((_, index) => (
         <Star
           key={index}
