@@ -1,8 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { FaHeart, FaTimes } from 'react-icons/fa';
-import Rating from './rating.js';
+import React, { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react';
 
-const Dropdown = ({ type, reset, onStatusChange }) => {
+const Dropdown = forwardRef(({ onStatusChange }, ref) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState('Add to List');
   const dropdownRef = useRef(null);
@@ -12,14 +10,8 @@ const Dropdown = ({ type, reset, onStatusChange }) => {
   const handleStatusChange = (status) => {
     setSelectedStatus(status);
     setIsOpen(false);
-    onStatusChange(true); // Notify parent component of status change
+    onStatusChange(true);
   };
-
-  useEffect(() => {
-    if (reset) {
-      setSelectedStatus('Add to List');
-    }
-  }, [reset]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -33,6 +25,12 @@ const Dropdown = ({ type, reset, onStatusChange }) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  useImperativeHandle(ref, () => ({
+    resetStatus() {
+      setSelectedStatus('Add to List');
+    },
+  }));
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -82,62 +80,6 @@ const Dropdown = ({ type, reset, onStatusChange }) => {
       )}
     </div>
   );
-};
+});
 
-const Details = () => {
-  const [isHeartActive, setIsHeartActive] = useState(false);
-  const [isDropdownChanged, setIsDropdownChanged] = useState(false);
-
-  const handleHeartClick = () => {
-    setIsHeartActive(!isHeartActive);
-    setIsDropdownChanged(true); // Trigger reset button visibility
-  };
-
-  const handleStatusChange = (statusChanged) => {
-    setIsDropdownChanged(statusChanged);
-  };
-
-  const handleResetClick = () => {
-    setIsHeartActive(false);
-    setIsDropdownChanged(false); 
-  };
-
-  return (
-    <div className="flex flex-col items-center space-y-4">
-      <div className="flex items-center space-x-2">
-        <Dropdown type="Movies" reset={isDropdownChanged} onStatusChange={handleStatusChange} />
-        <button
-          onClick={handleHeartClick}
-          className={`relative inline-flex items-center justify-center w-10 h-10 ${
-            isHeartActive ? 'bg-cyan-600' : 'bg-red-900'
-          } text-white rounded-lg text-xs shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-950`}
-          type="button"
-        >
-          <span className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-            <FaHeart aria-hidden="true" />
-          </span>
-        </button>
-      </div>
-
-      <div className="mt-4">
-        <Rating />
-      </div>
-
-      {(isDropdownChanged || isHeartActive) && (
-        <div >
-          <button
-            onClick={handleResetClick}
-            className="relative inline-flex items-center justify-center w-10 h-10 bg-gray-500 text-white rounded-lg text-xs shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700"
-            type="button"
-          >
-            <span className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-              <FaTimes aria-hidden="true" />
-            </span>
-          </button>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default Details;
+export default Dropdown;

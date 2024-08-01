@@ -1,4 +1,4 @@
-import Dropdown from './dropdown.js';
+import Buttons from './buttons.js';
 import BarChart from './chart.js';
 import React from 'react';
 
@@ -6,7 +6,7 @@ const DetailsSidebar = ({ item }) => (
   <div className="flex flex-col items-center pt-4 h-full">
     {/* Add List, Fav, Rating Buttons */}
     <div className="flex mb-4">
-      <Dropdown />
+      <Buttons />
     </div>
 
     {/* Details */}
