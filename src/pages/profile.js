@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import userData from '../assets/userData.json'; 
+import userData from '../assets/userData.json';
 import userMovieData from '../assets/userMovieData.json';
 import movieData from '../assets/movieData.json';
 import Comment from '../functions/profilePage/comment.js';
@@ -9,11 +9,12 @@ import SeriesSection from '../functions/profilePage/seriesSection.js';
 import ProfileHeader from '../functions/profilePage/profileHeader.js';
 import FriendList from '../functions/profilePage/friendList.js';
 import UserInfo from '../functions/profilePage/userInfo.js';
+import FavoritesContainer from '../functions/profilePage/favouritesContainer.js';
 
 function Profile() {
-  const { userId } = useParams(); 
-  const [profileImage, setProfileImage] = useState("");
-  const [backgroundImage, setBackgroundImage] = useState("");
+  const { userId } = useParams();
+  const [profileImage, setProfileImage] = useState('');
+  const [backgroundImage, setBackgroundImage] = useState('');
   const [text, setText] = useState('Welcome to my profile!');
   const [editMode, setEditMode] = useState(false);
   const textareaRef = useRef(null);
@@ -22,14 +23,15 @@ function Profile() {
   const [userSeries, setUserSeries] = useState([]);
   const [movieStatusCounts, setMovieStatusCounts] = useState({});
   const [seriesStatusCounts, setSeriesStatusCounts] = useState({});
+  const [favorites, setFavorites] = useState({ movies: [], series: [], characters: [], voiceActors: [] });
   const navigate = useNavigate();
-  
+
   useEffect(() => {
-    window.scrollTo(0, 0); 
+    window.scrollTo(0, 0);
   }, [userId]);
 
   useEffect(() => {
-    const user = userData.find(user => user.userId === parseInt(userId));
+    const user = userData.find((user) => user.userId === parseInt(userId));
     if (user) {
       setUser(user);
       setProfileImage(user.profileImg);
@@ -37,13 +39,15 @@ function Profile() {
       setText(user.bioText || 'Welcome to my profile!');
     }
 
-    const userMoviesData = userMovieData.find(data => data.userId === parseInt(userId));
+    const userMoviesData = userMovieData.find((data) => data.userId === parseInt(userId));
     if (userMoviesData) {
-      const movies = movieData.filter(movie => userMoviesData.movieData.includes(movie.id) && movie.type === "Movies");
+      const movies = movieData.filter((movie) => userMoviesData.movieData.includes(movie.id) && movie.type === 'Movies');
       setUserMovies(movies);
 
-      const series = movieData.filter(series => userMoviesData.movieData.includes(series.id) && series.type === "Series");
+      const series = movieData.filter((series) => userMoviesData.movieData.includes(series.id) && series.type === 'Series');
       setUserSeries(series);
+
+      setFavorites(userMoviesData.favs || { movies: [], series: [], characters: [], voiceActors: [] });
     }
 
     const movieCounts = { completed: 0, planToWatch: 0, onHold: 0, dropped: 0 };
@@ -58,25 +62,25 @@ function Profile() {
     };
 
     userMoviesData.status.forEach((status, index) => {
-      const type = movieData.find(movie => movie.id === userMoviesData.movieData[index])?.type;
+      const type = movieData.find((movie) => movie.id === userMoviesData.movieData[index])?.type;
       const countType = statusMapping[status];
 
-      if (type === "Movies" && countType) {
+      if (type === 'Movies' && countType) {
         movieCounts[countType] += 1;
-      } else if (type === "Series" && countType) {
+      } else if (type === 'Series' && countType) {
         seriesCounts[countType] += 1;
       }
     });
 
     setMovieStatusCounts(movieCounts);
     setSeriesStatusCounts(seriesCounts);
-    
+
   }, [userId]);
 
   const totalMovies = userMovies.length;
   const totalSeries = userSeries.length;
-  const rewatchedMovies = userMovies.filter(movie => movie.rewatched).length;
-  const rewatchedSeries = userSeries.filter(series => series.rewatched).length;
+  const rewatchedMovies = userMovies.filter((movie) => movie.rewatched).length;
+  const rewatchedSeries = userSeries.filter((series) => series.rewatched).length;
 
   const handleImageClick = (ref) => {
     ref.current.click();
@@ -104,13 +108,13 @@ function Profile() {
       textarea.style.height = 'auto';
       textarea.style.height = `${textarea.scrollHeight}px`;
     }
-  }, [editMode, text]); 
+  }, [editMode, text]);
 
   const handleFriendClick = (friendId) => {
     navigate(`/profile/${friendId}`);
   };
 
-  if (!user) return <div>Loading...</div>; 
+  if (!user) return <div>Loading...</div>;
 
   return (
     <div className='profile'>
@@ -140,12 +144,15 @@ function Profile() {
             handleSave={handleSave}
             handleEdit={handleEdit}
           />
-          
+
           <FriendList
             friends={user.friends}
             userData={userData}
             handleFriendClick={handleFriendClick}
           />
+          
+          <FavoritesContainer favorites={favorites} movieData={movieData} userData={userData} />
+
         </div>
 
         {/* Bottom Right */}
@@ -171,7 +178,6 @@ function Profile() {
           </div>
 
           <Comment />
-
         </div>
       </div>
     </div>

@@ -1,10 +1,17 @@
 [
+    
     {
         "userId": 1,
-        "movieData": [1,2,3,7,10],
-        "status":["c", "ptw", "oh", "ptw", "c"],
-        "favs": []
+        "movieData": [1, 2, 3, 7, 10],
+        "status": ["c", "ptw", "oh", "ptw", "c"],
+        "favs": {
+            "movies": [1],
+            "series": [3, 4],
+            "characters": [2],
+            "voiceActors": [2]
+        }
     },
+      
     {
         "userId": 2,
         "movieData": [],
