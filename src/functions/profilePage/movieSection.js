@@ -48,7 +48,7 @@ const MoviesSection = ({ movieStatusCounts, totalMovies, rewatchedMovies, userMo
         {userMovies.slice(0, 3).length > 0 ? userMovies.slice(0, 3).map((movie, idx) => (
           <div key={idx} className="flex items-center bg-gradient-to-br from-slate-50 to-slate-200 border p-2 rounded hover:shadow-md cursor-pointer" onClick={() => handleItemClick(movie.name)}>
             <div className="flex-shrink-0 mr-4">
-              <img src={movie.imgSrc || 'https://via.placeholder.com/64'} alt={movie.name} className="w-14 h-16 rounded"/>
+              <img src={movie.imgSrc || 'https://via.placeholder.com/64'} alt={movie.name} className="w-12 h-16 rounded"/>
             </div>
             <div className="flex flex-col flex-grow">
               <div className="flex justify-between">

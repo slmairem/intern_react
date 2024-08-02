@@ -51,7 +51,7 @@ const SeriesSection = ({ seriesStatusCounts, totalSeries, rewatchedSeries, userS
         {userSeries.slice(0, 3).length > 0 ? userSeries.slice(0, 3).map((series, idx) => (
           <div key={idx} className="flex items-center bg-gradient-to-br from-slate-50 to-slate-200 border p-2 rounded hover:shadow-md cursor-pointer" onClick={() => handleItemClick(series.name)}>
             <div className="flex-shrink-0 mr-4">
-              <img src={series.imgSrc || 'https://via.placeholder.com/64'} alt={series.name} className="w-14 h-16 rounded" />
+              <img src={series.imgSrc || 'https://via.placeholder.com/64'} alt={series.name} className="w-12 h-16 rounded" />
             </div>
             <div className="flex flex-col flex-grow">
               <div className="flex justify-between">

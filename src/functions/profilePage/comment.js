@@ -27,7 +27,7 @@ const Comment = () => {
   }, []);
 
   return (
-    <div ref={commentRef} className="w-full bg-gradient-to-br from-sky-200 to-sky-300 rounded-lg border border-gray-300 p-4 shadow-md">
+    <div ref={commentRef} className="w-full bg-gradient-to-br from-sky-300 to-sky-400 rounded-lg border border-gray-300 p-4 shadow-md">
       <h3 className="text-lg font-semibold mb-4">Comments</h3>
 
         <div className="w-full px-3 my-2">
@@ -49,7 +49,7 @@ const Comment = () => {
         </div>
 
         <div className="flex flex-col mt-4 pl-4">
-          <div className="border rounded-md p-4 mb-4 bg-slate-100">
+          <div className="border rounded-md p-4 mb-4 bg-gradient-to-br from-slate-50 to-slate-200">
             <div className="flex gap-3 items-center mb-2">
               <img
                 src="https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg"
