@@ -5,6 +5,7 @@ import data from '../assets/movieData.json';
 import staffData from '../assets/staffData.json';
 import usersData from '../assets/userData.json';
 import charData from '../assets/characterData.json';
+import Search from '../functions/navBar/search';
 
 function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -162,54 +163,15 @@ function Navbar() {
         )}
       </div>
 
-      {searchOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-20" onClick={toggleSearch} ref={searchRef}>
-          <div className="bg-white p-5 rounded max-w-3xl w-full" onClick={(e) => e.stopPropagation()}>
-            <div className="mb-2">
-              <input
-                type="text"
-                placeholder="Search..."
-                value={searchTerm}
-                onChange={handleInputChange}
-                className="w-full p-2 border text-black border-gray-300 rounded"
-              />
-            </div>
-
-            <div className="mt-2">
-              {searchTerm.length >= 3 && (
-                <div className="flex flex-wrap">
-                  {Object.keys(results).map(category => (
-                    results[category].length > 0 && (
-                      <div key={category} className="flex-1 min-w-[200px] mt-2 text-black no-underline">
-                        <h3 className="font-bold">{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
-                        {results[category].map(item => (
-                          <li key={item.id || item.staffId || item.charId} className="text-black flex items-center mb-2 no-underline mr-10">
-                            {item.profileImg && <img src={item.profileImg} alt={item.username} className="h-14 w-10 mr-2" />}
-                            {item.imgSrc && <img src={item.imgSrc} alt={item.name || item.charName} className="h-14 w-10 mr-2" />}
-                            {item.staffImgSrc && <img src={item.staffImgSrc} alt={item.staffName} className="h-14 w-10 mr-2" />}
-                            <Link 
-                              to={
-                                item.name ? `/detail/${encodeURIComponent(item.name)}` : 
-                                item.charName ? `/detail/${encodeURIComponent(item.charName)}` : 
-                                item.staffName ? `/detail/${encodeURIComponent(item.staffName)}` : 
-                                `/detail/${item.id || item.staffId || item.charId}`
-                              } 
-                              onClick={closeSearch} 
-                              className="text-black no-underline"
-                            >
-                              {item.name || item.username || item.staffName || item.charName}
-                            </Link>
-                          </li>
-                        ))}
-                      </div>
-                    )
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      <Search
+        searchOpen={searchOpen}
+        searchTerm={searchTerm}
+        handleInputChange={handleInputChange}
+        results={results}
+        toggleSearch={toggleSearch}
+        searchRef={searchRef}
+        closeSearch={closeSearch}
+      />
     </div>
   );
 }
