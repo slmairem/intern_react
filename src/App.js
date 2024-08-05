@@ -3,7 +3,6 @@ import Navbar from './components/navbar';
 import Homepage from './pages/homepage';
 import LoginForm from './pages/login';
 import RegisterForm from './pages/register';
-import SearchResults from './pages/search';
 import Details from './pages/detail';
 import Lists from './pages/lists';
 import Forum from './pages/forum';
@@ -21,7 +20,6 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
-          <Route path="/search" element={<SearchResults />} />
           <Route path="/profile/:userId" element={<Profile />} />
           <Route path="/detail/:name" element={<Details />} />
           <Route path="/lists" element={<Lists />} />

@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import listsData from '../assets/listsData.json';
-import usersData from '../assets/userData.json';
 import movieData from '../assets/movieData.json';
 
 const getMovieImages = (movieIds) => {
