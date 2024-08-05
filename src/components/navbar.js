@@ -2,9 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch, FaCaretDown } from 'react-icons/fa';
 import data from '../assets/movieData.json';
-import staffData from '../assets/staffData.json';
-import usersData from '../assets/userData.json';
 import charData from '../assets/characterData.json';
+import usersData from '../assets/userData.json';
 import Search from '../functions/navBar/search';
 
 function Navbar() {
@@ -24,7 +23,7 @@ function Navbar() {
 
   const toggleSearch = () => {
     setSearchOpen(!searchOpen);
-    setSearchTerm(''); // Clear search when opening/closing
+    setSearchTerm(''); 
   };
 
   const handleInputChange = (e) => {
@@ -34,10 +33,9 @@ function Navbar() {
   const filterResults = (term) => {
     const lowerTerm = term.toLowerCase();
     const movieMatches = data.filter(item => item.name.toLowerCase().includes(lowerTerm));
-    const staffMatches = staffData.filter(item => item.staffName.toLowerCase().includes(lowerTerm));
+    const staffMatches = charData.filter(item => item.charStaffName.toLowerCase().includes(lowerTerm));
     const userMatches = usersData.filter(item => item.username.toLowerCase().includes(lowerTerm));
     const charMatches = charData.filter(item => item.charName.toLowerCase().includes(lowerTerm));
-
     return {
       movies: movieMatches,
       staff: staffMatches,
@@ -94,6 +92,11 @@ function Navbar() {
 
   const handleUserDropdownToggle = () => {
     setUserDropdownOpen(!userDropdownOpen);
+  };
+
+  const handleItemClick = (name) => {
+    const encodedName = encodeURIComponent(name);
+    navigate(`/detail/${encodedName}`);
   };
 
   return (
@@ -171,6 +174,7 @@ function Navbar() {
         toggleSearch={toggleSearch}
         searchRef={searchRef}
         closeSearch={closeSearch}
+        handleItemClick={handleItemClick} 
       />
     </div>
   );

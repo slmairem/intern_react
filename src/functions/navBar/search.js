@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FaCaretDown } from 'react-icons/fa';
 
-const Search = ({ searchOpen, searchTerm, handleInputChange, results, toggleSearch, searchRef, closeSearch }) => {
+const Search = ({ searchOpen, searchTerm, handleInputChange, results, toggleSearch, searchRef, closeSearch, handleItemClick }) => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -14,8 +13,18 @@ const Search = ({ searchOpen, searchTerm, handleInputChange, results, toggleSear
   };
 
   const filteredResults = selectedCategory === 'all'
-    ? Object.values(results).flat()
-    : results[selectedCategory] || [];
+    ? {
+        movies: results.movies.length > 0 ? results.movies : null,
+        characters: results.characters.length > 0 ? results.characters : null,
+        staff: results.staff.length > 0 ? results.staff : null,    
+        users: results.users.length > 0 ? results.users : null
+      }
+    : { [selectedCategory]: results[selectedCategory] || [] };
+
+  const onItemClick = (name) => {
+    handleItemClick(name); 
+    closeSearch(); 
+  };
 
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-20" onClick={toggleSearch} ref={searchRef}>
@@ -38,7 +47,6 @@ const Search = ({ searchOpen, searchTerm, handleInputChange, results, toggleSear
                 <button onClick={() => handleCategoryChange('characters')} className="block px-4 py-2 w-full text-left hover:bg-gray-200">Characters</button>
                 <button onClick={() => handleCategoryChange('staff')} className="block px-4 py-2 w-full text-left hover:bg-gray-200">Staff</button>
                 <button onClick={() => handleCategoryChange('users')} className="block px-4 py-2 w-full text-left hover:bg-gray-200">Users</button>
-                
               </div>
             )}
           </div>
@@ -54,34 +62,63 @@ const Search = ({ searchOpen, searchTerm, handleInputChange, results, toggleSear
         <div className="mt-2">
           {searchTerm.length >= 3 && (
             <div className="flex flex-wrap">
-              {filteredResults.length > 0 && (
-                <div className="flex-1 min-w-[200px] mt-2 text-black no-underline">
-                  <h3 className="font-bold">
-                    {selectedCategory === 'all'
-                      ? 'All Results'
-                      : selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}
-                  </h3>
-                  {filteredResults.map(item => (
-                    <li key={item.id || item.staffId || item.charId} className="text-black flex items-center mb-2 no-underline mr-10">
-                      {item.profileImg && <img src={item.profileImg} alt={item.username} className="h-14 w-10 mr-2" />}
-                      {item.imgSrc && <img src={item.imgSrc} alt={item.name || item.charName} className="h-14 w-10 mr-2" />}
-                      {item.staffImgSrc && <img src={item.staffImgSrc} alt={item.staffName} className="h-14 w-10 mr-2" />}
-                      <Link 
-                        to={
-                          item.name ? `/detail/${encodeURIComponent(item.name)}` : 
-                          item.charName ? `/detail/${encodeURIComponent(item.charName)}` : 
-                          item.staffName ? `/detail/${encodeURIComponent(item.staffName)}` : 
-                          `/detail/${item.id || item.staffId || item.charId}`
-                        } 
-                        onClick={closeSearch} 
-                        className="text-black no-underline"
-                      >
-                        {item.name || item.username || item.staffName || item.charName}
-                      </Link>
-                    </li>
-                  ))}
-                </div>
-              )}
+              {Object.keys(filteredResults).map(category => (
+                filteredResults[category] && (
+                  <div key={category} className="flex-1 min-w-[200px] mt-2 text-black">
+                    <h3 className="font-bold">
+                      {selectedCategory === 'all'
+                        ? category.charAt(0).toUpperCase() + category.slice(1)
+                        : selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}
+                    </h3>
+                    {filteredResults[category].map(item => (
+                      <li key={item.id || item.staffId || item.charId} className="text-black flex items-center mb-2 mr-10">
+                        {category === 'movies' && item.imgSrc && (
+                          <img
+                            src={item.imgSrc}
+                            alt={item.name}
+                            className="h-14 w-10 mr-2"
+                          />
+                        )}
+                        {category === 'characters' && item.charImgSrc && (
+                          <img
+                            src={item.charImgSrc}
+                            alt={item.charName}
+                            className="h-14 w-10 mr-2"
+                          />
+                        )}
+                        {category === 'staff' && item.staffImgSrc && (
+                          <img
+                            src={item.staffImgSrc}
+                            alt={item.charStaffName}
+                            className="h-14 w-10 mr-2"
+                          />
+                        )}
+                        {category === 'users' && item.profileImg && (
+                          <img
+                            src={item.profileImg}
+                            alt={item.username}
+                            className="h-14 w-10 mr-2"
+                          />
+                        )}
+                        <button 
+                          onClick={() => onItemClick(category === 'movies' ? item.name :
+                            category === 'characters' ? item.charName :
+                            category === 'staff' ? item.charStaffName :
+                            category === 'users' ? item.username :
+                            item.name || item.username || item.charName || item.charStaffName)}
+                          className="text-black no-underline"
+                        >
+                          {category === 'movies' ? item.name :
+                           category === 'characters' ? item.charName :
+                           category === 'staff' ? item.charStaffName :
+                           category === 'users' ? item.username :
+                           item.name || item.username || item.charName || item.charStaffName}
+                        </button>
+                      </li>
+                    ))}
+                  </div>
+                )
+              ))}
             </div>
           )}
         </div>
