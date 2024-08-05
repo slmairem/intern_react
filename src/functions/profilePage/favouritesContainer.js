@@ -2,7 +2,6 @@ import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import movieData from '../../assets/movieData.json';
 import charData from '../../assets/characterData.json';
-import staffData from '../../assets/staffData.json';
 
 const FavoriteItem = ({ imgSrc, name, onClick }) => (
   <div
@@ -16,7 +15,7 @@ const FavoriteItem = ({ imgSrc, name, onClick }) => (
 
 const FavoritesContainer = ({ favorites = {} }) => {
   const [activeTab, setActiveTab] = useState('Movies');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const getDataByTab = useMemo(() => {
     if (!favorites) return [];
@@ -27,9 +26,9 @@ const FavoritesContainer = ({ favorites = {} }) => {
       case 'Series':
         return (favorites.series || []).map(id => movieData.find(s => s.id === id) || { id, imgSrc: 'default-image.png', name: 'Unknown' });
       case 'Characters':
-        return (favorites.characters || []).map(id => charData.find(c => c.charId === id) || { charId: id, imgSrc: 'default-image.png', charName: 'Unknown' });
+        return (favorites.characters || []).map(id => charData.find(c => c.charId === id) || { charId: id, charImgSrc: 'default-image.png', charName: 'Unknown' });
       case 'Voice Actors':
-        return (favorites.voiceActors || []).map(id => staffData.find(s => s.staffId === id) || { staffId: id, staffImgSrc: 'default-image.png', staffName: 'Unknown' });
+        return (favorites.voiceActors || []).map(id => charData.find(c => c.charStaffId === id) || { charStaffId: id, staffImgSrc: 'default-image.png', charStaffName: 'Unknown' });
       default:
         return [];
     }
@@ -58,10 +57,10 @@ const FavoritesContainer = ({ favorites = {} }) => {
       <div className="favorites-content max-h-[60vh] overflow-y-auto flex flex-col gap-4">
         {getDataByTab.length > 0 ? getDataByTab.map(item => (
           <FavoriteItem
-            key={item.id || item.charId || item.staffId}
-            imgSrc={item.imgSrc || item.staffImgSrc}
-            name={item.name || item.charName || item.staffName}
-            onClick={() => handleItemClick(item.name || item.charName || item.staffName)}
+            key={item.id || item.charId || item.charStaffId}
+            imgSrc={activeTab === 'Voice Actors' ? item.staffImgSrc : (activeTab === 'Characters' ? item.charImgSrc : item.imgSrc)}
+            name={activeTab === 'Voice Actors' ? item.charStaffName : (item.name || item.charName)}
+            onClick={() => handleItemClick(activeTab === 'Voice Actors' ? item.charStaffName : (item.name || item.charName))}
           />
         )) : (
           <p className="text-center text-gray-500">No favorites available</p>

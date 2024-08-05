@@ -150,10 +150,8 @@ function Profile() {
             handleFriendClick={handleFriendClick}
           />
 
-          <FavoritesContainer 
-            favorites={favorites} 
-            movieData={movieData} 
-            userData={userData} 
+          <FavoritesContainer
+            favorites={favorites}
             handleItemClick={handleItemClick}
           />
         </div>
