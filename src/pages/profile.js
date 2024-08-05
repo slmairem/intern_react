@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import userData from '../assets/userData.json';
-import userMovieData from '../assets/userMovieData.json';
 import movieData from '../assets/movieData.json';
 import Comment from '../functions/profilePage/comment.js';
 import MoviesSection from '../functions/profilePage/movieSection.js';
@@ -18,6 +17,8 @@ function Profile() {
   const [text, setText] = useState('Welcome to my profile!');
   const [editMode, setEditMode] = useState(false);
   const textareaRef = useRef(null);
+  const profileImageRef = useRef(null);
+  const backgroundImageRef = useRef(null);
   const [user, setUser] = useState(null);
   const [userMovies, setUserMovies] = useState([]);
   const [userSeries, setUserSeries] = useState([]);
@@ -37,44 +38,40 @@ function Profile() {
       setProfileImage(user.profileImg);
       setBackgroundImage(user.backgroundImg);
       setText(user.bioText || 'Welcome to my profile!');
-    }
 
-    const userMoviesData = userMovieData.find((data) => data.userId === parseInt(userId));
-    if (userMoviesData) {
-      const movies = movieData.filter((movie) => userMoviesData.movieData.includes(movie.id) && movie.type === 'Movies');
+      const movies = movieData.filter((movie) => user.movies.some((m) => m.id === movie.id && movie.type === 'Movies'));
       setUserMovies(movies);
 
-      const series = movieData.filter((series) => userMoviesData.movieData.includes(series.id) && series.type === 'Series');
+      const series = movieData.filter((series) => user.movies.some((s) => s.id === series.id && series.type === 'Series'));
       setUserSeries(series);
 
-      setFavorites(userMoviesData.favs || { movies: [], series: [], characters: [], voiceActors: [] });
+      setFavorites(user.favs || { movies: [], series: [], characters: [], voiceActors: [] });
+
+      const movieCounts = { completed: 0, planToWatch: 0, onHold: 0, dropped: 0 };
+      const seriesCounts = { completed: 0, watching: 0, planToWatch: 0, onHold: 0, dropped: 0 };
+
+      const statusMapping = {
+        c: 'completed',
+        ptw: 'planToWatch',
+        oh: 'onHold',
+        d: 'dropped',
+        w: 'watching'
+      };
+
+      user.movies.forEach((movie) => {
+        const type = movieData.find((m) => m.id === movie.id)?.type;
+        const countType = statusMapping[movie.status];
+
+        if (type === 'Movies' && countType) {
+          movieCounts[countType] += 1;
+        } else if (type === 'Series' && countType) {
+          seriesCounts[countType] += 1;
+        }
+      });
+
+      setMovieStatusCounts(movieCounts);
+      setSeriesStatusCounts(seriesCounts);
     }
-
-    const movieCounts = { completed: 0, planToWatch: 0, onHold: 0, dropped: 0 };
-    const seriesCounts = { completed: 0, watching: 0, planToWatch: 0, onHold: 0, dropped: 0 };
-
-    const statusMapping = {
-      c: 'completed',
-      ptw: 'planToWatch',
-      oh: 'onHold',
-      d: 'dropped',
-      w: 'watching'
-    };
-
-    userMoviesData.status.forEach((status, index) => {
-      const type = movieData.find((movie) => movie.id === userMoviesData.movieData[index])?.type;
-      const countType = statusMapping[status];
-
-      if (type === 'Movies' && countType) {
-        movieCounts[countType] += 1;
-      } else if (type === 'Series' && countType) {
-        seriesCounts[countType] += 1;
-      }
-    });
-
-    setMovieStatusCounts(movieCounts);
-    setSeriesStatusCounts(seriesCounts);
-
   }, [userId]);
 
   const totalMovies = userMovies.length;
@@ -127,6 +124,8 @@ function Profile() {
           backgroundImage={backgroundImage}
           setBackgroundImage={setBackgroundImage}
           handleImageClick={handleImageClick}
+          profileImageRef={profileImageRef}
+          backgroundImageRef={backgroundImageRef}
           handleImageChange={handleImageChange}
         />
       </div>
@@ -150,9 +149,13 @@ function Profile() {
             userData={userData}
             handleFriendClick={handleFriendClick}
           />
-          
-          <FavoritesContainer favorites={favorites} movieData={movieData} userData={userData} />
 
+          <FavoritesContainer 
+            favorites={favorites} 
+            movieData={movieData} 
+            userData={userData} 
+            handleItemClick={handleItemClick}
+          />
         </div>
 
         {/* Bottom Right */}
