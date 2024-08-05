@@ -1,29 +1,35 @@
 [
-{
-    "charId": 1,
-    "charName": "Gumball Watterson",
-    "charShow": "The Amazing World of Gumball",
-    "charStaff": "Nicolas Cantu",
-    "charFav": 123,
-    "charDesc": "Description for Char2",
-    "imgSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwnw_87Y6fn66FIiTUguhS0eGzYXIhng0KkA&s"
-},
-{
-    "charId": 2,
-    "charName": "Darwin Watterson",
-    "charShow": "The Amazing World of Gumball",
-    "charStaff": "Terrell Ransom Jr.",
-    "charFav": 123,
-    "charDesc": "Description for Char2",
-    "imgSrc": "https://assets.mycast.io/characters/darwin-watterson-276552-normal.jpg?1669272555"
-},
-{
-    "charId": 3,
-    "charName": "Joy",
-    "charShow": "Inside Out",
-    "charStaff": "Amy Poehler",
-    "charFav": 123,
-    "charDesc": "Description for Char2",
-    "imgSrc": "https://w0.peakpx.com/wallpaper/488/835/HD-wallpaper-inside-out-emotion-joy-thumbnail.jpg"
-}
+    {
+        "charId": 1,
+        "charName": "Gumball Watterson",
+        "charShow": "The Amazing World of Gumball",
+        "charStaffId": 1,
+        "charStaffName": "Nicolas Cantu",
+        "charFav": 123,
+        "charDesc": "Description for Char1",
+        "charImgSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwnw_87Y6fn66FIiTUguhS0eGzYXIhng0KkA&s",
+        "staffImgSrc": "https://m.media-amazon.com/images/M/MV5BYTI3ZTgxNTQtNTM1OC00ZjY4LWJhYjAtNDBiMTA2OTBjYTk4XkEyXkFqcGdeQXVyNjUxNDcyMzg@._V1_.jpg"
+    },
+    {
+        "charId": 2,
+        "charName": "Darwin Watterson",
+        "charShow": "The Amazing World of Gumball",
+        "charStaffId": 2,
+        "charStaffName": "Terrell Ransom Jr.",
+        "charFav": 123,
+        "charDesc": "Description for Char2",
+        "charImgSrc": "https://assets.mycast.io/characters/darwin-watterson-276552-normal.jpg?1669272555",
+        "staffImgSrc": "https://m.media-amazon.com/images/M/MV5BZmVlNDkyOGMtNjVjYi00YTE2LTkxYWUtYmQ0NjQxZjYyYjEwXkEyXkFqcGdeQXVyMTk1ODA5NTY@._V1_.jpg"
+    },
+    {
+        "charId": 3,
+        "charName": "Joy",
+        "charShow": "Inside Out",
+        "charStaffId": 3,
+        "charStaffName": "Amy Poehler",
+        "charFav": 123,
+        "charDesc": "Description for Char3",
+        "charImgSrc": "https://w0.peakpx.com/wallpaper/488/835/HD-wallpaper-inside-out-emotion-joy-thumbnail.jpg",
+        "staffImgSrc": "https://m.media-amazon.com/images/M/MV5BYjIzMDA0NmUtMTlhZi00ZDU3LTkzYWMtZDhkYTU1ZDJlMGRkXkEyXkFqcGdeQXVyNzcwODE0OTk@._V1_.jpg"
+    }
 ]

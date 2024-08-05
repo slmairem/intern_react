@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import data from '../assets/movieData.json';
 import charData from '../assets/characterData.json';
-import staffData from '../assets/staffData.json';
 import AddReviews from '../functions/detailPage/review.js';
 import Section from '../functions/detailPage/section.js';
 import DetailsContent from '../functions/detailPage/picturesItemBack.js'; 
@@ -11,7 +10,7 @@ function Details() {
   const [currentSection, setCurrentSection] = useState('Overview');
   const [showFullImage, setShowFullImage] = useState(null);
   const { name } = useParams();
-  const decodedName = decodeURIComponent(name); 
+  const decodedName = decodeURIComponent(name);
   const item = data.find(item => item.name === decodedName);
 
   useEffect(() => {
@@ -19,11 +18,7 @@ function Details() {
   }, []);
 
   useEffect(() => {
-    if (showFullImage) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = ''; 
-    }
+    document.body.style.overflow = showFullImage ? 'hidden' : ''; 
     return () => {
       document.body.style.overflow = '';
     };
@@ -34,21 +29,19 @@ function Details() {
   }
  
   // Character List
-  const charShow = charData.filter(character => character.charShow.trim() === item.name.trim())
-    .map(character => {
-      const staff = staffData.find(staff => staff.staffName.trim() === character.charStaff.trim());
-      return {
-        ...character,
-        charStaff: staff ? staff.staffName : "",
-        staffImgSrc: staff ? staff.staffImgSrc : "" 
-      };
-    });
+  const charShow = charData.filter(character => (character.charShow || '').trim() === (item.name || '').trim())
+    .map(character => ({
+      ...character,
+      charStaff: character.charStaffName, // Use charStaffName directly
+      charImgSrc: character.charImgSrc // Use staffImgSrc directly
+    }));
 
   // Staff List
-  const staffShow = staffData.filter(staff => staff.staffShow.trim() === item.name.trim())
-    .map(staff => ({
-      ...staff,
-      charName: charData.find(character => character.charStaff.trim() === staff.staffName.trim()).charName // Staff'ın karakterin VA'sı ile eşleşmesi
+  const staffShow = charData.filter(character => (character.charShow || '').trim() === (item.name || '').trim())
+    .map(character => ({
+      staffName: character.charStaffName,
+      charName: character.charName,
+      staffImgSrc: character.staffImgSrc
     }));
 
   const sections = {
@@ -88,16 +81,11 @@ function Details() {
         showFullImage={showFullImage}
         setShowFullImage={setShowFullImage}
       />
-
-
     </div>
   );
 }
 
-<Section/>
-
-{/* Reviews */}
-const Reviews = ({setCurrentSection }) => (
+const Reviews = ({ setCurrentSection }) => (
   <div className="h-full w-full mt-2 mb-4 ml-2 mr-2">
     <div className="ml-4">
       <h4 className='font-semibold mt-3 -mb-3'>Reviews</h4>

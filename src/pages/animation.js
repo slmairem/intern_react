@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import data from '../assets/movieData.json';
-import staffData from '../assets/staffData.json';
 import charData from '../assets/characterData.json';
 import FilterButton from '../functions/animationPage/filterButton.js';
 import ItemCard from '../functions/animationPage/itemCard.js';
@@ -12,12 +11,12 @@ function Animation() {
 
   let filteredData = [];
   if (filter === 'Voice Actors') {
-    filteredData = staffData.map(item => ({
-      id: item.staffId,
-      name: item.staffName,
+    filteredData = charData.map(item => ({
+      id: item.charStaffId,
+      name: item.charStaffName,
       imgSrc: item.staffImgSrc,
-      likes: item.staffFav,
-      description: item.staffDesc,
+      likes: item.charFav,
+      description: item.charDesc,
     }));
   } else if (filter === 'Movies') {
     filteredData = data.filter(item => item.type === 'Movies');
@@ -27,7 +26,7 @@ function Animation() {
     filteredData = charData.map(item => ({
       id: item.charId,
       name: item.charName,
-      imgSrc: item.imgSrc,
+      imgSrc: item.charImgSrc,
       likes: item.charFav,
       description: item.charDesc,
     }));

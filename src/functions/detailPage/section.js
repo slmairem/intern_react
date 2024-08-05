@@ -11,7 +11,7 @@ const Section = ({ title, items, setCurrentSection }) => (
         <div key={index} className="bg-gray-100 p-4 rounded flex items-center w-80 space-x-4 cursor-pointer shadow-sm">
           {title === 'Characters' && (
             <div className="flex items-center">
-              <img src={item.imgSrc} alt={item.charName} className="w-16 h-20 mr-4" />
+              <img src={item.charImgSrc} alt={item.charName} className="w-16 h-20 mr-4" />
               <div className="font-bold">{item.charName}</div>
             </div>
           )}
