@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import listsData from '../assets/listsData.json';
 import movieData from '../assets/movieData.json';
+import userData from '../assets/userData.json'; 
 
 const getMovieImages = (movieIds) => {
   return movieData
@@ -8,12 +8,21 @@ const getMovieImages = (movieIds) => {
     .map(movie => movie.imgSrc);
 };
 
-const getSortedPopularLists = () => {
-  return [...listsData].sort((a, b) => b.popularity - a.popularity);
+const extractListsFromUserData = (userData) => {
+  return userData.flatMap(user => 
+    user.publishedLists.map(list => ({
+      ...list,
+      publishUser: user.username
+    }))
+  );
 };
 
-const getSortedUserFavorites = () => {
-  return [...listsData].sort((a, b) => b.likes - a.likes);
+const getSortedPopularLists = (lists) => {
+  return [...lists].sort((a, b) => b.popularity - a.popularity);
+};
+
+const getSortedUserFavorites = (lists) => {
+  return [...lists].sort((a, b) => b.likes - a.likes);
 };
 
 const Placeholder = ({ size }) => (
@@ -73,8 +82,9 @@ function Lists() {
     window.scrollTo(0, 0);
   }, []);
 
-  const popularLists = getSortedPopularLists();
-  const userFavorites = getSortedUserFavorites();
+  const allLists = extractListsFromUserData(userData);
+  const popularLists = getSortedPopularLists(allLists);
+  const userFavorites = getSortedUserFavorites(allLists);
 
   return (
     <div className='container mx-auto p-4 font-IndieFlower'>

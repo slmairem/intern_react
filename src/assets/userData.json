@@ -1,61 +1,91 @@
 [
     {
-        "userId": 1,
-        "username": "User 1",
-        "email": " ",
-        "password": "password1",
-        "birthday": "",
-        "profileImg": "https://image.spreadshirtmedia.com/image-server/v1/products/T1459A839PA3861PT28D1035686237W8333H10000/views/1,width=550,height=550,appearanceId=839,backgroundColor=F2F2F2/alphabet-letter-i-sticker.jpg",
-        "backgroundImg": "",
-        "bioText": "",
-        "lastOnline": "12.12.2023",
-        "joined": "12.03.2015",
-        "pronouns": "She/Her",
-        "friends": ["User 2"],
-        "movies": [
-            {"id": 1, "status": "c"},
-            {"id": 2, "status": "ptw"},
-            {"id": 3, "status": "oh"},
-            {"id": 7, "status": "ptw"},
-            {"id": 10, "status": "c"}
-        ],
-        "favs": {
-            "movies": [1],
-            "series": [3, 4],
-            "characters": [2],
-            "voiceActors": [2]
+      "userId": 1,
+      "username": "User 1",
+      "email": " ",
+      "password": "password1",
+      "birthday": "",
+      "profileImg": "https://image.spreadshirtmedia.com/image-server/v1/products/T1459A839PA3861PT28D1035686237W8333H10000/views/1,width=550,height=550,appearanceId=839,backgroundColor=F2F2F2/alphabet-letter-i-sticker.jpg",
+      "backgroundImg": "",
+      "bioText": "",
+      "lastOnline": "12.12.2023",
+      "joined": "12.03.2015",
+      "pronouns": "She/Her",
+      "friends": ["User 2"],
+      "movies": [
+        {"id": 1, "status": "c"},
+        {"id": 2, "status": "ptw"},
+        {"id": 3, "status": "oh"},
+        {"id": 7, "status": "ptw"},
+        {"id": 10, "status": "c"}
+      ],
+      "favs": {
+        "movies": [1],
+        "series": [3, 4],
+        "characters": [2],
+        "voiceActors": [2]
+      },
+      "publishedLists": [
+        {
+          "listId": 1,
+          "listName": "List 1",
+          "popularity": 1234,
+          "likes": 123,
+          "description": "Description for List1",
+          "movies": [1, 2, 3, 4]
+        },
+        {
+          "listId": 3,
+          "listName": "List 3",
+          "popularity": 567,
+          "likes": 456,
+          "description": "Description for List3",
+          "movies": [5, 6, 7, 8]
         }
+      ]
     },
     {
-        "userId": 2,
-        "username": "User 2",
-        "email": " ",
-        "password": "password2",
-        "birthday": "20.12.2012",
-        "profileImg": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg",
-        "backgroundImg": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg",
-        "bioText": "",
-        "lastOnline": "13.05.2024",
-        "joined": "01.01.2024",
-        "pronouns": "He/Him",
-        "friends": ["User 1", "User 3"],
-        "movies": [],
-        "favs": []
+      "userId": 2,
+      "username": "User 2",
+      "email": " ",
+      "password": "password2",
+      "birthday": "20.12.2012",
+      "profileImg": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg",
+      "backgroundImg": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg",
+      "bioText": "",
+      "lastOnline": "13.05.2024",
+      "joined": "01.01.2024",
+      "pronouns": "He/Him",
+      "friends": ["User 1", "User 3"],
+      "movies": [],
+      "favs": [],
+      "publishedLists": [
+        {
+          "listId": 2,
+          "listName": "List 2",
+          "popularity": 124,
+          "likes": 1212,
+          "description": "Description for List 2",
+          "movies": [3, 7, 8]
+        }
+      ]
     },
     {
-        "userId": 3,
-        "username": "User 3",
-        "email": " ",
-        "password": "password3",
-        "birthday": "20.12.2012",
-        "profileImg": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg",
-        "backgroundImg": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg",
-        "bioText": "",
-        "lastOnline": "13.05.2024",
-        "joined": "01.01.2024",
-        "pronouns": "He/Him",
-        "friends": ["User 2"],
-        "movies": [],
-        "favs": []
+      "userId": 3,
+      "username": "User 3",
+      "email": " ",
+      "password": "password3",
+      "birthday": "20.12.2012",
+      "profileImg": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg",
+      "backgroundImg": "https://m.media-amazon.com/images/I/51Inoohb2tL._AC_UF1000,1000_QL80_.jpg",
+      "bioText": "",
+      "lastOnline": "13.05.2024",
+      "joined": "01.01.2024",
+      "pronouns": "He/Him",
+      "friends": ["User 2"],
+      "movies": [],
+      "favs": [],
+      "publishedLists": []
     }
-]
+  ]
+  

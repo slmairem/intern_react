@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import forumData from '../assets/forumData.json';
 import newsData from '../assets/newsData.json';
 import movieData from '../assets/movieData.json';
-import listsData from '../assets/listsData.json';
+import userData from '../assets/userData.json'; 
 import MovieSeriesSection from '../functions/homepage/movieSeriesSec';
 import NewsSection from '../functions/homepage/newsSec';
 import ForumSection from '../functions/homepage/forumSec';
@@ -54,7 +54,11 @@ function Homepage() {
     });
   };
 
-  const popularLists = listsData.sort((a, b) => b.popularity - a.popularity).slice(0, 4);
+  const lists = userData.flatMap(user => user.publishedLists.map(list => ({
+    ...list,
+    publishUser: user.username
+  })));
+  const popularLists = lists.sort((a, b) => b.popularity - a.popularity).slice(0, 4);
 
   return (
     <div className="flex flex-col items-center w-full font-IndieFlower text-lg">
@@ -92,8 +96,6 @@ function Homepage() {
           <PopularListsSection popularLists={popularLists} getMovieImages={getMovieImages} />
         </div>
       </div>
-
-  
     </div>
   );
 }
