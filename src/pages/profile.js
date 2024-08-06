@@ -2,13 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import userData from '../assets/userData.json';
 import movieData from '../assets/movieData.json';
-import Comment from '../functions/profilePage/comment.js';
-import MoviesSection from '../functions/profilePage/movieSection.js';
-import SeriesSection from '../functions/profilePage/seriesSection.js';
-import ProfileHeader from '../functions/profilePage/profileHeader.js';
-import FriendList from '../functions/profilePage/friendList.js';
-import UserInfo from '../functions/profilePage/userInfo.js';
-import FavoritesContainer from '../functions/profilePage/favouritesContainer.js';
+import Comment from '../functions/profilePage/comment';
+import MoviesSection from '../functions/profilePage/movieSection';
+import SeriesSection from '../functions/profilePage/seriesSection';
+import ProfileHeader from '../functions/profilePage/profileHeader';
+import FriendList from '../functions/profilePage/friendList';
+import UserInfo from '../functions/profilePage/userInfo';
+import FavoritesContainer from '../functions/profilePage/favouritesContainer';
+import ImageGrid from '../functions/listsPage/imageGrid';
 
 function Profile() {
   const { userId } = useParams();
@@ -25,6 +26,8 @@ function Profile() {
   const [movieStatusCounts, setMovieStatusCounts] = useState({});
   const [seriesStatusCounts, setSeriesStatusCounts] = useState({});
   const [favorites, setFavorites] = useState({ movies: [], series: [], characters: [], voiceActors: [] });
+  const [publishedLists, setPublishedLists] = useState([]);
+  const [activeTab, setActiveTab] = useState('Profile');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -71,6 +74,7 @@ function Profile() {
 
       setMovieStatusCounts(movieCounts);
       setSeriesStatusCounts(seriesCounts);
+      setPublishedLists(user.publishedLists || []);
     }
   }, [userId]);
 
@@ -111,6 +115,40 @@ function Profile() {
     navigate(`/profile/${friendId}`);
   };
 
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
+  const getMovieImages = (movieIds) => {
+    return movieData
+      .filter(movie => movieIds.includes(movie.id))
+      .map(movie => movie.imgSrc);
+  };
+
+  const renderLists = () => {
+    if (!user || !user.publishedLists) return null;
+
+    return (
+      <div className='container mx-auto font-IndieFlower'>
+        <div className="sections mb-4">
+          <div className="pageName text-2xl font-bold">Lists</div>
+        </div>
+
+        <div className='grid grid-cols-3 gap-4'>
+          {user.publishedLists.map((list) => (
+            <ImageGrid
+              key={list.listId}
+              images={getMovieImages(list.movies)}
+              listName={list.listName}
+              username={user.username}
+              likes={list.likes}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   if (!user) return <div>Loading...</div>;
 
   return (
@@ -127,12 +165,12 @@ function Profile() {
           profileImageRef={profileImageRef}
           backgroundImageRef={backgroundImageRef}
           handleImageChange={handleImageChange}
+          onTabClick={handleTabClick}
         />
       </div>
 
       {/* Bottom Section */}
       <div className='flex font-IndieFlower'>
-        {/* Details Section */}
         <div className='w-1/4 p-4'>
           <UserInfo
             user={user}
@@ -156,29 +194,36 @@ function Profile() {
           />
         </div>
 
-        {/* Bottom Right */}
         <div className='w-3/4 p-4'>
-          <div className='bg-gradient-to-br from-sky-300 to-sky-500 p-4 rounded mb-4'>
-            <MoviesSection
-              movieStatusCounts={movieStatusCounts}
-              totalMovies={totalMovies}
-              rewatchedMovies={rewatchedMovies}
-              userMovies={userMovies}
-              handleItemClick={handleItemClick}
-            />
-          </div>
+          {activeTab === 'Profile' && (
+            <>
+              <div className='bg-gradient-to-br from-sky-300 to-sky-500 p-4 rounded mb-4'>
+                <MoviesSection
+                  movieStatusCounts={movieStatusCounts}
+                  totalMovies={totalMovies}
+                  rewatchedMovies={rewatchedMovies}
+                  userMovies={userMovies}
+                  handleItemClick={handleItemClick}
+                />
+              </div>
 
-          <div className='bg-gradient-to-br from-sky-300 to-sky-500 p-4 rounded mb-4'>
-            <SeriesSection
-              seriesStatusCounts={seriesStatusCounts}
-              totalSeries={totalSeries}
-              rewatchedSeries={rewatchedSeries}
-              userSeries={userSeries}
-              handleItemClick={handleItemClick}
-            />
-          </div>
+              <div className='bg-gradient-to-br from-sky-300 to-sky-500 p-4 rounded mb-4'>
+                <SeriesSection
+                  seriesStatusCounts={seriesStatusCounts}
+                  totalSeries={totalSeries}
+                  rewatchedSeries={rewatchedSeries}
+                  userSeries={userSeries}
+                  handleItemClick={handleItemClick}
+                />
+              </div>
 
-          <Comment />
+              <Comment />
+            </>
+          )}
+
+          {activeTab === 'Lists' && renderLists()}
+          {activeTab === 'Stats' && <div>Stats Content</div>}
+          {activeTab === 'Journal' && <div>Journal Content</div>}
         </div>
       </div>
     </div>
