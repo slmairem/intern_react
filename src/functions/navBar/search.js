@@ -21,8 +21,10 @@ const Search = ({ searchOpen, searchTerm, handleInputChange, results, toggleSear
       }
     : { [selectedCategory]: results[selectedCategory] || [] };
 
-  const onItemClick = (name) => {
-    handleItemClick(name); 
+  const onItemClick = (category, name) => {
+    if (category !== 'characters' && category !== 'staff') {
+      handleItemClick(name); 
+    }
     closeSearch(); 
   };
 
@@ -71,7 +73,7 @@ const Search = ({ searchOpen, searchTerm, handleInputChange, results, toggleSear
                         : selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}
                     </h3>
                     {filteredResults[category].map(item => (
-                      <li key={item.id || item.staffId || item.charId} className="text-black flex items-center mb-2 mr-10">
+                      <li key={item.id || item.staffId || item.charId} className={`text-black flex items-center mb-2 mr-10 ${category === 'characters' || category === 'staff' ? 'cursor-pointer' : 'cursor-pointer'}`}>
                         {category === 'movies' && item.imgSrc && (
                           <img
                             src={item.imgSrc}
@@ -101,7 +103,8 @@ const Search = ({ searchOpen, searchTerm, handleInputChange, results, toggleSear
                           />
                         )}
                         <button 
-                          onClick={() => onItemClick(category === 'movies' ? item.name :
+                          onClick={() => category !== 'characters' && category !== 'staff' && onItemClick(category, 
+                            category === 'movies' ? item.name :
                             category === 'characters' ? item.charName :
                             category === 'staff' ? item.charStaffName :
                             category === 'users' ? item.username :

@@ -34,10 +34,13 @@ function Animation() {
 
   filteredData.sort((a, b) => b.likes - a.likes);
 
-  const handleItemClick = (name) => {
-    const encodedName = encodeURIComponent(name);
-    navigate(`/detail/${encodedName}`);
+  const handleItemClick = (item) => {
+    if (filter !== 'Characters' && filter !== 'Voice Actors') {
+      const encodedName = encodeURIComponent(item.name);
+      navigate(`/detail/${encodedName}`);
+    }
   };
+  
 
   return (
     <div className='container mx-auto p-4 font-IndieFlower'>

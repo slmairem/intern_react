@@ -2,18 +2,9 @@ import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import movieData from '../../assets/movieData.json';
 import charData from '../../assets/characterData.json';
+import FavouriteItem from './favouriteItem'; 
 
-const FavoriteItem = ({ imgSrc, name, onClick }) => (
-  <div
-    className="flex items-center p-4 bg-gradient-to-br from-slate-50 to-slate-200 rounded-lg mb-2 cursor-pointer hover:shadow-md"
-    onClick={onClick}
-  >
-    <img src={imgSrc || 'default-image.png'} alt={name} className="w-12 h-16 object-cover rounded mr-4" />
-    <p className="text-lg font-semibold mt-3 truncate">{name}</p>
-  </div>
-);
-
-const FavoritesContainer = ({ favorites = {} }) => {
+const FavouritesContainer = ({ favorites = {} }) => {
   const [activeTab, setActiveTab] = useState('Movies');
   const navigate = useNavigate();
 
@@ -35,8 +26,10 @@ const FavoritesContainer = ({ favorites = {} }) => {
   }, [activeTab, favorites]);
 
   const handleItemClick = (name) => {
-    const encodedName = encodeURIComponent(name);
-    navigate(`/detail/${encodedName}`);
+    if (activeTab !== 'Characters' && activeTab !== 'Voice Actors') {
+      const encodedName = encodeURIComponent(name);
+      navigate(`/detail/${encodedName}`);
+    }
   };
 
   const buttonClassName = 'relative pr-4 text-black font-bold cursor-pointer transition-all ease-in-out before:transition-[width] before:ease-in-out before:duration-400 before:absolute before:bg-white before:origin-center before:h-[2px] before:w-0 hover:before:w-[50%] before:bottom-0 before:left-[50%] after:transition-[width] after:ease-in-out after:duration-400 after:absolute after:bg-white after:origin-center after:h-[2px] after:w-0 hover:after:w-[50%] after:bottom-0 after:right-[50%]';
@@ -56,11 +49,12 @@ const FavoritesContainer = ({ favorites = {} }) => {
       </div>
       <div className="favorites-content max-h-[60vh] overflow-y-auto flex flex-col gap-4">
         {getDataByTab.length > 0 ? getDataByTab.map(item => (
-          <FavoriteItem
+          <FavouriteItem
             key={item.id || item.charId || item.charStaffId}
             imgSrc={activeTab === 'Voice Actors' ? item.staffImgSrc : (activeTab === 'Characters' ? item.charImgSrc : item.imgSrc)}
             name={activeTab === 'Voice Actors' ? item.charStaffName : (item.name || item.charName)}
             onClick={() => handleItemClick(activeTab === 'Voice Actors' ? item.charStaffName : (item.name || item.charName))}
+            isClickable={activeTab !== 'Characters' && activeTab !== 'Voice Actors'}
           />
         )) : (
           <p className="text-center text-gray-500">No favorites available</p>
@@ -70,4 +64,4 @@ const FavoritesContainer = ({ favorites = {} }) => {
   );
 };
 
-export default FavoritesContainer;
+export default FavouritesContainer;
