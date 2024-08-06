@@ -32,8 +32,8 @@ function Details() {
   const charShow = charData.filter(character => (character.charShow || '').trim() === (item.name || '').trim())
     .map(character => ({
       ...character,
-      charStaff: character.charStaffName, // Use charStaffName directly
-      charImgSrc: character.charImgSrc // Use staffImgSrc directly
+      charStaff: character.charStaffName,
+      charImgSrc: character.charImgSrc 
     }));
 
   // Staff List
@@ -49,7 +49,7 @@ function Details() {
       <>
         <Section title="Characters" items={charShow} setCurrentSection={setCurrentSection} />
         <Section title="Staff" items={staffShow} setCurrentSection={setCurrentSection} />
-        <Reviews setCurrentSection={setCurrentSection} />
+        <Reviews setCurrentSection={setCurrentSection} currentSection={currentSection} />
       </>
     ),
     Characters: (
@@ -58,7 +58,7 @@ function Details() {
     Staff: (
       <Section title="Staff" items={staffShow} setCurrentSection={setCurrentSection} />
     ),
-    Reviews: <Reviews setCurrentSection={setCurrentSection} />,
+    Reviews: <Reviews setCurrentSection={setCurrentSection} currentSection={currentSection} />,
     Stats: <Stats />,
     Social: <Social />
   };
@@ -85,22 +85,24 @@ function Details() {
   );
 }
 
-const Reviews = ({ setCurrentSection }) => (
+const Reviews = ({ setCurrentSection, currentSection }) => (
   <div className="h-full w-full mt-2 mb-4 ml-2 mr-2">
     <div className="ml-4">
       <h4 className='font-semibold mt-3 -mb-3'>Reviews</h4>
     </div>
     <br />
     <AddReviews />
-    <div className="ml-4 text-right mt-2">
-      <a 
-        href="#" 
-        className="text-blue-500 no-underline cursor-pointer pt-2 font-semibold hover:text-blue-900"
-        onClick={() => setCurrentSection('Reviews')}
-      >
-        View More...
-      </a>
-    </div>
+    {currentSection === 'Overview' && (
+      <div className="ml-4 text-right mt-2">
+        <a 
+          href="#" 
+          className="text-blue-500 no-underline cursor-pointer pt-2 font-semibold hover:text-blue-900"
+          onClick={() => setCurrentSection('Reviews')}
+        >
+          View More...
+        </a>
+      </div>
+    )}
   </div>
 );
 
