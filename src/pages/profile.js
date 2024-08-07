@@ -1,3 +1,4 @@
+// profile.js
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import userData from '../assets/userData.json';
@@ -8,8 +9,9 @@ import SeriesSection from '../functions/profilePage/seriesSection';
 import ProfileHeader from '../functions/profilePage/profileHeader';
 import FriendList from '../functions/profilePage/friendList';
 import UserInfo from '../functions/profilePage/userInfo';
-import FavoritesContainer from '../functions/profilePage/favouritesContainer';
+import FavouritesContainer from '../functions/profilePage/favouritesContainer';
 import ImageGrid from '../functions/listsPage/imageGrid';
+import BarChart from '../functions/profilePage/chartScore';
 
 function Profile() {
   const { userId } = useParams();
@@ -28,6 +30,7 @@ function Profile() {
   const [favorites, setFavorites] = useState({ movies: [], series: [], characters: [], voiceActors: [] });
   const [publishedLists, setPublishedLists] = useState([]);
   const [activeTab, setActiveTab] = useState('Profile');
+  const [scoreDistribution, setScoreDistribution] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -75,6 +78,20 @@ function Profile() {
       setMovieStatusCounts(movieCounts);
       setSeriesStatusCounts(seriesCounts);
       setPublishedLists(user.publishedLists || []);
+
+      const scoreDist = Array(5).fill(0);
+      user.movies.forEach((movie) => {
+        if (movie.score > 0) {
+          scoreDist[movie.score - 1] += 1;
+        }
+      });
+
+      setScoreDistribution(
+        scoreDist.map((count, index) => ({
+          label: (index + 1).toString(),
+          value: count * 50 
+        }))
+      );
     }
   }, [userId]);
 
@@ -119,6 +136,7 @@ function Profile() {
     setActiveTab(tab);
   };
 
+  // Lists
   const getMovieImages = (movieIds) => {
     return movieData
       .filter(movie => movieIds.includes(movie.id))
@@ -188,7 +206,7 @@ function Profile() {
             handleFriendClick={handleFriendClick}
           />
 
-          <FavoritesContainer
+          <FavouritesContainer
             favorites={favorites}
             handleItemClick={handleItemClick}
           />
@@ -222,7 +240,16 @@ function Profile() {
           )}
 
           {activeTab === 'Lists' && renderLists()}
-          {activeTab === 'Stats' && <div>Stats Content</div>}
+          {activeTab === 'Stats' && (
+            <div>
+              <div className='container mx-auto font-IndieFlower'>
+                <div className="sections mb-4">
+                  <div className="pageName text-2xl font-bold">Score Distribution</div>
+                </div>
+                <BarChart data={scoreDistribution} />
+              </div>
+            </div>
+          )}
           {activeTab === 'Journal' && <div>Journal Content</div>}
         </div>
       </div>
