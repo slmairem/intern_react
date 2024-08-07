@@ -13,11 +13,11 @@
       "pronouns": "She/Her",
       "friends": ["User 2"],
       "movies": [
-        {"id": 1, "status": "c", "score": 5},
-        {"id": 2, "status": "ptw", "score": 0},
-        {"id": 3, "status": "oh", "score": 4},
-        {"id": 7, "status": "ptw", "score": 0},
-        {"id": 10, "status": "c", "score": 2}
+        {"id": 1, "status": "c", "score": 5, "date": "12.01.2024"},
+        {"id": 2, "status": "ptw", "score": 0, "date": "10.03.2023"},
+        {"id": 3, "status": "oh", "score": 4, "date": "06.05.2016"},
+        {"id": 7, "status": "ptw", "score": 0, "date": "04.10.2019"},
+        {"id": 10, "status": "c", "score": 2, "date": "12.01.2017"}
       ],
       "favs": {
         "movies": [1],

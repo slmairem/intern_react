@@ -1,3 +1,4 @@
+// profile.js
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import userData from '../assets/userData.json';
@@ -12,6 +13,7 @@ import FavouritesContainer from '../functions/profilePage/favouritesContainer';
 import ImageGrid from '../functions/listsPage/imageGrid';
 import BarChart from '../functions/profilePage/chartScore';
 import MoviesWithSelectedScore from './scoreMovieList';
+import Journal from './journal'; 
 
 function Profile() {
   const { userId } = useParams();
@@ -33,6 +35,7 @@ function Profile() {
   const [scoreDistribution, setScoreDistribution] = useState([]);
   const [selectedMovies, setSelectedMovies] = useState([]);
   const [selectedType, setSelectedType] = useState('Movies');
+  const [journalEntries, setJournalEntries] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -81,6 +84,7 @@ function Profile() {
       setSeriesStatusCounts(seriesCounts);
       setPublishedLists(user.publishedLists || []);
 
+      // Score Distribution
       const scoreDist = Array(5).fill(0);
       user.movies.forEach((movie) => {
         if (movie.score > 0) {
@@ -94,9 +98,26 @@ function Profile() {
           value: count * 50
         }))
       );
+
+      // Journal Section
+      const sortedEntries = user.movies
+        .map((entry) => {
+          const movie = movieData.find((movie) => movie.id === entry.id);
+          return {
+            date: new Date(entry.date),
+            imgSrc: movie?.imgSrc,
+            name: movie?.name,
+            score: entry.score,
+            status: statusMapping[entry.status] || 'Unknown'  
+          };
+        })
+        .sort((a, b) => b.date - a.date);
+
+      setJournalEntries(sortedEntries);
     }
   }, [userId]);
 
+  // Stats Rate Bar
   const handleBarClick = (score) => {
     const moviesWithScore = movieData.filter((movie) => user.movies.some((m) => m.id === movie.id && m.score === score));
     const selectedType = moviesWithScore.length > 0 ? moviesWithScore[0].type : 'Movies'; 
@@ -112,13 +133,14 @@ function Profile() {
   const rewatchedMovies = userMovies.filter((movie) => movie.rewatched).length;
   const rewatchedSeries = userSeries.filter((series) => series.rewatched).length;
 
-  const handleImageClick = (ref) => {
-    ref.current.click();
-  };
-
   const handleItemClick = (name) => {
     const encodedName = encodeURIComponent(name);
     navigate(`/detail/${encodedName}`);
+  };
+
+  // Image Change
+  const handleImageClick = (ref) => {
+    ref.current.click();
   };
 
   const handleImageChange = (event, setImage) => {
@@ -272,7 +294,23 @@ function Profile() {
             </div>
           )}
 
-          {activeTab === 'Journal' && <div>Journal Content</div>}
+          {activeTab === 'Journal' && (
+            <div className='container mx-auto font-IndieFlower'>
+              <div className="sections mb-4">
+                <div className="pageName text-2xl font-bold">Journal</div>
+              </div>
+              {journalEntries.map((entry, index) => (
+                <Journal
+                  key={index}
+                  date={entry.date.toLocaleDateString()}
+                  image={entry.imgSrc}
+                  name={entry.name}
+                  score={entry.score}
+                  status={entry.status} 
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
