@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import Star from './star'; 
 
 const statusMapping = {
@@ -33,11 +34,17 @@ const generateStars = (score) => {
   ));
 };
 
-const Journal = ({ date, image, name, score, status }) => {
+const Journal = ({ date, image, name, score, status, movieId }) => {
+  const navigate = useNavigate();
+
+  const handleMovieClick = () => {
+    navigate(`/detail/${encodeURIComponent(name)}`); 
+  };
+
   return (
     <div className='mb-4'>
       <h2 className='text-xl font-bold mb-2'>{date}</h2>
-      <div className='flex items-center bg-gradient-to-br from-sky-300 to-sky-500 rounded p-3'>
+      <div className='flex items-center bg-gradient-to-br from-sky-300 to-sky-500 rounded p-3 cursor-pointer' onClick={handleMovieClick}>
         <div className={`w-3 h-3 rounded-full ${getStatusColor(status)} mr-4`} />
         <img src={image} alt={name} className='w-14 h-20 object-cover mr-4 rounded' />
         <div>

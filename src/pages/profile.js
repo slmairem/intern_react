@@ -12,8 +12,8 @@ import UserInfo from '../functions/profilePage/userInfo';
 import FavouritesContainer from '../functions/profilePage/favouritesContainer';
 import ImageGrid from '../functions/listsPage/imageGrid';
 import BarChart from '../functions/profilePage/chartScore';
-import MoviesWithSelectedScore from './scoreMovieList';
-import Journal from './journal'; 
+import MoviesWithSelectedScore from '../functions/profilePage/scoreMovieList';
+import Journal from '../functions/profilePage/journal'; 
 
 function Profile() {
   const { userId } = useParams();
