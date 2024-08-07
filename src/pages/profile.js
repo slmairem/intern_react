@@ -11,7 +11,7 @@ import UserInfo from '../functions/profilePage/userInfo';
 import FavouritesContainer from '../functions/profilePage/favouritesContainer';
 import ImageGrid from '../functions/listsPage/imageGrid';
 import BarChart from '../functions/profilePage/chartScore';
-import MoviesWithSelectedScore from './scoreMovieList'
+import MoviesWithSelectedScore from './scoreMovieList';
 
 function Profile() {
   const { userId } = useParams();
@@ -31,7 +31,8 @@ function Profile() {
   const [publishedLists, setPublishedLists] = useState([]);
   const [activeTab, setActiveTab] = useState('Profile');
   const [scoreDistribution, setScoreDistribution] = useState([]);
-  const [selectedMovies, setSelectedMovies] = useState([]); // Filmleri göstermek için ekledik
+  const [selectedMovies, setSelectedMovies] = useState([]);
+  const [selectedType, setSelectedType] = useState('Movies');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -101,16 +102,10 @@ function Profile() {
     const selectedType = moviesWithScore.length > 0 ? moviesWithScore[0].type : 'Movies'; 
     setSelectedMovies(moviesWithScore);
     setSelectedType(selectedType);
+    setSelectedScore(score); 
   };
-  
-  const [selectedType, setSelectedType] = useState('Movies');
-  
-  <MoviesWithSelectedScore
-    selectedMovies={selectedMovies}
-    user={user}
-    selectedType={selectedType}
-  />
-  
+
+  const [selectedScore, setSelectedScore] = useState(0); 
 
   const totalMovies = userMovies.length;
   const totalSeries = userSeries.length;
@@ -251,6 +246,7 @@ function Profile() {
                   handleItemClick={handleItemClick}
                 />
               </div>
+              <Comment />
             </>
           )}
 
@@ -270,11 +266,11 @@ function Profile() {
                   selectedMovies={selectedMovies}
                   user={user}
                   selectedType={selectedType}
+                  selectedScore={selectedScore} 
                 />
               </div>
             </div>
           )}
-
 
           {activeTab === 'Journal' && <div>Journal Content</div>}
         </div>

@@ -7,15 +7,14 @@ const BarChart = ({ data, onBarClick }) => {
         <div
           key={item.label}
           className="relative flex flex-col items-center"
-          onClick={() => onBarClick(Number(item.label))}
-          style={{ cursor: 'pointer' }}
         >
           <div
             className="bg-blue-500 hover:bg-blue-700 rounded-lg mr-2"
-            style={{ height: `${item.value}px`, width: '24px', transition: 'height 0.3s' }}
+            onClick={() => onBarClick(Number(item.label))}
+            style={{ cursor: 'pointer', height: `${item.value}px`, width: '36px', transition: 'height 0.3s' }}
           >
           </div>
-          <span className="mt-1 text-gray-700 text-md">{item.label}</span>
+          <span className="mt-1 text-gray-700 text-lg font-bold">{item.label}</span>
         </div>
       ))}
     </div>
