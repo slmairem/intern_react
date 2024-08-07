@@ -1,4 +1,3 @@
-// profile.js
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import userData from '../assets/userData.json';
@@ -12,6 +11,7 @@ import UserInfo from '../functions/profilePage/userInfo';
 import FavouritesContainer from '../functions/profilePage/favouritesContainer';
 import ImageGrid from '../functions/listsPage/imageGrid';
 import BarChart from '../functions/profilePage/chartScore';
+import MoviesWithSelectedScore from './scoreMovieList'
 
 function Profile() {
   const { userId } = useParams();
@@ -31,6 +31,7 @@ function Profile() {
   const [publishedLists, setPublishedLists] = useState([]);
   const [activeTab, setActiveTab] = useState('Profile');
   const [scoreDistribution, setScoreDistribution] = useState([]);
+  const [selectedMovies, setSelectedMovies] = useState([]); // Filmleri göstermek için ekledik
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -89,11 +90,27 @@ function Profile() {
       setScoreDistribution(
         scoreDist.map((count, index) => ({
           label: (index + 1).toString(),
-          value: count * 50 
+          value: count * 50
         }))
       );
     }
   }, [userId]);
+
+  const handleBarClick = (score) => {
+    const moviesWithScore = movieData.filter((movie) => user.movies.some((m) => m.id === movie.id && m.score === score));
+    const selectedType = moviesWithScore.length > 0 ? moviesWithScore[0].type : 'Movies'; 
+    setSelectedMovies(moviesWithScore);
+    setSelectedType(selectedType);
+  };
+  
+  const [selectedType, setSelectedType] = useState('Movies');
+  
+  <MoviesWithSelectedScore
+    selectedMovies={selectedMovies}
+    user={user}
+    selectedType={selectedType}
+  />
+  
 
   const totalMovies = userMovies.length;
   const totalSeries = userSeries.length;
@@ -234,22 +251,31 @@ function Profile() {
                   handleItemClick={handleItemClick}
                 />
               </div>
-
-              <Comment />
             </>
           )}
 
           {activeTab === 'Lists' && renderLists()}
+
           {activeTab === 'Stats' && (
             <div>
               <div className='container mx-auto font-IndieFlower'>
                 <div className="sections mb-4">
                   <div className="pageName text-2xl font-bold">Score Distribution</div>
                 </div>
-                <BarChart data={scoreDistribution} />
+                <BarChart
+                  data={scoreDistribution}
+                  onBarClick={handleBarClick}
+                />
+                <MoviesWithSelectedScore
+                  selectedMovies={selectedMovies}
+                  user={user}
+                  selectedType={selectedType}
+                />
               </div>
             </div>
           )}
+
+
           {activeTab === 'Journal' && <div>Journal Content</div>}
         </div>
       </div>
