@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import data from '../assets/movieData.json';
-import charData from '../assets/characterData.json';
+import data from '../assets/data.json';
 import FilterButton from '../functions/animationPage/filterButton.js';
 import ItemCard from '../functions/animationPage/itemCard.js';
 
@@ -13,25 +12,62 @@ function Animation() {
   const navigate = useNavigate();
 
   let filteredData = [];
+
   if (filter === 'Voice Actors') {
-    filteredData = charData.map(item => ({
-      id: item.charStaffId,
-      name: item.charStaffName,
-      imgSrc: item.staffImgSrc,
-      likes: item.charFav,
-      description: item.charDesc,
-    }));
-  } else if (filter === 'Movies') {
-    filteredData = data.filter(item => item.type === 'Movies');
-  } else if (filter === 'Series') {
-    filteredData = data.filter(item => item.type === 'Series');
+    filteredData = data.Movies.flatMap(movie => 
+      movie.characters.map(character => ({
+        id: character.charStaffId,
+        name: character.charStaffName,
+        imgSrc: character.staffImgSrc,
+        likes: character.charFav,
+        description: character.charDesc,
+      }))
+    ).concat(
+      data.Series.flatMap(series => 
+        series.characters.map(character => ({
+          id: character.charStaffId,
+          name: character.charStaffName,
+          imgSrc: character.staffImgSrc,
+          likes: character.charFav,
+          description: character.charDesc,
+        }))
+      )
+    );
   } else if (filter === 'Characters') {
-    filteredData = charData.map(item => ({
-      id: item.charId,
-      name: item.charName,
-      imgSrc: item.charImgSrc,
-      likes: item.charFav,
-      description: item.charDesc,
+    filteredData = data.Movies.flatMap(movie => 
+      movie.characters.map(character => ({
+        id: character.charId,
+        name: character.charName,
+        imgSrc: character.charImgSrc,
+        likes: character.charFav,
+        description: character.charDesc,
+      }))
+    ).concat(
+      data.Series.flatMap(series => 
+        series.characters.map(character => ({
+          id: character.charId,
+          name: character.charName,
+          imgSrc: character.charImgSrc,
+          likes: character.charFav,
+          description: character.charDesc,
+        }))
+      )
+    );
+  } else if (filter === 'Movies') {
+    filteredData = data.Movies.map(movie => ({
+      id: movie.id,
+      name: movie.name,
+      imgSrc: movie.imgSrc,
+      likes: movie.likes,
+      description: movie.description,
+    }));
+  } else if (filter === 'Series') {
+    filteredData = data.Series.map(series => ({
+      id: series.id,
+      name: series.name,
+      imgSrc: series.imgSrc,
+      likes: series.likes,
+      description: series.description,
     }));
   }
 
