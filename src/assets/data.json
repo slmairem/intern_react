@@ -1,0 +1,166 @@
+{
+    "Movies": [
+      {
+        "id": 1,
+        "name": "Inside Out",
+        "likes": 123,
+        "description": "After young Riley is uprooted from her Midwest life and moved to San Francisco, her emotions - Joy, Fear, Anger, Disgust and Sadness - conflict on how best to navigate a new city, house, and school.",
+        "duration": "1h 35m",
+        "genres": "Comedy, Adventure",
+        "year": "2015",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BOTgxMDQwMDk0OF5BMl5BanBnXkFtZTgwNjU5OTg2NDE@._V1_.jpg",
+        "characters": [
+          {
+            "charId": 3,
+            "charName": "Joy",
+            "charStaffId": 3,
+            "charStaffName": "Amy Poehler",
+            "charFav": 123,
+            "charDesc": "Description for Char3",
+            "charImgSrc": "https://w0.peakpx.com/wallpaper/488/835/HD-wallpaper-inside-out-emotion-joy-thumbnail.jpg",
+            "staffImgSrc": "https://m.media-amazon.com/images/M/MV5BYjIzMDA0NmUtMTlhZi00ZDU3LTkzYWMtZDhkYTU1ZDJlMGRkXkEyXkFqcGdeQXVyNzcwODE0OTk@._V1_.jpg"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Shrek",
+        "likes": 123,
+        "description": "A mean lord exiles fairytale creatures to the swamp of a grumpy ogre, who must go on a quest and rescue a princess for the lord in order to get his land back.",
+        "duration": "1h 30m",
+        "genres": "Comedy, Adventure",
+        "year": "2001",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BOGZhM2FhNTItODAzNi00YjA0LWEyN2UtNjJlYWQzYzU1MDg5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg",
+        "characters": []
+      },
+      {
+        "id": 3,
+        "name": "The Lion King",
+        "likes": 123,
+        "description": "Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself.",
+        "duration": "1h 28m",
+        "genres": "Adventure, Drama",
+        "year": "1994",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BYTYxNGMyZTYtMjE3MS00MzNjLWFjNmYtMDk3N2FmM2JiM2M1XkEyXkFqcGdeQXVyNjY5NDU4NzI@._V1_FMjpg_UX1000_.jpg",
+        "characters": []
+      },
+      {
+        "id": 4,
+        "name": "The Boy and the Heron",
+        "likes": 123,
+        "description": "In the wake of his mother's death and his father's remarriage, a headstrong boy named Mahito ventures into a dreamlike world shared by both the living and the dead.",
+        "duration": "2h 4m",
+        "genres": "Adventure, Drama",
+        "year": "2023",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BZjZkNThjNTMtOGU0Ni00ZDliLThmNGUtZmMxNWQ3YzAxZTQ1XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_FMjpg_UX1000_.jpg",
+        "characters": []
+      },
+      {
+        "id": 5,
+        "name": "Despicable Me",
+        "likes": 123,
+        "description": "Gru, a criminal mastermind, adopts three orphans as pawns to carry out the biggest heist in history. His life takes an unexpected turn when the little girls see the evildoer as their potential father.",
+        "duration": "1h 35m",
+        "genres": "Comedy, Adventure",
+        "year": "2010",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BMTY3NjY0MTQ0Nl5BMl5BanBnXkFtZTcwMzQ2MTc0Mw@@._V1_.jpg",
+        "characters": []
+      }
+    ],
+    "Series": [
+      {
+        "id": 6,
+        "name": "SpongeBob SquarePants",
+        "likes": 200,
+        "description": "The misadventures of a talking sea sponge who works at a fast food restaurant, attends a boating school, and lives in an underwater pineapple.",
+        "episodes": "320ep",
+        "duration": "23m",
+        "genres": "Comedy, Family",
+        "year": "1999-",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BNTk2NzEyNTQtZTQ5MS00MjAyLTgzMDMtNDNkYTBkM2M2OTU3XkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_FMjpg_UX1000_.jpg",
+        "characters": []
+      },
+      {
+        "id": 7,
+        "name": "Hazbin Hotel",
+        "likes": 123,
+        "description": "In an attempt to find a non-violent alternative for reducing Hell's overpopulation, the daughter of Lucifer opens a rehabilitation hotel that offers a group of misfit demons a chance at redemption.",
+        "episodes": "8ep",
+        "duration": "32m",
+        "genres": "Comedy, Crime",
+        "year": "2019-",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BYzNkMzc5OTYtNDk2MS00NGI0LThjZGYtYjdmNWI4OTExZWFjXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg",
+        "characters": []
+      },
+      {
+        "id": 8,
+        "name": "Gravity Falls",
+        "likes": 123,
+        "description": "Twin siblings Dipper and Mabel Pines spend the summer at their great-uncle's tourist trap in the enigmatic Gravity Falls, Oregon.",
+        "episodes": "S1-20ep, S2-21ep",
+        "duration": "23m",
+        "genres": "Adventure, Comedy",
+        "year": "2012–2016",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BMTEzNDc3MDQ2NzNeQTJeQWpwZ15BbWU4MDYzMzUwMDIx._V1_FMjpg_UX1000_.jpg",
+        "characters": []
+      },
+      {
+        "id": 9,
+        "name": "Regular Show",
+        "likes": 123,
+        "description": "The surreal misadventures of two best friends - a blue jay and a raccoon - as they seek to liven up their mundane jobs as groundskeepers at the local park.",
+        "episodes": "244ep",
+        "duration": "23m",
+        "genres": "Action, Adventure",
+        "year": "2010-2017",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BNWJjZjQ5NWUtMTkwZC00NGY2LWEyMDEtMGIyZThkMmMyZTZlXkEyXkFqcGdeQXVyMTI2MzY3NTA3._V1_.jpg",
+        "characters": []
+      },
+      {
+        "id": 10,
+        "name": "Miraculous: Tales of Ladybug & Cat Noir",
+        "likes": 123,
+        "description": "Marinette and Adrien, two normal teens, transform into the superheroes Ladybug and Cat Noir when a mysterious evil threatens to destroy Paris.",
+        "episodes": "140ep",
+        "duration": "20m",
+        "genres": "Action, Adventure",
+        "year": "2015-",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BZWExMThlOTUtYTA4ZC00NmEzLWE0NDktNmNjZGE3MDdkOTRhXkEyXkFqcGdeQXVyOTE4NzcwNzI@._V1_FMjpg_UX1000_.jpg",
+        "characters": []
+      },
+      {
+        "id": 11,
+        "name": "The Amazing World of Gumball",
+        "likes": 123,
+        "description": "The life of a twelve-year-old boy who happens to be a blue cat as he lives with his family and other strange creatures.",
+        "episodes": "261ep",
+        "duration": "11m",
+        "genres": "Short, Adventure",
+        "year": "2011-2019",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BYWU1YTA4OGUtNjcxMC00ZTllLTgxYWUtY2U5NmViZTU0MmNjXkEyXkFqcGdeQXVyMTM0NTUzNDIy._V1_.jpg",
+        "characters": [
+          {
+            "charId": 1,
+            "charName": "Gumball Watterson",
+            "charStaffId": 1,
+            "charStaffName": "Nicolas Cantu",
+            "charFav": 123,
+            "charDesc": "Description for Char1",
+            "charImgSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwnw_87Y6fn66FIiTUguhS0eGzYXIhng0KkA&s",
+            "staffImgSrc": "https://m.media-amazon.com/images/M/MV5BYTI3ZTgxNTQtNTM1OC00ZjY4LWJhYjAtNDBiMTA2OTBjYTk4XkEyXkFqcGdeQXVyNjUxNDcyMzg@._V1_.jpg"
+          },
+          {
+            "charId": 2,
+            "charName": "Darwin Watterson",
+            "charStaffId": 2,
+            "charStaffName": "Terrell Ransom Jr.",
+            "charFav": 123,
+            "charDesc": "Description for Char2",
+            "charImgSrc": "https://assets.mycast.io/characters/darwin-watterson-276552-normal.jpg?1669272555",
+            "staffImgSrc": "https://m.media-amazon.com/images/M/MV5BZmVlNDkyOGMtNjVjYi00YTE2LTkxYWUtYmQ0NjQxZjYyYjEwXkEyXkFqcGdeQXVyMTk1ODA5NTY@._V1_.jpg"
+          }
+        ]
+      }
+    ]
+  }
+  
