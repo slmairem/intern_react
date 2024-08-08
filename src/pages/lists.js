@@ -82,10 +82,10 @@ function Lists() {
               <div key={list.listId} className="flex flex-col items-start p-4 rounded-lg border shadow-md hover:shadow-lg mb-4 cursor-pointer">
                 <div className="flex flex-shrink-0 -space-x-4 mb-4">
                   {images.map((src, index) => (
-                    <img key={index} className="w-16 h-24 border-1 shadow-lg" src={src} alt="" />
+                    <img key={index} className="w-16 h-24 rounded border-1 shadow-lg" src={src} alt="" />
                   ))}
                   {Array.from({ length: placeholderCount }).map((_, index) => (
-                    <Placeholder key={index} size="w-16 h-24" />
+                    <Placeholder key={index} size="w-16 h-24 rounded" />
                   ))}
                 </div>
                 <div className="w-full overflow-hidden">

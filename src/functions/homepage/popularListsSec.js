@@ -10,9 +10,9 @@ const PopularListsSection = ({ popularLists, getMovieImages }) => (
 
       return (
         <div key={list.listId} className="flex flex-col items-start p-4 rounded-lg border shadow-md mb-2 cursor-pointer hover:shadow-lg">
-          <div className="flex flex-shrink-0 -space-x-4 mb-4">
+          <div className="flex flex-shrink-0 -space-x-4 mb-4 overflow-hidden">
             {images.map((src, index) => (
-              <img key={index} className="w-16 h-24 border-1 shadow-lg" src={src} alt="" />
+              <img key={index} className="w-16 h-24 border-1 shadow-lg object-cover" src={src} alt="" />
             ))}
             {Array.from({ length: placeholderCount }).map((_, index) => (
               <Placeholder key={index} size="w-16 h-24" />
@@ -35,7 +35,7 @@ const PopularListsSection = ({ popularLists, getMovieImages }) => (
 );
 
 const Placeholder = ({ size }) => (
-  <div className={`${size} bg-gray-200 dark:bg-gray-700 border-1 shadow-lg`}></div>
+  <div className={`${size} bg-gray-300 border border-gray-400 shadow-lg`}></div>
 );
 
 export default PopularListsSection;
