@@ -10,7 +10,7 @@ const Dropdown = forwardRef(({ onStatusChange }, ref) => {
   const handleStatusChange = (status) => {
     setSelectedStatus(status);
     setIsOpen(false);
-    onStatusChange(true);
+    onStatusChange(status); 
   };
 
   useEffect(() => {

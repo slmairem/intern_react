@@ -1,34 +1,48 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { FaHeart, FaTimes } from 'react-icons/fa';
 import Rating from './rating.js';
 import Dropdown from './dropdown.js'; 
+import Notification from './notification.js';
 
 const Buttons = () => {
   const [isHeartActive, setIsHeartActive] = useState(false);
   const [isDropdownChanged, setIsDropdownChanged] = useState(false);
+  const [notification, setNotification] = useState(null);
+  const [wasHeartActive, setWasHeartActive] = useState(false); 
 
   const handleHeartClick = () => {
-    setIsHeartActive(!isHeartActive);
+    if (isHeartActive) {
+      showNotification('Favourites Removed!');
+    } else {
+      showNotification('Favourites Added!');
+    }
+    
+    setWasHeartActive(isHeartActive); 
+    setIsHeartActive(!isHeartActive); 
   };
 
-  const handleStatusChange = (statusChanged) => {
-    setIsDropdownChanged(statusChanged);
+  const handleStatusChange = (status) => {
+    setIsDropdownChanged(true);
+    showNotification(`Added as ${status}`);
   };
 
   const handleResetClick = () => {
-    setIsHeartActive(false);
     setIsDropdownChanged(false);
     resetDropdown();
+    showNotification('Watching Activity Resets!');
   };
 
   const resetDropdown = () => {
- 
     if (dropdownRef.current) {
-      dropdownRef.current.resetStatus(); 
+      dropdownRef.current.resetStatus();
     }
   };
 
   const dropdownRef = useRef(null);
+
+  const showNotification = (message) => {
+    setNotification(message);
+  };
 
   return (
     <div className="flex flex-col items-center space-y-4">
@@ -51,7 +65,7 @@ const Buttons = () => {
         <Rating />
       </div>
 
-      {(isHeartActive || isDropdownChanged) && (
+      {isDropdownChanged && (
         <div>
           <button
             onClick={handleResetClick}
@@ -63,6 +77,13 @@ const Buttons = () => {
             </span>
           </button>
         </div>
+      )}
+
+      {notification && (
+        <Notification
+          message={notification}
+          onClose={() => setNotification(null)}
+        />
       )}
     </div>
   );
