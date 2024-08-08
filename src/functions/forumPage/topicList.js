@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TopicList = ({ topics, getFormattedDate, currentPage, totalPages, setCurrentPage }) => {
+const TopicList = ({ topics, getFormattedDate, currentPage, totalPages, setCurrentPage, handleTagClick }) => {
   return (
     <div className="bottom-right w-3/4 pl-4">
       {topics.length > 0 ? (
@@ -12,7 +12,11 @@ const TopicList = ({ topics, getFormattedDate, currentPage, totalPages, setCurre
               <div className="text-lg font-semibold">{forum.forumName}</div>
               <div className="mt-2 tags flex flex-wrap space-x-2 rounded">
                 {forum.tags.map((tag, index) => (
-                  <span key={index} className="bg-gray-300 px-2 py-1 rounded text-sm hover:text-stone-100 hover:bg-gray-400">
+                  <span
+                    key={index}
+                    onClick={() => handleTagClick(tag)}
+                    className="bg-gray-300 px-2 py-1 rounded text-sm hover:text-stone-100 hover:bg-gray-400 cursor-pointer"
+                  >
                     {tag}
                   </span>
                 ))}

@@ -65,6 +65,11 @@ function Forum() {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
+  const handleTagClick = (tag) => {
+    setFilter(tag);
+    setCurrentPage(1);
+  };
+
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -110,20 +115,21 @@ function Forum() {
       </div>
 
       <div className="bottom flex text-lg">
-        <div className="bottom-left w-1/4 pr-4">
-          <div className="topics">
-            {['All', 'Movies', 'Series', 'Voice Actors', 'Events'].map(tag => (
-              <div className="navBut mx-2 mt-2" key={tag}>
-                <button
-                  onClick={() => setFilter(tag)}
-                  className="relative text-black cursor-pointer transition-all ease-in-out before:transition-[width] before:ease-in-out before:duration-700 before:absolute before:bg-gray-400 before:origin-center before:h-[2px] before:w-0 hover:before:w-[50%] before:bottom-0 before:left-[50%] after:transition-[width] after:ease-in-out after:duration-700 after:absolute after:bg-gray-400 after:origin-center after:h-[2px] after:w-0 hover:after:w-[50%] after:bottom-0 after:right-[50%]"
-                >
-                  {tag}
-                </button>
-              </div>
-            ))}
-          </div>
+      <div className="bottom-left w-1/4 pr-4">
+        <div className="topics">
+          {['All', 'Movies', 'Series', 'Voice Actors', 'Events'].map(tag => (
+            <div className="navBut mx-2 mt-2" key={tag}>
+              <button
+                onClick={() => handleTagClick(tag)}
+                className={`relative text-black cursor-pointer transition-all ease-in-out before:transition-[width] before:ease-in-out before:duration-700 before:absolute before:bg-gray-400 before:origin-center before:h-[2px] before:w-0 hover:before:w-[50%] before:bottom-0 before:left-[50%] after:transition-[width] after:ease-in-out after:duration-700 after:absolute after:bg-gray-400 after:origin-center after:h-[2px] after:w-0 hover:after:w-[50%] after:bottom-0 after:right-[50%] ${filter === tag ? 'before:w-[50%] after:w-[50%]' : ''}`}
+              >
+                {tag}
+              </button>
+            </div>
+          ))}
         </div>
+      </div>
+
 
         <TopicList
           topics={currentTopics}
@@ -131,6 +137,7 @@ function Forum() {
           currentPage={currentPage}
           totalPages={totalPages}
           setCurrentPage={setCurrentPage}
+          handleTagClick={handleTagClick}
         />
       </div>
 
