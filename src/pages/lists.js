@@ -29,10 +29,6 @@ const getSortedUserFavorites = (lists) => {
 };
 
 function Lists() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const allLists = extractListsFromUserData(userData);
   const popularLists = getSortedPopularLists(allLists);
   const userFavorites = getSortedUserFavorites(allLists);

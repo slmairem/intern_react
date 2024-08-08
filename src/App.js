@@ -9,14 +9,27 @@ import Forum from './pages/forum';
 import News from './pages/news';
 import Animation from './pages/animation';
 import Profile from './pages/profile';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import TransitionWrapper from './transitionWrapper';
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar />
-        <Routes>
+        <AppContent />
+      </Router>
+    </div>
+  );
+}
+
+function AppContent() {
+  const location = useLocation(); // useLocation is now within Router context
+
+  return (
+    <>
+      <Navbar />
+      <TransitionWrapper location={location}>
+        <Routes location={location}>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
@@ -27,8 +40,8 @@ function App() {
           <Route path="/animation" element={<Animation />} />
           <Route path="/news" element={<News />} />
         </Routes>
-      </Router>
-    </div>
+      </TransitionWrapper>
+    </>
   );
 }
 

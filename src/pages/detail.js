@@ -14,10 +14,6 @@ function Details() {
   const item = data.find(item => item.name === decodedName);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
     document.body.style.overflow = showFullImage ? 'hidden' : ''; 
     return () => {
       document.body.style.overflow = '';
@@ -69,7 +65,7 @@ function Details() {
         <img 
           src={item.imgSrc}
           alt="Background" 
-          className="w-full absolute top-0 left-0 z-0 h-60 object-cover brightness-75" 
+          className="w-full absolute -top-12 left-0 z-0 h-60 object-cover brightness-75" 
         />
       </div>
       

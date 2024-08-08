@@ -39,10 +39,6 @@ function Profile() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [userId]);
-
-  useEffect(() => {
     const user = userData.find((user) => user.userId === parseInt(userId));
     if (user) {
       setUser(user);
