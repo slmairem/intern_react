@@ -12,11 +12,6 @@ const PinnedTopics = ({ pinnedTopics, getFormattedDate}) => {
               <div className="text-sm text-gray-600">{forum.publishUser}</div>
               <div className="text-lg font-semibold">{forum.forumName}</div>
               <div className="mt-2 tags flex flex-wrap space-x-2 rounded">
-                {forum.tags.map((tag, index) => (
-                  <span key={index} className="bg-gray-300 px-2 py-1 hover:text-stone-100 hover:bg-gray-400 rounded text-sm">
-                    {tag}
-                  </span>
-                ))}
               </div>
             </div>
           ))}

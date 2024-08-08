@@ -299,16 +299,18 @@ function Profile() {
               <div className="sections mb-4">
                 <div className="pageName text-2xl font-bold">Journal</div>
               </div>
-              {journalEntries.map((entry, index) => (
-                <Journal
-                  key={index}
-                  date={entry.date.toLocaleDateString()}
-                  image={entry.imgSrc}
-                  name={entry.name}
-                  score={entry.score}
-                  status={entry.status} 
-                />
-              ))}
+              <div className='bg-gradient-to-br from-sky-300 to-sky-500 rounded p-4'>
+                {journalEntries.map((entry, index) => (
+                  <Journal
+                    key={index}
+                    date={entry.date.toLocaleDateString()}
+                    image={entry.imgSrc}
+                    name={entry.name}
+                    score={entry.score}
+                    status={entry.status} 
+                  />
+                ))}
+              </div>
             </div>
           )}
         </div>
