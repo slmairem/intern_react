@@ -66,7 +66,7 @@ function Profile() {
 
       setFavorites({
         movies: movieFavorites,
-        series: seriesFavorites, // Burada series'i doğru şekilde ayarladık.
+        series: seriesFavorites, 
         characters: characterFavorites,
         voiceActors: voiceActorFavorites,
       });
@@ -99,7 +99,7 @@ function Profile() {
       setPublishedLists(user.publishedLists || []);
   
       // Score Distribution
-      const scoreDist = Array(10).fill(0);
+      const scoreDist = Array(5).fill(0);
       user.movies.forEach((movie) => {
         if (movie.score > 0) {
           scoreDist[movie.score - 1] += 1;
@@ -131,11 +131,20 @@ function Profile() {
     }
   }, [userId]);
   
-
+  //Stats
   const handleBarClick = (score) => {
-    const moviesWithScore = userMovies.filter((movie) => movie.score === score);
-    setSelectedMovies(moviesWithScore);
-    setSelectedType('Movies');
+    const moviesWithScore = data.Movies.filter((movie) =>
+      user.movies.some((m) => m.id === movie.id && m.score === score)
+    );
+    
+    const seriesWithScore = data.Series.filter((series) =>
+      user.movies.some((m) => m.id === series.id && m.score === score)
+    );
+  
+    const selectedType = moviesWithScore.length > 0 ? 'Movies' : 'Series';
+  
+    setSelectedMovies(selectedType === 'Movies' ? moviesWithScore : seriesWithScore);
+    setSelectedType(selectedType);
     setSelectedScore(score);
   };
 
