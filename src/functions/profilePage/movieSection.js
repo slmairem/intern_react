@@ -11,6 +11,8 @@ const MoviesSection = ({ movieStatusCounts, totalMovies, rewatchedMovies, userMo
         return 'bg-red-500';
       case 'Plan to Watch':
         return 'bg-gray-500';
+      default:
+        return 'bg-gray-500';
     }
   };
 
@@ -24,9 +26,9 @@ const MoviesSection = ({ movieStatusCounts, totalMovies, rewatchedMovies, userMo
             <span className='font-semibold text-gray-700'>{status}:</span>
             <span className='ml-2 text-lg text-gray-800'>
               {status === 'Completed' ? movieStatusCounts.completed : 
-              status === 'Plan to Watch' ? movieStatusCounts.planToWatch :
               status === 'On Hold' ? movieStatusCounts.onHold :
-              status === 'Dropped' ? movieStatusCounts.dropped : 0}
+              status === 'Dropped' ? movieStatusCounts.dropped :
+              status === 'Plan to Watch' ? movieStatusCounts.planToWatch : 0}
             </span>
           </div>
         ))}
@@ -53,10 +55,10 @@ const MoviesSection = ({ movieStatusCounts, totalMovies, rewatchedMovies, userMo
             <div className="flex flex-col flex-grow">
               <div className="flex justify-between">
                 <h2 className="text-black text-lg font-semibold">{movie.name}</h2>
-                <span className="text-gray-600 text-sm">Update Date</span>
+                <span className="text-gray-600 text-sm">{movie.releaseDate || 'Release Date'}</span>
               </div>
               <div className="flex items-center mt-2">
-                <span className="text-gray-600 text-sm">Additional Info</span>
+                <span className="text-gray-600 text-sm">{movie.duration || 'Duration'}</span>
               </div>
             </div>
           </div>

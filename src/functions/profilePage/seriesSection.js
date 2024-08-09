@@ -13,6 +13,8 @@ const SeriesSection = ({ seriesStatusCounts, totalSeries, rewatchedSeries, userS
         return 'bg-red-500';
       case 'Plan to Watch':
         return 'bg-gray-500';
+      default:
+        return 'bg-gray-500';
     }
   };
 
@@ -56,10 +58,10 @@ const SeriesSection = ({ seriesStatusCounts, totalSeries, rewatchedSeries, userS
             <div className="flex flex-col flex-grow">
               <div className="flex justify-between">
                 <h2 className="text-black text-lg font-semibold">{series.name}</h2>
-                <span className="text-gray-600 text-sm">Update Date</span>
+                <span className="text-gray-600 text-sm">{series.episodes} Episodes</span>
               </div>
               <div className="flex items-center mt-2">
-                <span className="text-gray-600 text-sm">Additional Info</span>
+                <span className="text-gray-600 text-sm">{series.duration}</span>
               </div>
             </div>
           </div>

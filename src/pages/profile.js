@@ -1,8 +1,7 @@
-// profile.js
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import userData from '../assets/userData.json';
-import movieData from '../assets/movieData.json';
+import data from '../assets/data.json';
 import Comment from '../functions/profilePage/comment';
 import MoviesSection from '../functions/profilePage/movieSection';
 import SeriesSection from '../functions/profilePage/seriesSection';
@@ -36,6 +35,7 @@ function Profile() {
   const [selectedMovies, setSelectedMovies] = useState([]);
   const [selectedType, setSelectedType] = useState('Movies');
   const [journalEntries, setJournalEntries] = useState([]);
+  const [selectedScore, setSelectedScore] = useState(0); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,18 +45,21 @@ function Profile() {
       setProfileImage(user.profileImg);
       setBackgroundImage(user.backgroundImg);
       setText(user.bioText || 'Welcome to my profile!');
-
-      const movies = movieData.filter((movie) => user.movies.some((m) => m.id === movie.id && movie.type === 'Movies'));
+  
+      // Filter and set movies
+      const movies = data.Movies.filter((movie) => user.movies.some((m) => m.id === movie.id));
       setUserMovies(movies);
-
-      const series = movieData.filter((series) => user.movies.some((s) => s.id === series.id && series.type === 'Series'));
+  
+      // Filter and set series
+      const series = data.Series.filter((series) => user.movies.some((s) => s.id === series.id));
       setUserSeries(series);
-
+  
       setFavorites(user.favs || { movies: [], series: [], characters: [], voiceActors: [] });
-
+  
+      // Count movies and series statuses
       const movieCounts = { completed: 0, planToWatch: 0, onHold: 0, dropped: 0 };
       const seriesCounts = { completed: 0, watching: 0, planToWatch: 0, onHold: 0, dropped: 0 };
-
+  
       const statusMapping = {
         c: 'completed',
         ptw: 'planToWatch',
@@ -64,65 +67,62 @@ function Profile() {
         d: 'dropped',
         w: 'watching'
       };
-
-      user.movies.forEach((movie) => {
-        const type = movieData.find((m) => m.id === movie.id)?.type;
-        const countType = statusMapping[movie.status];
-
+  
+      user.movies.forEach((entry) => {
+        const type = data.Movies.find((m) => m.id === entry.id) ? 'Movies' : 'Series';
+        const countType = statusMapping[entry.status];
+  
         if (type === 'Movies' && countType) {
           movieCounts[countType] += 1;
         } else if (type === 'Series' && countType) {
           seriesCounts[countType] += 1;
         }
       });
-
+  
       setMovieStatusCounts(movieCounts);
       setSeriesStatusCounts(seriesCounts);
       setPublishedLists(user.publishedLists || []);
-
+  
       // Score Distribution
-      const scoreDist = Array(5).fill(0);
+      const scoreDist = Array(10).fill(0);
       user.movies.forEach((movie) => {
         if (movie.score > 0) {
           scoreDist[movie.score - 1] += 1;
         }
       });
-
+  
       setScoreDistribution(
         scoreDist.map((count, index) => ({
           label: (index + 1).toString(),
           value: count * 50
         }))
       );
-
+  
       // Journal Section
       const sortedEntries = user.movies
         .map((entry) => {
-          const movie = movieData.find((movie) => movie.id === entry.id);
+          const media = data.Movies.find((item) => item.id === entry.id) || data.Series.find((item) => item.id === entry.id);
           return {
             date: new Date(entry.date),
-            imgSrc: movie?.imgSrc,
-            name: movie?.name,
+            imgSrc: media?.imgSrc,
+            name: media?.name,
             score: entry.score,
-            status: statusMapping[entry.status] || 'Unknown'  
+            status: statusMapping[entry.status] || 'Unknown'
           };
         })
         .sort((a, b) => b.date - a.date);
-
+  
       setJournalEntries(sortedEntries);
     }
   }, [userId]);
+  
 
-  // Stats Rate Bar
   const handleBarClick = (score) => {
-    const moviesWithScore = movieData.filter((movie) => user.movies.some((m) => m.id === movie.id && m.score === score));
-    const selectedType = moviesWithScore.length > 0 ? moviesWithScore[0].type : 'Movies'; 
+    const moviesWithScore = userMovies.filter((movie) => movie.score === score);
     setSelectedMovies(moviesWithScore);
-    setSelectedType(selectedType);
-    setSelectedScore(score); 
+    setSelectedType('Movies');
+    setSelectedScore(score);
   };
-
-  const [selectedScore, setSelectedScore] = useState(0); 
 
   const totalMovies = userMovies.length;
   const totalSeries = userSeries.length;
@@ -134,7 +134,6 @@ function Profile() {
     navigate(`/detail/${encodedName}`);
   };
 
-  // Image Change
   const handleImageClick = (ref) => {
     ref.current.click();
   };
@@ -166,13 +165,17 @@ function Profile() {
     setActiveTab(tab);
   };
 
-  // Lists
   const getMovieImages = (movieIds) => {
-    return movieData
+    return data.Movies
       .filter(movie => movieIds.includes(movie.id))
       .map(movie => movie.imgSrc);
   };
 
+  const getSeriesImages = (seriesIds) => {
+    return data.Series
+      .filter(series => seriesIds.includes(series.id))
+      .map(series => series.imgSrc);
+  };
   const renderLists = () => {
     if (!user || !user.publishedLists) return null;
 
