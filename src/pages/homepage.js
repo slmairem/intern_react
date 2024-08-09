@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import forumData from '../assets/forumData.json';
 import newsData from '../assets/newsData.json';
-import movieData from '../assets/movieData.json';
+import data from '../assets/data.json'; 
 import userData from '../assets/userData.json'; 
 import MovieSeriesSection from '../functions/homepage/movieSeriesSec';
 import NewsSection from '../functions/homepage/newsSec';
@@ -48,8 +48,9 @@ function Homepage() {
   const recentNews = newsData.slice(0, 6);
 
   const getMovieImages = (movieIds) => {
+    const allMovies = [...data.Movies, ...data.Series];
     return movieIds.map(id => {
-      const movie = movieData.find(movie => movie.id === id);
+      const movie = allMovies.find(movie => movie.id === id);
       return movie ? movie.imgSrc : '';
     });
   };
@@ -82,8 +83,7 @@ function Homepage() {
       </div>
       
       <div className="w-full flex flex-col items-center pt-4 font-IndieFlower">
-        <MovieSeriesSection type="Movies" movieData={movieData} handleItemClick={handleItemClick} />
-        <MovieSeriesSection type="Series" movieData={movieData} handleItemClick={handleItemClick} />
+        <MovieSeriesSection data={data} handleItemClick={handleItemClick} />
       </div>
 
       {/* Bottom */}
