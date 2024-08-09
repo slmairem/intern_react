@@ -8,10 +8,12 @@ const Dropdown = forwardRef(({ onStatusChange }, ref) => {
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleStatusChange = (status) => {
+    const statusColor = getStatusColor(status).split(' ')[0]; 
     setSelectedStatus(status);
     setIsOpen(false);
-    onStatusChange(status); 
+    onStatusChange(status, statusColor); 
   };
+  
 
   useEffect(() => {
     const handleClickOutside = (event) => {

@@ -8,28 +8,29 @@ const Buttons = () => {
   const [isHeartActive, setIsHeartActive] = useState(false);
   const [isDropdownChanged, setIsDropdownChanged] = useState(false);
   const [notification, setNotification] = useState(null);
+  const [notificationColor, setNotificationColor] = useState('bg-gray-800'); 
   const [wasHeartActive, setWasHeartActive] = useState(false); 
 
   const handleHeartClick = () => {
     if (isHeartActive) {
-      showNotification('Favourites Removed!');
+      showNotification('Favourites Removed!', 'bg-red-900');
     } else {
-      showNotification('Favourites Added!');
+      showNotification('Favourites Added!', 'bg-cyan-600');
     }
     
     setWasHeartActive(isHeartActive); 
     setIsHeartActive(!isHeartActive); 
   };
 
-  const handleStatusChange = (status) => {
+  const handleStatusChange = (status, color) => {
     setIsDropdownChanged(true);
-    showNotification(`Added as ${status}`);
+    showNotification(`Added as ${status}`, color);
   };
 
   const handleResetClick = () => {
     setIsDropdownChanged(false);
     resetDropdown();
-    showNotification('Watching Activity Resets!');
+    showNotification('Watching Activity Resets!', 'bg-gray-500');
   };
 
   const resetDropdown = () => {
@@ -40,8 +41,9 @@ const Buttons = () => {
 
   const dropdownRef = useRef(null);
 
-  const showNotification = (message) => {
+  const showNotification = (message, color) => {
     setNotification(message);
+    setNotificationColor(color);
   };
 
   return (
@@ -82,6 +84,7 @@ const Buttons = () => {
       {notification && (
         <Notification
           message={notification}
+          color={notificationColor} 
           onClose={() => setNotification(null)}
         />
       )}
