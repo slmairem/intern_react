@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch, FaCaretDown } from 'react-icons/fa';
-import data from '../assets/movieData.json';
-import charData from '../assets/characterData.json';
+import data from '../assets/data.json'; 
 import usersData from '../assets/userData.json';
 import Search from '../functions/navBar/search';
 
@@ -23,21 +22,27 @@ function Navbar() {
 
   const toggleSearch = () => {
     setSearchOpen(!searchOpen);
-    setSearchTerm(''); 
+    setSearchTerm('');
   };
 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
+  const moviesData = data.Movies || [];
+  const seriesData = data.Series || [];
+  const charactersData = seriesData.flatMap(series => series.characters) || [];
+
   const filterResults = (term) => {
     const lowerTerm = term.toLowerCase();
-    const movieMatches = data.filter(item => item.name.toLowerCase().includes(lowerTerm));
-    const staffMatches = charData.filter(item => item.charStaffName.toLowerCase().includes(lowerTerm));
+    const movieMatches = moviesData.filter(item => item.name.toLowerCase().includes(lowerTerm));
+    const seriesMatches = seriesData.filter(item => item.name.toLowerCase().includes(lowerTerm));
+    const staffMatches = charactersData.filter(item => item.charStaffName.toLowerCase().includes(lowerTerm));
     const userMatches = usersData.filter(item => item.username.toLowerCase().includes(lowerTerm));
-    const charMatches = charData.filter(item => item.charName.toLowerCase().includes(lowerTerm));
+    const charMatches = charactersData.filter(item => item.charName.toLowerCase().includes(lowerTerm));
     return {
       movies: movieMatches,
+      series: seriesMatches,
       staff: staffMatches,
       users: userMatches,
       characters: charMatches,
@@ -174,7 +179,7 @@ function Navbar() {
         toggleSearch={toggleSearch}
         searchRef={searchRef}
         closeSearch={closeSearch}
-        handleItemClick={handleItemClick} 
+        handleItemClick={handleItemClick}
       />
     </div>
   );

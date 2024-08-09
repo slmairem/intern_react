@@ -7,25 +7,34 @@ const Search = ({ searchOpen, searchTerm, handleInputChange, results, toggleSear
 
   if (!searchOpen) return null;
 
+  const defaultResults = {
+    movies: [],
+    series: [],
+    characters: [],
+    staff: [],
+    users: []
+  };
+
+  const filteredResults = selectedCategory === 'all'
+    ? {
+        movies: results.movies?.length ? results.movies : defaultResults.movies,
+        series: results.series?.length ? results.series : defaultResults.series,
+        characters: results.characters?.length ? results.characters : defaultResults.characters,
+        staff: results.staff?.length ? results.staff : defaultResults.staff,
+        users: results.users?.length ? results.users : defaultResults.users
+      }
+    : { [selectedCategory]: results[selectedCategory] || defaultResults[selectedCategory] };
+
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
     setDropdownOpen(false);
   };
 
-  const filteredResults = selectedCategory === 'all'
-    ? {
-        movies: results.movies.length > 0 ? results.movies : null,
-        characters: results.characters.length > 0 ? results.characters : null,
-        staff: results.staff.length > 0 ? results.staff : null,    
-        users: results.users.length > 0 ? results.users : null
-      }
-    : { [selectedCategory]: results[selectedCategory] || [] };
-
   const onItemClick = (category, name) => {
     if (category !== 'characters' && category !== 'staff') {
-      handleItemClick(name); 
+      handleItemClick(name);
     }
-    closeSearch(); 
+    closeSearch();
   };
 
   return (
@@ -46,6 +55,7 @@ const Search = ({ searchOpen, searchTerm, handleInputChange, results, toggleSear
               <div className="absolute left-0 mt-1 w-48 bg-white border border-gray-300 rounded text-black shadow-lg">
                 <button onClick={() => handleCategoryChange('all')} className="block px-4 py-2 w-full text-left hover:bg-gray-200">All</button>
                 <button onClick={() => handleCategoryChange('movies')} className="block px-4 py-2 w-full text-left hover:bg-gray-200">Movies</button>
+                <button onClick={() => handleCategoryChange('series')} className="block px-4 py-2 w-full text-left hover:bg-gray-200">Series</button>
                 <button onClick={() => handleCategoryChange('characters')} className="block px-4 py-2 w-full text-left hover:bg-gray-200">Characters</button>
                 <button onClick={() => handleCategoryChange('staff')} className="block px-4 py-2 w-full text-left hover:bg-gray-200">Staff</button>
                 <button onClick={() => handleCategoryChange('users')} className="block px-4 py-2 w-full text-left hover:bg-gray-200">Users</button>
@@ -65,7 +75,7 @@ const Search = ({ searchOpen, searchTerm, handleInputChange, results, toggleSear
           {searchTerm.length >= 3 && (
             <div className="flex flex-wrap">
               {Object.keys(filteredResults).map(category => (
-                filteredResults[category] && (
+                filteredResults[category]?.length > 0 && (
                   <div key={category} className="flex-1 min-w-[200px] mt-2 text-black">
                     <h3 className="font-bold">
                       {selectedCategory === 'all'
@@ -73,8 +83,15 @@ const Search = ({ searchOpen, searchTerm, handleInputChange, results, toggleSear
                         : selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}
                     </h3>
                     {filteredResults[category].map(item => (
-                      <li key={item.id || item.staffId || item.charId} className={`text-black flex items-center mb-2 mr-10 ${category === 'characters' || category === 'staff' ? 'cursor-pointer' : 'cursor-pointer'}`}>
+                      <li key={item.id || item.charId || item.staffId} className={`text-black flex items-center mb-2 mr-10 ${category === 'characters' || category === 'staff' ? 'cursor-pointer' : 'cursor-pointer'}`}>
                         {category === 'movies' && item.imgSrc && (
+                          <img
+                            src={item.imgSrc}
+                            alt={item.name}
+                            className="h-14 w-10 mr-2"
+                          />
+                        )}
+                        {category === 'series' && item.imgSrc && (
                           <img
                             src={item.imgSrc}
                             alt={item.name}
@@ -105,6 +122,7 @@ const Search = ({ searchOpen, searchTerm, handleInputChange, results, toggleSear
                         <button 
                           onClick={() => category !== 'characters' && category !== 'staff' && onItemClick(category, 
                             category === 'movies' ? item.name :
+                            category === 'series' ? item.name :
                             category === 'characters' ? item.charName :
                             category === 'staff' ? item.charStaffName :
                             category === 'users' ? item.username :
@@ -112,6 +130,7 @@ const Search = ({ searchOpen, searchTerm, handleInputChange, results, toggleSear
                           className="text-black no-underline"
                         >
                           {category === 'movies' ? item.name :
+                           category === 'series' ? item.name :
                            category === 'characters' ? item.charName :
                            category === 'staff' ? item.charStaffName :
                            category === 'users' ? item.username :

@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
-import movieData from '../assets/movieData.json';
+import React from 'react';
+import data from '../assets/data.json'; 
 import userData from '../assets/userData.json'; 
 import Placeholder from '../functions/listsPage/placeholder';
 import ImageGrid from '../functions/listsPage/imageGrid';
 import ListCard from '../functions/listsPage/listCard';
 
 const getMovieImages = (movieIds) => {
-  return movieData
-    .filter(movie => movieIds.includes(movie.id))
-    .map(movie => movie.imgSrc);
+  const allMovies = [...data.Movies, ...data.Series];
+  return movieIds.map(id => {
+    const movie = allMovies.find(movie => movie.id === id);
+    return movie ? movie.imgSrc : '';
+  });
 };
 
 const extractListsFromUserData = (userData) => {
