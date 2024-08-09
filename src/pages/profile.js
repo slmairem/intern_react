@@ -54,8 +54,23 @@ function Profile() {
       const series = data.Series.filter((series) => user.movies.some((s) => s.id === series.id));
       setUserSeries(series);
   
-      setFavorites(user.favs || { movies: [], series: [], characters: [], voiceActors: [] });
-  
+      //Favourites
+      const movieFavorites = data.Movies.filter((movie) => user.favs.movies.includes(movie.id));
+      const seriesFavorites = data.Series.filter((series) => user.favs.series.includes(series.id));
+      const characterFavorites = data.Series.flatMap((series) =>
+        series.characters.filter((char) => user.favs.characters.includes(char.charId))
+      );
+      const voiceActorFavorites = data.Series.flatMap((series) =>
+        series.characters.filter((char) => user.favs.voiceActors.includes(char.charStaffId))
+      );
+
+      setFavorites({
+        movies: movieFavorites,
+        series: seriesFavorites, // Burada series'i doğru şekilde ayarladık.
+        characters: characterFavorites,
+        voiceActors: voiceActorFavorites,
+      });
+
       // Count movies and series statuses
       const movieCounts = { completed: 0, planToWatch: 0, onHold: 0, dropped: 0 };
       const seriesCounts = { completed: 0, watching: 0, planToWatch: 0, onHold: 0, dropped: 0 };
