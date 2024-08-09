@@ -165,17 +165,14 @@ function Profile() {
     setActiveTab(tab);
   };
 
-  const getMovieImages = (movieIds) => {
-    return data.Movies
-      .filter(movie => movieIds.includes(movie.id))
-      .map(movie => movie.imgSrc);
+  const getImages = (ids) => {
+    const allMoviesAndSeries = [...data.Movies, ...data.Series];
+    return ids.map(id => {
+      const item = allMoviesAndSeries.find(item => item.id === id);
+      return item ? item.imgSrc : '';
+    });
   };
-
-  const getSeriesImages = (seriesIds) => {
-    return data.Series
-      .filter(series => seriesIds.includes(series.id))
-      .map(series => series.imgSrc);
-  };
+  
   const renderLists = () => {
     if (!user || !user.publishedLists) return null;
 
@@ -189,7 +186,7 @@ function Profile() {
           {user.publishedLists.map((list) => (
             <ImageGrid
               key={list.listId}
-              images={getMovieImages(list.movies)}
+              images={getImages(list.movies)}
               listName={list.listName}
               username={user.username}
               likes={list.likes}

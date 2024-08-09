@@ -5,7 +5,7 @@ import Placeholder from '../functions/listsPage/placeholder';
 import ImageGrid from '../functions/listsPage/imageGrid';
 import ListCard from '../functions/listsPage/listCard';
 
-const getMovieImages = (movieIds) => {
+const getImages = (movieIds) => {
   const allMovies = [...data.Movies, ...data.Series];
   return movieIds.map(id => {
     const movie = allMovies.find(movie => movie.id === id);
@@ -13,41 +13,35 @@ const getMovieImages = (movieIds) => {
   });
 };
 
-const extractListsFromUserData = (userData) => {
-  return userData.flatMap(user => 
+const extractListsFromUserData = (userData) => 
+  userData.flatMap(user => 
     user.publishedLists.map(list => ({
       ...list,
       publishUser: user.username
     }))
   );
-};
 
-const getSortedPopularLists = (lists) => {
-  return [...lists].sort((a, b) => b.popularity - a.popularity);
-};
-
-const getSortedUserFavorites = (lists) => {
-  return [...lists].sort((a, b) => b.likes - a.likes);
-};
+const getSortedLists = (lists, sortBy) => 
+  [...lists].sort((a, b) => b[sortBy] - a[sortBy]);
 
 function Lists() {
   const allLists = extractListsFromUserData(userData);
-  const popularLists = getSortedPopularLists(allLists);
-  const userFavorites = getSortedUserFavorites(allLists);
+  const popularLists = getSortedLists(allLists, 'popularity');
+  const userFavorites = getSortedLists(allLists, 'likes');
 
   return (
     <div className='container mx-auto p-4 font-IndieFlower'>
       <div className="sections mb-4">
         <div className="pageName text-2xl font-bold">Lists</div>
       </div>
-      
+
       <div className='middle'>
         <div className='font-semibold text-lg mb-2'>Popular This Week</div>
         <div className='grid grid-cols-3 grid-rows-2'>
           {popularLists.map((list) => (
             <ImageGrid
               key={list.listId}
-              images={getMovieImages(list.movies)}
+              images={getImages(list.movies)}
               listName={list.listName}
               username={list.publishUser}
               likes={list.likes}
@@ -64,7 +58,7 @@ function Lists() {
             {userFavorites.map((list) => (
               <ListCard
                 key={list.listId}
-                images={getMovieImages(list.movies)}
+                images={getImages(list.movies)}
                 listName={list.listName}
                 username={list.publishUser}
                 description={list.description}
@@ -77,7 +71,7 @@ function Lists() {
         <div className="w-1/4 p-4 border-l">
           <div className="font-semibold text-lg mb-2">Users Favourite</div>
           {userFavorites.map((list) => {
-            const images = getMovieImages(list.movies);
+            const images = getImages(list.movies);
             const placeholderCount = 4 - images.length;
 
             return (
