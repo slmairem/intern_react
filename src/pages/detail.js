@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import data from '../assets/movieData.json';
-import charData from '../assets/characterData.json';
+import data from '../assets/data.json'; 
 import AddReviews from '../functions/detailPage/review.js';
 import Section from '../functions/detailPage/section.js';
 import DetailsContent from '../functions/detailPage/picturesItemBack.js'; 
@@ -11,7 +10,10 @@ function Details() {
   const [showFullImage, setShowFullImage] = useState(null);
   const { name } = useParams();
   const decodedName = decodeURIComponent(name);
-  const item = data.find(item => item.name === decodedName);
+
+  // Find the movie or series by name
+  const item = data.Movies.find(movie => movie.name === decodedName) ||
+               data.Series.find(series => series.name === decodedName);
 
   useEffect(() => {
     document.body.style.overflow = showFullImage ? 'hidden' : ''; 
@@ -23,22 +25,20 @@ function Details() {
   if (!item) {
     return <div>Item not found</div>;
   }
- 
+
   // Character List
-  const charShow = charData.filter(character => (character.charShow || '').trim() === (item.name || '').trim())
-    .map(character => ({
-      ...character,
-      charStaff: character.charStaffName,
-      charImgSrc: character.charImgSrc 
-    }));
+  const charShow = item.characters.map(character => ({
+    ...character,
+    charStaff: character.charStaffName,
+    charImgSrc: character.charImgSrc 
+  }));
 
   // Staff List
-  const staffShow = charData.filter(character => (character.charShow || '').trim() === (item.name || '').trim())
-    .map(character => ({
-      staffName: character.charStaffName,
-      charName: character.charName,
-      staffImgSrc: character.staffImgSrc
-    }));
+  const staffShow = item.characters.map(character => ({
+    staffName: character.charStaffName,
+    charName: character.charName,
+    staffImgSrc: character.staffImgSrc
+  }));
 
   const sections = {
     Overview: (
