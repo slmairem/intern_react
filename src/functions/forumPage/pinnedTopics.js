@@ -11,6 +11,7 @@ const PinnedTopics = ({ pinnedTopics, getFormattedDate}) => {
               <div className="absolute top-2 right-2 text-sm text-gray-600">{getFormattedDate(forum.date)}</div>
               <div className="text-sm text-gray-600">{forum.publishUser}</div>
               <div className="text-lg font-semibold">{forum.forumName}</div>
+              <div className="text-sm">{forum.description}</div>
               <div className="mt-2 tags flex flex-wrap space-x-2 rounded">
               </div>
             </div>

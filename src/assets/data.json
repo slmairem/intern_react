@@ -290,19 +290,19 @@
         "imgSrc": "https://m.media-amazon.com/images/M/MV5BYWU1YTA4OGUtNjcxMC00ZTllLTgxYWUtY2U5NmViZTU0MmNjXkEyXkFqcGdeQXVyMTM0NTUzNDIy._V1_.jpg",
         "characters": [
           {
-            "charId": 1,
+            "charId": 6,
             "charName": "Gumball Watterson",
-            "charStaffId": 1,
+            "charStaffId": 6,
             "charStaffName": "Nicolas Cantu",
-            "charFav": 123,
+            "charFav": 116500,
             "charDesc": "Description for Char1",
             "charImgSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwnw_87Y6fn66FIiTUguhS0eGzYXIhng0KkA&s",
             "staffImgSrc": "https://m.media-amazon.com/images/M/MV5BYTI3ZTgxNTQtNTM1OC00ZjY4LWJhYjAtNDBiMTA2OTBjYTk4XkEyXkFqcGdeQXVyNjUxNDcyMzg@._V1_.jpg"
           },
           {
-            "charId": 2,
+            "charId": 7,
             "charName": "Darwin Watterson",
-            "charStaffId": 2,
+            "charStaffId": 116500,
             "charStaffName": "Terrell Ransom Jr.",
             "charFav": 123,
             "charDesc": "Description for Char2",

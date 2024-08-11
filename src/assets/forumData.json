@@ -1,40 +1,40 @@
 [
 {
     "forumId": 1,
-    "forumName": "Forum Topic Name1",
-    "pinned": "pin",
-    "description": "Description for Forum Topic",
+    "forumName": " Updates & Announcements",
+    "pinned": "pinned",
+    "description": "Updates, changes, and additions.",
     "tags": ["Movies"],
-    "publishUser": "User",
+    "publishUser": "Moderation",
     "date": "12.12.2024"
 },
 {
     "forumId": 2,
-    "forumName": "Forum Topic Name2",
-    "pinned": "noPin",
-    "description": "Description for Forum Topic",
+    "forumName": "Support",
+    "pinned": "pinned",
+    "description": "Have a problem using the site or think you found a bug? Post here.",
     "tags": ["Series"],
-    "publishUser": ""
+    "publishUser": "Moderation"
 },
 {
     "forumId": 3,
-    "forumName": "Forum Topic Name3",
-    "pinned": "noPin",
-    "description": "Description for Forum Topic",
+    "forumName": "Guidelines & FAQ",
+    "pinned": "pinned",
+    "description": "Site rules, forum rules, database guidelines, review/recommendation guidelines, and other helpful information.",
     "tags": ["Series"],
-    "publishUser": ""
+    "publishUser": "Moderation"
 },
 {
     "forumId": 4,
-    "forumName": "Forum Topic Name4",
+    "forumName": "Forum Topic Name1",
     "pinned": "noPin",
-    "description": "Description for Forum Topic",
+    "description": "Have an idea or suggestion for the site? Share it here.",
     "tags": ["Series"],
-    "publishUser": ""
+    "publishUser": "Moderation"
 },
 {
     "forumId": 5,
-    "forumName": "Forum Topic Name5",
+    "forumName": "Forum Topic Name2",
     "pinned": "noPin",
     "description": "Description for Forum Topic",
     "tags": ["Movies"],
@@ -42,15 +42,15 @@
 },
 {
     "forumId": 6,
-    "forumName": "Pinned Forum Topic1",
-    "pinned": "pinned",
+    "forumName": "Pinned Forum Topic3",
+    "pinned": "noPin",
     "description": "Description for Forum Topic",
-    "tags": ["Movies"],
+    "tags": ["Voice Actors"],
     "publishUser": ""
 },
 {
     "forumId": 7,
-    "forumName": "Forum Topic Name7",
+    "forumName": "Forum Topic Name4",
     "pinned": "noPin",
     "description": "Description for Forum Topic",
     "tags": ["Series"],
@@ -58,7 +58,7 @@
 },
 {
     "forumId": 8,
-    "forumName": "Forum Topic Name8",
+    "forumName": "Forum Topic Name5",
     "pinned": "noPin",
     "description": "Description for Forum Topic",
     "tags": ["Events"],
@@ -67,7 +67,7 @@
 ,
 {
     "forumId": 9,
-    "forumName": "Forum Topic Name9",
+    "forumName": "Forum Topic Name6",
     "pinned": "noPin",
     "description": "Description for Forum Topic",
     "tags": ["Series"],
@@ -76,7 +76,7 @@
 ,
 {
     "forumId": 10,
-    "forumName": "Forum Topic Name10",
+    "forumName": "Forum Topic Name7",
     "pinned": "noPin",
     "description": "Description for Forum Topic",
     "tags": ["Movies"],
@@ -84,10 +84,82 @@
 },
 {
     "forumId": 11,
+    "forumName": "Forum Topic Name8",
+    "pinned": "noPin",
+    "description": "Description for Forum Topic",
+    "tags": ["Voice Actors"],
+    "publishUser": ""
+},
+{
+    "forumId": 12,
+    "forumName": "Forum Topic Name9",
+    "pinned": "noPin",
+    "description": "Description for Forum Topic",
+    "tags": ["Series"],
+    "publishUser": ""
+},
+{
+    "forumId": 13,
+    "forumName": "Forum Topic Name10",
+    "pinned": "noPin",
+    "description": "Description for Forum Topic",
+    "tags": ["Movies"],
+    "publishUser": ""
+},
+{
+    "forumId": 14,
     "forumName": "Forum Topic Name11",
     "pinned": "noPin",
     "description": "Description for Forum Topic",
     "tags": ["Voice Actors"],
+    "publishUser": ""
+},
+{
+    "forumId": 15,
+    "forumName": "Forum Topic Name12",
+    "pinned": "noPin",
+    "description": "Description for Forum Topic",
+    "tags": ["Movies"],
+    "publishUser": ""
+},
+{
+    "forumId": 16,
+    "forumName": "Forum Topic Name13",
+    "pinned": "noPin",
+    "description": "Description for Forum Topic",
+    "tags": ["Events"],
+    "publishUser": ""
+},
+{
+    "forumId": 17,
+    "forumName": "Forum Topic Name14",
+    "pinned": "noPin",
+    "description": "Description for Forum Topic",
+    "tags": ["Series"],
+    "publishUser": ""
+},
+{
+    "forumId": 18,
+    "forumName": "Forum Topic Name15",
+    "pinned": "noPin",
+    "description": "Description for Forum Topic",
+    "tags": ["Series"],
+    "publishUser": ""
+},
+{
+    "forumId": 19,
+    "forumName": "Forum Topic Name16",
+    "pinned": "noPin",
+    "description": "Description for Forum Topic",
+    "tags": ["Events"],
+    "publishUser": ""
+},
+{
+    "forumId": 20,
+    "forumName": "Forum Topic Name17",
+    "pinned": "noPin",
+    "description": "Description for Forum Topic",
+    "tags": ["Events"],
     "publishUser": ""
 }
 ]
