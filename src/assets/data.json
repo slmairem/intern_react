@@ -3,7 +3,7 @@
       {
         "id": 1,
         "name": "Inside Out",
-        "likes": 123,
+        "likes": 818000,
         "description": "After young Riley is uprooted from her Midwest life and moved to San Francisco, her emotions - Joy, Fear, Anger, Disgust and Sadness - conflict on how best to navigate a new city, house, and school.",
         "duration": "1h 35m",
         "genres": "Comedy, Adventure",
@@ -25,7 +25,7 @@
       {
         "id": 2,
         "name": "Shrek",
-        "likes": 123,
+        "likes": 745000,
         "description": "A mean lord exiles fairytale creatures to the swamp of a grumpy ogre, who must go on a quest and rescue a princess for the lord in order to get his land back.",
         "duration": "1h 30m",
         "genres": "Comedy, Adventure",
@@ -36,7 +36,7 @@
       {
         "id": 3,
         "name": "The Lion King",
-        "likes": 123,
+        "likes": 1200000,
         "description": "Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself.",
         "duration": "1h 28m",
         "genres": "Adventure, Drama",
@@ -47,7 +47,7 @@
       {
         "id": 4,
         "name": "The Boy and the Heron",
-        "likes": 123,
+        "likes": 63000,
         "description": "In the wake of his mother's death and his father's remarriage, a headstrong boy named Mahito ventures into a dreamlike world shared by both the living and the dead.",
         "duration": "2h 4m",
         "genres": "Adventure, Drama",
@@ -58,12 +58,122 @@
       {
         "id": 5,
         "name": "Despicable Me",
-        "likes": 123,
+        "likes": 592000,
         "description": "Gru, a criminal mastermind, adopts three orphans as pawns to carry out the biggest heist in history. His life takes an unexpected turn when the little girls see the evildoer as their potential father.",
         "duration": "1h 35m",
         "genres": "Comedy, Adventure",
         "year": "2010",
         "imgSrc": "https://m.media-amazon.com/images/M/MV5BMTY3NjY0MTQ0Nl5BMl5BanBnXkFtZTcwMzQ2MTc0Mw@@._V1_.jpg",
+        "characters": []
+      },
+      {
+        "id": 6,
+        "name": "The Road to El Dorado",
+        "likes": 109000,
+        "description": "Two swindlers get their hands on a map to the fabled city of gold, El Dorado.",
+        "duration": "1h 29m",
+        "genres": "Comedy, Adventure, Comedy, Fantasy",
+        "year": "2000",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BOTEzNWIwMzctOTE1YS00YjIyLTgwZGEtMTMxZDAzNzlmODMxXkEyXkFqcGdeQXVyMjgyMDk1MzY@._V1_FMjpg_UX1000_.jpg",
+        "characters": []
+      },
+      {
+        "id": 7,
+        "name": "Lilo & Stitch",
+        "likes": 215000,
+        "description": "A young and parentless girl adopts a 'dog' from the local pound, completely unaware that it's supposedly a dangerous scientific experiment that's taken refuge on Earth and is now hiding from its creator and those who see it as a menace.",
+        "duration": "1h 25m",
+        "genres": "Comedy, Adventure, Drama, Fantasy",
+        "year": "2002",
+        "imgSrc": "https://lumiere-a.akamaihd.net/v1/images/p_liloandstitch_19755_0ba5c55e.jpeg?region=0%2C0%2C540%2C810",
+        "characters": []
+      },
+      {
+        "id": 8,
+        "name": "Ice Age",
+        "likes": 525000,
+        "description": "Manny the mammoth, Sid the loquacious sloth, and Diego the sabre-toothed tiger go on a comical quest to return a human baby back to his father, across a world on the brink of an ice age.",
+        "duration": "1h 21m",
+        "genres": "Comedy, Adventure, Family",
+        "year": "2002",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BM2JmZGJkNzAtOWI0MC00ZmE5LWIwMjYtODU0OGUxNDg4ZDkwXkEyXkFqcGdeQXVyMTA5ODEyNTc5._V1_.jpg",
+        "characters": []
+      },
+      {
+        "id": 9,
+        "name": "Turning Red",
+        "likes": 157000,
+        "description": "A thirteen-year-old girl named Mei Lee is torn between staying her mother's dutiful daughter and the changes of adolescence. And as if the challenges were not enough, whenever she gets overly excited she transforms into a giant red panda.",
+        "duration": "1h 40m",
+        "genres": "Comedy, Drama, Family, Romance, Fantasy",
+        "year": "2022",
+        "imgSrc": "https://m.media-amazon.com/images/I/81bhnd-MN1L._AC_UF1000,1000_QL80_.jpg",
+        "characters": []
+      },
+      {
+        "id": 10,
+        "name": "Robots",
+        "likes": 164000,
+        "description": "In a robot world, a young idealistic inventor travels to the big city to join his inspiration's company, only to find himself opposing its sinister new management.",
+        "duration": "1h 31m",
+        "genres": "Comedy, Family, Sci-Fi, Adventure",
+        "year": "2005",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BNDYyNjY1NjY1M15BMl5BanBnXkFtZTcwNjk5MDczMw@@._V1_.jpg",
+        "characters": []
+      },
+      {
+        "id": 11,
+        "name": "Hercules",
+        "likes": 258000,
+        "description": "The son of Zeus and Hera is stripped of his immortality as an infant and must become a true hero in order to reclaim it.",
+        "duration": "1h 33m",
+        "genres": "Action, Adventure, Comedy",
+        "year": "1997",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BZDcwYjEyNWItMGI1Mi00MjI1LWIyMDEtMTQ4YjhkNjM4NDU3XkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_.jpg",
+        "characters": []
+      },
+      {
+        "id": 12,
+        "name": "Elemental",
+        "likes": 135000,
+        "description": "Follows Ember and Wade, in a city where fire-, water-, earth- and air-residents live together.",
+        "duration": "1h 41m",
+        "genres": "Comedy, Fantasy, Romance",
+        "year": "2023",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BZjYxYWVjMDMtZGRjZS00ZDE4LTk0OWUtMjUyOTI4MmYxNjgwXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg",
+        "characters": []
+      },
+      {
+        "id": 13,
+        "name": "Howl's Moving Castle",
+        "likes": 458000,
+        "description": "When an unconfident young woman is cursed with an old body by a spiteful witch, her only chance of breaking the spell lies with a self-indulgent yet insecure young wizard and his companions in his legged, walking castle.",
+        "duration": "1h 59m",
+        "genres": "Anime, Adventure, Family, Fantasy",
+        "year": "2004",
+        "imgSrc": "https://m.media-amazon.com/images/I/71ULdXjP3XL._AC_UF1000,1000_QL80_.jpg",
+        "characters": []
+      },
+      {
+        "id": 14,
+        "name": "WALL·E",
+        "likes": 1200000,
+        "description": "A robot who is responsible for cleaning a waste-covered Earth meets another robot and falls in love with her. Together, they set out on a journey that will alter the fate of mankind.",
+        "duration": "1h 38m",
+        "genres": "Adventure, Family, Sci-Fi",
+        "year": "2008",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BMjExMTg5OTU0NF5BMl5BanBnXkFtZTcwMjMxMzMzMw@@._V1_FMjpg_UX1000_.jpg",
+        "characters": []
+      },
+      {
+        "id": 15,
+        "name": "Coraline",
+        "likes": 268000,
+        "description": "Wandering her rambling old house in her boring new town, an 11-year-old Coraline discovers a hidden door to a strangely idealized version of her life. In order to stay in the fantasy, she must make a frighteningly real sacrifice.",
+        "duration": "1h 40m",
+        "genres": "Drama, Family, Fantasy",
+        "year": "2009",
+        "imgSrc": "https://m.media-amazon.com/images/I/81-h4FsEVqL._AC_UF894,1000_QL80_.jpg",
         "characters": []
       }
     ],
