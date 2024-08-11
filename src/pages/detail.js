@@ -43,16 +43,16 @@ function Details() {
   const sections = {
     Overview: (
       <>
-        <Section title="Characters" items={charShow} setCurrentSection={setCurrentSection} />
-        <Section title="Staff" items={staffShow} setCurrentSection={setCurrentSection} />
+        <Section title="Characters" items={charShow} setCurrentSection={setCurrentSection} currentSection={currentSection} />
+        <Section title="Staff" items={staffShow} setCurrentSection={setCurrentSection} currentSection={currentSection} />
         <Reviews setCurrentSection={setCurrentSection} currentSection={currentSection} />
       </>
     ),
     Characters: (
-      <Section title="Characters" items={charShow} setCurrentSection={setCurrentSection} />
+      <Section title="Characters" items={charShow} setCurrentSection={setCurrentSection} currentSection={currentSection} />
     ),
     Staff: (
-      <Section title="Staff" items={staffShow} setCurrentSection={setCurrentSection} />
+      <Section title="Staff" items={staffShow} setCurrentSection={setCurrentSection} currentSection={currentSection} />
     ),
     Reviews: <Reviews setCurrentSection={setCurrentSection} currentSection={currentSection} />,
     Stats: <Stats />,
