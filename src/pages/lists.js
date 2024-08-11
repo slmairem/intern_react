@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import data from '../assets/data.json'; 
 import userData from '../assets/userData.json'; 
 import Placeholder from '../functions/listsPage/placeholder';
@@ -29,6 +29,15 @@ function Lists() {
   const popularLists = getSortedLists(allLists, 'popularity').slice(0, 6);
   const userFavorites = getSortedLists(allLists, 'likes').slice(0, 3);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
+  const totalPages = Math.ceil(allLists.length / itemsPerPage);
+
+  const paginatedLists = allLists.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   return (
     <div className='container mx-auto p-4 font-IndieFlower'>
       <div className="sections mb-4">
@@ -55,7 +64,7 @@ function Lists() {
         <div className="w-3/4 p-4">
           <div className='font-semibold text-lg mb-2'>Recently Updated</div>
           <div className='grid grid-cols-2 gap-4'>
-            {allLists.map((list) => (
+            {paginatedLists.map((list) => (
               <ListCard
                 key={list.listId}
                 images={getImages(list.movies)}
@@ -65,6 +74,21 @@ function Lists() {
                 likes={list.likes}
               />
             ))}
+          </div>
+
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+              className={`bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mr-2 ${currentPage === 1 ? 'hidden' : ''}`}
+            >
+              Previous
+            </button>
+            <button
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+              className={`bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded ${currentPage === totalPages ? 'hidden' : ''}`}
+            >
+              Next
+            </button>
           </div>
         </div>
 
