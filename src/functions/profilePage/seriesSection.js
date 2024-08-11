@@ -58,10 +58,10 @@ const SeriesSection = ({ seriesStatusCounts, totalSeries, rewatchedSeries, userS
             <div className="flex flex-col flex-grow">
               <div className="flex justify-between">
                 <h2 className="text-black text-lg font-semibold">{series.name}</h2>
-                <span className="text-gray-600 text-sm">{series.episodes} Episodes</span>
+                <span className="text-gray-600 text-sm">{series.episodes}</span>
               </div>
               <div className="flex items-center mt-2">
-                <span className="text-gray-600 text-sm">{series.duration}</span>
+                <span className="text-gray-600 text-sm">{series.genres}</span>
               </div>
             </div>
           </div>

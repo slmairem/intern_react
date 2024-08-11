@@ -26,8 +26,8 @@ const getSortedLists = (lists, sortBy) =>
 
 function Lists() {
   const allLists = extractListsFromUserData(userData);
-  const popularLists = getSortedLists(allLists, 'popularity');
-  const userFavorites = getSortedLists(allLists, 'likes');
+  const popularLists = getSortedLists(allLists, 'popularity').slice(0, 6);
+  const userFavorites = getSortedLists(allLists, 'likes').slice(0, 3);
 
   return (
     <div className='container mx-auto p-4 font-IndieFlower'>
@@ -55,7 +55,7 @@ function Lists() {
         <div className="w-3/4 p-4">
           <div className='font-semibold text-lg mb-2'>Recently Updated</div>
           <div className='grid grid-cols-2 gap-4'>
-            {userFavorites.map((list) => (
+            {allLists.map((list) => (
               <ListCard
                 key={list.listId}
                 images={getImages(list.movies)}

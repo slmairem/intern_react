@@ -55,10 +55,10 @@ const MoviesSection = ({ movieStatusCounts, totalMovies, rewatchedMovies, userMo
             <div className="flex flex-col flex-grow">
               <div className="flex justify-between">
                 <h2 className="text-black text-lg font-semibold">{movie.name}</h2>
-                <span className="text-gray-600 text-sm">{movie.releaseDate || 'Release Date'}</span>
+                <span className="text-gray-600 text-sm">{movie.year || 'Date'}</span>
               </div>
               <div className="flex items-center mt-2">
-                <span className="text-gray-600 text-sm">{movie.duration || 'Duration'}</span>
+                <span className="text-gray-600 text-sm">{movie.genres || 'Genres'}</span>
               </div>
             </div>
           </div>

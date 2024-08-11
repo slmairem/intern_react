@@ -16,14 +16,14 @@
         {"id": 1, "status": "c", "score": 5, "date": "12.01.2024"},
         {"id": 2, "status": "ptw", "score": 0, "date": "10.03.2023"},
         {"id": 3, "status": "oh", "score": 4, "date": "06.05.2016"},
-        {"id": 7, "status": "ptw", "score": 0, "date": "04.10.2019"},
-        {"id": 10, "status": "c", "score": 2, "date": "12.01.2017"}
+        {"id": 21, "status": "ptw", "score": 0, "date": "04.10.2019"},
+        {"id": 20, "status": "c", "score": 2, "date": "12.01.2017"}
       ],
       "favs": {
         "movies": [1],
-        "series": [6, 7],
-        "characters": [2],
-        "voiceActors": [2]
+        "series": [21, 22],
+        "characters": [6, 7],
+        "voiceActors": [6]
       },
       "publishedLists": [
         {
@@ -41,6 +41,14 @@
           "likes": 456,
           "description": "Description for List3",
           "movies": [5, 6, 7, 8]
+        },
+        {
+          "listId": 7,
+          "listName": "List 7",
+          "popularity": 124,
+          "likes": 1212,
+          "description": "Description for List 7",
+          "movies": [15,13,26]
         }
       ]
     },
@@ -85,7 +93,30 @@
       "friends": ["User 2"],
       "movies": [],
       "favs": [],
-      "publishedLists": []
+      "publishedLists": [{
+        "listId": 4,
+        "listName": "List 4",
+        "popularity": 124,
+        "likes": 1212,
+        "description": "Description for List 4",
+        "movies": [2,13, 17, 18]
+      },
+      {
+        "listId": 5,
+        "listName": "List 5",
+        "popularity": 124,
+        "likes": 1212,
+        "description": "Description for List 5",
+        "movies": [3]
+      },
+      {
+        "listId": 6,
+        "listName": "List 6",
+        "popularity": 124,
+        "likes": 1212,
+        "description": "Description for List 6",
+        "movies": [21, 23, 10, 4]
+      }]
     }
   ]
   
