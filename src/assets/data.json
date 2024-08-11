@@ -11,14 +11,54 @@
         "imgSrc": "https://m.media-amazon.com/images/M/MV5BOTgxMDQwMDk0OF5BMl5BanBnXkFtZTgwNjU5OTg2NDE@._V1_.jpg",
         "characters": [
           {
-            "charId": 3,
+            "charId": 1,
             "charName": "Joy",
-            "charStaffId": 3,
+            "charStaffId": 1,
             "charStaffName": "Amy Poehler",
-            "charFav": 123,
+            "charFav": 58600,
             "charDesc": "Description for Char3",
             "charImgSrc": "https://w0.peakpx.com/wallpaper/488/835/HD-wallpaper-inside-out-emotion-joy-thumbnail.jpg",
             "staffImgSrc": "https://m.media-amazon.com/images/M/MV5BYjIzMDA0NmUtMTlhZi00ZDU3LTkzYWMtZDhkYTU1ZDJlMGRkXkEyXkFqcGdeQXVyNzcwODE0OTk@._V1_.jpg"
+          },
+          {
+            "charId": 2,
+            "charName": "Sadness",
+            "charStaffId": 2,
+            "charStaffName": "Phyllis Smith",
+            "charFav": 62000,
+            "charDesc": "Description for Char3",
+            "charImgSrc": "https://www.101soundboards.com/storage/board_pictures/47465.jpg?c=1710909534",
+            "staffImgSrc": "https://m.media-amazon.com/images/M/MV5BMjA4NTM3NjUwMV5BMl5BanBnXkFtZTcwMDMyMTk3Mw@@._V1_.jpg"
+          },
+          {
+            "charId": 3,
+            "charName": "Anger",
+            "charStaffId": 3,
+            "charStaffName": "Lewis Black",
+            "charFav": 1000,
+            "charDesc": "Description for Char3",
+            "charImgSrc": "https://assets.mycast.io/actor_images/actor-anger-inside-out-510972_large.jpg?1660229653",
+            "staffImgSrc": "https://i.scdn.co/image/427c86ac082bbf349d3a80f7f52321f5c1828355"
+          },
+          {
+            "charId": 4,
+            "charName": "Disgust",
+            "charStaffId": 4,
+            "charStaffName": "Liza Lapira",
+            "charFav": 1900,
+            "charDesc": "Description for Char3",
+            "charImgSrc": "https://i.pinimg.com/736x/e8/4c/78/e84c782967ef59e4293810da194e18ab.jpg",
+            "staffImgSrc": "https://m.media-amazon.com/images/M/MV5BMjE4OTIzMzYyMV5BMl5BanBnXkFtZTgwNjMyOTk0NzE@._V1_.jpg"
+          },
+          {
+            "charId": 5,
+            "charName": "Fear",
+            "charStaffId": 5,
+            "charStaffName": "Bill Hader",
+            "charFav": 1300,
+            "charDesc": "Description for Char3",
+            "charImgSrc": "https://mrwallpaper.com/images/thumbnail/disney-inside-out-fear-46xz7f0ib60moyal.webp",
+            "staffImgSrc": "https://m.media-amazon.com/images/M/MV5BNTY3MzgwMjE3N15BMl5BanBnXkFtZTcwNjc2MjE3NA@@._V1_.jpg"
           }
         ]
       },
