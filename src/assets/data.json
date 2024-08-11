@@ -179,9 +179,9 @@
     ],
     "Series": [
       {
-        "id": 6,
+        "id": 16,
         "name": "SpongeBob SquarePants",
-        "likes": 200,
+        "likes": 113000,
         "description": "The misadventures of a talking sea sponge who works at a fast food restaurant, attends a boating school, and lives in an underwater pineapple.",
         "episodes": "320ep",
         "duration": "23m",
@@ -191,9 +191,9 @@
         "characters": []
       },
       {
-        "id": 7,
+        "id": 17,
         "name": "Hazbin Hotel",
-        "likes": 123,
+        "likes": 26000,
         "description": "In an attempt to find a non-violent alternative for reducing Hell's overpopulation, the daughter of Lucifer opens a rehabilitation hotel that offers a group of misfit demons a chance at redemption.",
         "episodes": "8ep",
         "duration": "32m",
@@ -203,9 +203,9 @@
         "characters": []
       },
       {
-        "id": 8,
+        "id": 18,
         "name": "Gravity Falls",
-        "likes": 123,
+        "likes": 140000,
         "description": "Twin siblings Dipper and Mabel Pines spend the summer at their great-uncle's tourist trap in the enigmatic Gravity Falls, Oregon.",
         "episodes": "S1-20ep, S2-21ep",
         "duration": "23m",
@@ -215,9 +215,9 @@
         "characters": []
       },
       {
-        "id": 9,
+        "id": 19,
         "name": "Regular Show",
-        "likes": 123,
+        "likes": 60000,
         "description": "The surreal misadventures of two best friends - a blue jay and a raccoon - as they seek to liven up their mundane jobs as groundskeepers at the local park.",
         "episodes": "244ep",
         "duration": "23m",
@@ -227,9 +227,9 @@
         "characters": []
       },
       {
-        "id": 10,
+        "id": 20,
         "name": "Miraculous: Tales of Ladybug & Cat Noir",
-        "likes": 123,
+        "likes": 16000,
         "description": "Marinette and Adrien, two normal teens, transform into the superheroes Ladybug and Cat Noir when a mysterious evil threatens to destroy Paris.",
         "episodes": "140ep",
         "duration": "20m",
@@ -239,9 +239,9 @@
         "characters": []
       },
       {
-        "id": 11,
+        "id": 21,
         "name": "The Amazing World of Gumball",
-        "likes": 123,
+        "likes": 43000,
         "description": "The life of a twelve-year-old boy who happens to be a blue cat as he lives with his family and other strange creatures.",
         "episodes": "261ep",
         "duration": "11m",
@@ -270,6 +270,66 @@
             "staffImgSrc": "https://m.media-amazon.com/images/M/MV5BZmVlNDkyOGMtNjVjYi00YTE2LTkxYWUtYmQ0NjQxZjYyYjEwXkEyXkFqcGdeQXVyMTk1ODA5NTY@._V1_.jpg"
           }
         ]
+      },
+      {
+        "id": 22,
+        "name": "Ben 10",
+        "likes": 29000,
+        "description": "The story of Ben Tennyson, a typical kid who becomes very atypical after he discovers the Omnitrix, a mysterious alien device with the power to transform the wearer into ten different alien species.",
+        "episodes": "52ep",
+        "duration": "22m",
+        "genres": "Action, Adventure, Sci-Fi",
+        "year": "2005-2008",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BZjg2ZjViMTktNWQ1Yy00ODZiLWE1OTgtNDY3MjI0OGUyNjNhXkEyXkFqcGdeQXVyNTk4NDI4NTE@._V1_.jpg",
+        "characters": []
+      },
+      {
+        "id": 23,
+        "name": "Avatar: The Last Airbender",
+        "likes": 282000,
+        "description": "In a war-torn world of elemental powers, a young boy reawakens to undertake a dangerous mystic quest to fulfill his destiny as the Avatar, and bring peace to the world.",
+        "episodes": "62ep",
+        "duration": "23m",
+        "genres": "Action, Adventure, Family",
+        "year": "2005-2008",
+        "imgSrc": "https://media.newyorker.com/photos/5f01e383b975762d612e0ff3/master/pass/Barasch-Avatar.jpg",
+        "characters": []
+      },
+      {
+        "id": 24,
+        "name": "Arcane",
+        "likes": 283000,
+        "description": "Set in Utopian Piltover and the oppressed underground of Zaun, the story follows the origins of two iconic League of Legends champions and the power that will tear them apart.",
+        "episodes": "10ep",
+        "duration": "40m",
+        "genres": "Action, Adventure, Drama, Fantasy",
+        "year": "2021-2024",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BOWJhYjdjNWEtMWFmNC00ZjNkLThlZGEtN2NkM2U3NTVmMjZkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+        "characters": []
+      },
+      {
+        "id": 25,
+        "name": "Blue Eye Samurai",
+        "likes": 74000,
+        "description": "Driven by a dream of revenge against those who made her an outcast in Edo-period Japan, a young warrior cuts a bloody path toward her destiny.",
+        "episodes": "8ep",
+        "duration": "45m",
+        "genres": "Action, Adventure, History, Samurai",
+        "year": "2023",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BNjg5YzIwMmMtOWMzZS00NWExLWE3MTUtZjVmNjVlNjdmZjY0XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_FMjpg_UX1000_.jpg",
+        "characters": []
+      },
+      {
+        "id": 26,
+        "name": "BoJack Horseman",
+        "likes": 194000,
+        "description": "BoJack Horseman was the star of the hit television show Horsin' Around in the '80s and '90s, but now he's washed up, living in Hollywood, complaining about everything, and wearing colorful sweaters.",
+        "episodes": "77ep",
+        "duration": "25m",
+        "genres": "Sitcom, Comedy, Drama",
+        "year": "2014-2020",
+        "imgSrc": "https://m.media-amazon.com/images/M/MV5BYWQwMDNkM2MtODU4OS00OTY3LTgwOTItNjE2Yzc0MzRkMDllXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+        "characters": []
       }
     ]
   }
